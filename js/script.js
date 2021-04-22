@@ -3,7 +3,7 @@ const container = document.querySelector('.container');
 
 
 
-import {configVisitSelect, configVisitInput, configVisitTextArea} from "../componentsDeclaration/configSelect.js";
+import {configVisitSelect, configVisitInput, configVisitTextArea} from "../componentsDeclaration/configSelectInputTextArea.js";
 import SelectInputTextArea from "./SelectInputTextArea.js";
 
 

@@ -1,0 +1,26 @@
+Список CSS классов и ID для элементов select, input, textarea формы visit:
+
+каждая пара   <label> - <поле (select, input или textarea)  обёрнуты в компонент.  HTML  структура находится в корне проекта
+
+
+ОБразец:  название HTLM элементов :   их CSS класс
+
+
+Для компонента select:
+    <p></p> контейнер для мини-контейнера содержащего <lable> и <select>:  "visit__select-container"
+    <select> :  "visit__select"
+        id     : "select-doctor"
+
+
+Для компонента input:
+    <input> id: "input-doctor",
+    container содержащий <label>, <input>: "visit__input-container"
+    <input>: "visit__input"
+
+
+
+Для компонента textarea:
+    <textarea> id:  "text-area-doctor"
+     container содержащий <textarea>, <input>:  "visit__text-area-container"
+    elementClass: "visit__text-area"
+
