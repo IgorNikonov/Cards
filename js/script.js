@@ -1,5 +1,24 @@
-console.log('script.js');
-import Visit from "./visit.js"
+// console.log('script.js');
+const container = document.querySelector('.container');
 
-const visit = new Visit(document.querySelector('.container'));
-visit.render();
+
+
+import {configVisitSelect, configVisitInput, configVisitTextArea} from "../componentsDeclaration/configSelect.js";
+import SelectInputTextArea from "./SelectInputTextArea.js";
+
+
+const select = new SelectInputTextArea(container, configVisitSelect);
+select.render();
+
+const input = new SelectInputTextArea(container, configVisitInput);
+input.render();
+
+const textArea = new SelectInputTextArea(container, configVisitTextArea);
+textArea.render();
+
+
+/*** Блок проверки работоспособности методов класса ***/
+// console.log( select.getSelected() );
+// select.remove();
+// select.hide();
+// select.show();
