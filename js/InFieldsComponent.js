@@ -1,6 +1,6 @@
 // import {configVisitSelect as configObj} from "../componentsDeclaration/configSelect.js";
 
-export default class SelectInputTextArea {
+export default class InFieldsComponent {
 
     constructor(parent, {id, tag, containerClass, elementClass, labelText, options} ) {
         this.id = id;

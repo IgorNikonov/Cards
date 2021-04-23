@@ -21,6 +21,6 @@
 
 Для компонента textarea:
     <textarea> id:  "text-area-doctor"
-     container содержащий <textarea>, <input>:  "visit__text-area-container"
+     container содержащий <textarea>, <input>:  "visit__container"
     elementClass: "visit__text-area"
 
