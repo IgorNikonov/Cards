@@ -4,6 +4,4 @@ import allComponentsTest from "./test-components-and-their-methods.js"
 
 
 
-
-
 allComponentsTest();
