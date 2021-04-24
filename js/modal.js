@@ -7,22 +7,26 @@
 */
 
 export default class Modal {
-    constructor(parent, {id, tag, componentClass} ) {
+    constructor(parent, {id, tag, componentClass, title} ) {
         this.id = id;
         this.tag = tag;
         this.componentClass = componentClass;
+        this.title = title;
         this._DOMelements = {
             parent: parent,
             component: document.createElement(`${tag}`),
+            titleEl: document.createElement('h3'),
         }
     }
     render() {
-        const { id, tag, componentClass} = this;
-        const {parent, component} = this._DOMelements;
+        const { id, tag, componentClass, title} = this;
+        const {parent, component, titleEl} = this._DOMelements;
 
         component.className = componentClass;
         component.classList.add("test"); //TODO для теста. Потом эту строку удалить
         component.style.display = "block"; //TODO для теста. Потом эту строку удалить
+        titleEl.innerText = title;
+        component.append(title);
         parent.append(component);
     }
     remove(){

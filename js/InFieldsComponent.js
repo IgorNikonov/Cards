@@ -1,6 +1,12 @@
+import * as visits from "./classesExtend.js";
+import * as cfig from "../componentsDeclaration/configForms.js";
+import VisitForm from "./visitForm.js";
+import {globContainer} from "./script.js";
+
 export default class InFieldsComponent {
 
     constructor(parent, {id, tag, containerClass, elementClass, labelText, options} ) {
+        this.className = InFieldsComponent;
         this.id = id;
         this.tag = tag;
         this.containerClass = containerClass;
@@ -12,7 +18,7 @@ export default class InFieldsComponent {
             component: document.createElement('p'),
             selfEl: document.createElement(`${tag}`),
             labelEl: document.createElement("label"),
-        }
+    }
     }
 
     // label = this.createElement("label", {for: this.id}, this.label);
@@ -31,8 +37,8 @@ export default class InFieldsComponent {
         selfEl.className = elementClass;
         selfEl.id = id;
 
-        selfEl.addEventListener("change", () => {
-
+        selfEl.addEventListener("click", (e) => {
+            this.changeDoctor(e); //TODO потом переписать с проверкой это select/input or textarea
         });
         labelEl.htmlFor = `${id}`;
         labelEl.innerText = labelText;
@@ -47,27 +53,56 @@ export default class InFieldsComponent {
         parent.append(component);
     }
 
-    getSelected() {
-        const {selfEl} = this._DOMelements;
-        const a = selfEl.options[selfEl.selectedIndex].value;
-        const b = selfEl.selectedIndex;
-        const text = selfEl.text;
-        const value = selfEl.value;
-        return [a, b, text, value];
+    changeDoctor({target}){
+        const form = document.getElementById('visit-form');
+        form.remove();
+
+        switch (target.value) {
+            case "Кардиолог":
+            const visitCardiologist = new visits.VisitCardiologist(document.querySelector(globContainer), cfig.cardiologist);
+            visitCardiologist.render();
+            // const visitForm = new VisitForm(document.querySelector(globContainer), cfig.visitForm);
+            // visitForm.render();
+            break;
+
+            case "Стоматолог":
+                const visitDentist = new visits.VisitDentist(document.querySelector(globContainer), cfig.dentist);
+                visitDentist.render();
+                break;
+
+            case "Терапевт":
+                const visitTherapist = new visits.VisitTherapist(document.body, cfig.therapist);
+                // const visitTherapist = new visits.VisitTherapist(component.closest("#block"), cfig.therapist);
+                visitTherapist.render();
+                break;
+            default:
     }
 
-    remove() {
-        const {component} = this._DOMelements;
-        component.remove();
     }
 
-    hide() {
-        const {component} = this._DOMelements;
-        component.style.opacity = "0";
-    }
 
-    show() {
-        const {component} = this._DOMelements;
-        component.style.opacity = "1";
-    }
+    // getSelected() {
+    //     const {selfEl} = this._DOMelements;
+    //     const a = selfEl.options[selfEl.selectedIndex].value;
+    //     const b = selfEl.selectedIndex;
+    //     const text = selfEl.text;
+    //     const value = selfEl.value;
+    //     return [a, b, text, value];
+    //}
+
+    //
+    // remove() {
+    //     const {component} = this._DOMelements;
+    //     component.remove();
+    // }
+    //
+    // hide() {
+    //     const {component} = this._DOMelements;
+    //     component.style.opacity = "0";
+    // }
+    //
+    // show() {
+    //     const {component} = this._DOMelements;
+    //     component.style.opacity = "1";
+    // }
 }

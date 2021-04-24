@@ -20,7 +20,7 @@ export const doctorSelect = {
         {
             value: "Терапевт",
             text: "запись к Терапевту",
-            defaultSelected: true,
+            defaultSelected: false,
         },
     ],
 

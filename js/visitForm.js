@@ -1,12 +1,34 @@
-
-/***  Класс для формирования Формы Визитов  ***/
-import Modal from "./modal.js"
+//импорт родительских классов
+import Form from "./form.js"
+//импорт конфигураций:
 import InFieldsComponent from "./InFieldsComponent.js";
 import * as cfg from "../componentsDeclaration/configInFieldComp.js";
-export default class VisitForm extends Modal {
 
-    constructor(parent, {id, tag, componentClass}) {
-        super(parent, {id, tag, componentClass});
+/***  Класс для формирования Формы Визитов  ***/
+export default class VisitForm extends Form {
+
+     constructor(parent, {id, tag, componentClass, title} ) {
+        super(parent, {id, tag, componentClass, title});
+         this.className = "VisitForm";
+     }
+
+ //выполняем эту ф-цию сразу после выбора доктора
+     renderAdditionalFields(){
+         const {component} = this._DOMelements;
+      const purpose = new InFieldsComponent(component, cfg.visitPurpose);
+      purpose.render();
+
+      const description = new InFieldsComponent(component, cfg.visitDescription);
+      description.render();
+
+      const urgency = new InFieldsComponent(component, cfg.urgency);
+      urgency.render();
+
+      const visitorName = new InFieldsComponent(component, cfg.visitorName);
+      visitorName.render();
+
+      const visitorLastName = new InFieldsComponent(component, cfg.visitorLastName);
+      visitorLastName.render();
      }
 
      render(){
@@ -15,37 +37,6 @@ export default class VisitForm extends Modal {
 
          const selectDoctor = new InFieldsComponent(component, cfg.doctorSelect);
          selectDoctor.render();
-
-         const purpose = new InFieldsComponent(component, cfg.visitPurpose);
-         purpose.render();
-
-         const description = new InFieldsComponent(component, cfg.visitDescription);
-         description.render();
-
-         const urgency = new InFieldsComponent(component, cfg.urgency);
-         urgency.render();
-
-         const visitorName = new InFieldsComponent(component, cfg.visitorName);
-         visitorName.render();
-
-         const visitorLastName = new InFieldsComponent(component, cfg.visitorLastName);
-         visitorLastName.render();
-
-         const visitorRegularPressure = new InFieldsComponent(component, cfg.visitorRegularPressure);
-         visitorRegularPressure.render();
-
-         const visitorBodyWeightIndex = new InFieldsComponent(component, cfg.visitorBodyWeightIndex);
-         visitorBodyWeightIndex.render();
-
-         const DeseasesVisitorHasHad = new InFieldsComponent(component, cfg.DeseasesVisitorHasHad);
-         DeseasesVisitorHasHad.render();
-
-         const visitorAge = new InFieldsComponent(component, cfg.visitorAge);
-         visitorAge.render();
-
-         const lastVisitDate = new InFieldsComponent(component, cfg.lastVisitDate);
-         lastVisitDate.render();
-
      }
 
 }
