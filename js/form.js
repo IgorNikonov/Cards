@@ -43,7 +43,7 @@ export default class Form {
                 case "VisitCardiologist":
                 case     "VisitDentist":
                 case   "VisitTherapist":
-                const visitForm = new VisitForm(document.querySelector(globContainer), cfig.form);
+                const visitForm = new VisitForm(document.querySelector(globContainer), cfig.visitForm);
                     visitForm.render();
                 break;
             default:

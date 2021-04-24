@@ -1,12 +1,12 @@
 // конфигурируем select - Выбор специализации врача к посещению:  Терапевт, стоматолог, кардиолог
 export const doctorSelect = {
-    id: "select-doctor",
-    tag: "select",
-    containerClass: "visit__container",
-    elementClass: "visit__select",
-    labelText:"Выберите Врача",
+        id: "select-doctor",
+        tag: "select",
+        containerClass: "visit__container",
+        elementClass: "visit__select",
+        labelText:"Выберите Врача",
 
-    options: [
+        options: [
         {
             value: "Кардиолог",
             text: "запись к Кардиологу",
@@ -138,3 +138,19 @@ export const lastVisitDate = {
     elementClass: "visit__last-visit-date",
     labelText:"введите дату последнего посещения:",
 };
+
+// // кнопка "Закрыть"
+// export const closeBtn = {
+//     id: "close-btn",
+//     tag: "button",
+//     elementClass: "visit__close-btn",
+//     labelText:"Закрыть",
+// };
+//
+// //кнопка "Создать"
+// export const createBtn = {
+//     id: "create-btn",
+//     tag: "button",
+//     elementClass: "visit__create-btn",
+//     labelText:"Создать",
+// };

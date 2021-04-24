@@ -1,6 +1,6 @@
 //импорт родительских классов
 import InFieldsComponent from "./InFieldsComponent.js";
-import Form from "./Form.js";
+import Form from "./form.js";
 import VisitForm from "./visitForm.js";
 //импорт конфигураций:
 import * as cfg from "../componentsDeclaration/configInFieldComp.js";
@@ -14,7 +14,6 @@ export class VisitCardiologist extends Form {
     render(){
         super.render();
         const {component} = this._DOMelements;
-
         const visitorRegularPressure = new InFieldsComponent(component, cfg.visitorRegularPressure);
         visitorRegularPressure.render();
 
