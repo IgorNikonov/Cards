@@ -50,8 +50,10 @@ export default class VisitForm extends Form {
         // создаём кнопки closeBtn, createBtn
       const closeBtn = new CreateBtn(innerComponent, cfg.closeBtnCfg);
       const createBtn = new CreateBtn(innerComponent, cfg.createCardBtnCfg);
+      const resetBtn = new CreateBtn(innerComponent, cfg.resetBtnCfg);
       closeBtn.render();
       createBtn.render();
+      resetBtn.render();
      }
 
      render(){

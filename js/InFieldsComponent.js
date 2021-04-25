@@ -1,7 +1,7 @@
 import * as visits from "./classesExtend.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 import VisitForm from "./visitForm.js";
-import {globContainerID} from "../componentsDeclaration/configElements.js";
+import {globContainerID, doctorSelect} from "../componentsDeclaration/configElements.js";
 
 export default class InFieldsComponent {
 
@@ -51,9 +51,10 @@ export default class InFieldsComponent {
     }
 
     changeDoctor({target}){
+        if (  !doctorSelect.options.some(el=> el.value === target.value)  ) return;
+        else { //удаляем форму ТОЛЬКО если событие вызвано select-doctor (внутренние элементы формы так же вызовут эту функцию)
         const form = document.getElementById('visit-form');
         form.remove();
-
 
         switch (target.value) {
 
@@ -75,7 +76,7 @@ export default class InFieldsComponent {
                 VisitForm.renderAdditionalFields(visitTherapist._DOMelements.component);
                 break;
             default:
-    }
+    }}
 
     }
 

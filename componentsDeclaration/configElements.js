@@ -1,8 +1,6 @@
 import {globContainer} from "../js/script.js";
 import VisitForm from "../js/visitForm.js";
-import Form from "../js/Form.js";
 import {visitFormCfg} from "./configForms.js";
-import * as cfig from "./configForms.js";
 export const globContainerID = ".global-container";
 
 
@@ -15,19 +13,6 @@ export const resetBtnCfg = {
     innerText:"очистить форму",
     handler: function formResetHandler(){}
 };
-
-export const returnBtnCfg = {
-    id: "return-btn",
-    tag: "button",
-    type: "button",
-    className: "visit__return-btn  btn",
-    innerText:"К предыдущему меню",
-    handler: function(){
-      Form.showPreviousMenu();
-    }
-
-};
-
 
 //кнопка "Создать карточку посещения"
 export const createCardBtnCfg = {

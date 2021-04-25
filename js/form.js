@@ -4,7 +4,6 @@ import VisitForm from "./visitForm.js";
 //импорт конфигураций:
 import * as cfig from "../componentsDeclaration/configForms.js"
 
-
 export default class Form {
     constructor(parent, {id, tag, componentClass, title} ) {
         this.ES6classTitle = "Form";
