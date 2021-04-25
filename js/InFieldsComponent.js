@@ -1,11 +1,11 @@
 import * as visits from "./classesExtend.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 import VisitForm from "./visitForm.js";
-import {globContainer} from "./script.js";
+import { globContainer } from "./script.js";
 
 export default class InFieldsComponent {
 
-    constructor(parent, {id, tag, containerClass, elementClass, labelText, options} ) {
+    constructor(parent, { id, tag, containerClass, elementClass, labelText, options }) {
         this.className = InFieldsComponent;
         this.id = id;
         this.tag = tag;
@@ -18,21 +18,22 @@ export default class InFieldsComponent {
             component: document.createElement('p'),
             selfEl: document.createElement(`${tag}`),
             labelEl: document.createElement("label"),
-    }
+        }
     }
 
     // label = this.createElement("label", {for: this.id}, this.label);
     // const select = this.createElement("select", this.classes, selectOptions); // Єто типа наш кастомный метод из класса Conponent, котрый умеет создавать компоненты
     render() {
-        const {parent, selfEl, labelEl, component} = this._DOMelements;
+        const { parent, selfEl, labelEl, component } = this._DOMelements;
         const { id, tag, containerClass, elementClass, labelText, options } = this;
         if (tag === 'select') {
-            for (let i=0; i < options.length; i++) {
-                selfEl.add( new Option(options[i].text, options[i].value, options[i].defaultSelected, options[i].defaultSelected) );
+            for (let i = 0; i < options.length; i++) {
+                selfEl.add(new Option(options[i].text, options[i].value, options[i].defaultSelected, options[i].defaultSelected));
                 /* в предыдущ стр. мы указали выбрать Терапевта по умолчанию (true, true).  Альтернативные способы:
                 selectDoctorEl.innerText = "запись к Кардиологу";    selectDoctorEl.value = "Терапевт";   selectDoctorEl.selectedIndex = 2;  */
                 selfEl.size = options.length; // TODO  пока что раскрыли select полностью
-        }   }
+            }
+        }
 
         selfEl.className = elementClass;
         selfEl.id = id;
@@ -42,6 +43,7 @@ export default class InFieldsComponent {
         });
         labelEl.htmlFor = `${id}`;
         labelEl.innerText = labelText;
+        labelEl.classList.add('label_test')
 
         component.className = containerClass;
         component.classList.add("test"); //TODO для теста. Потом эту строку удалить
@@ -49,11 +51,11 @@ export default class InFieldsComponent {
 
         labelEl.style.display = "block";   //TODO для теста. Потом эту строку удалить
 
-        component.append(labelEl, selfEl );
+        component.append(labelEl, selfEl);
         parent.append(component);
     }
 
-    changeDoctor({target}){
+    changeDoctor({ target }) {
         const form = document.getElementById('visit-form');
         form.remove();
 
@@ -78,7 +80,7 @@ export default class InFieldsComponent {
                 VisitForm.renderAdditionalFields(visitTherapist._DOMelements.component);
                 break;
             default:
-    }
+        }
 
     }
 

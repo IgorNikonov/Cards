@@ -1,12 +1,12 @@
 // конфигурируем select - Выбор специализации врача к посещению:  Терапевт, стоматолог, кардиолог
 export const doctorSelect = {
-        id: "select-doctor",
-        tag: "select",
-        containerClass: "visit__container",
-        elementClass: "visit__select",
-        labelText:"Выберите Врача",
+    id: "select-doctor",
+    tag: "select",
+    containerClass: "visit__container",
+    elementClass: "visit__select",
+    labelText: "Выберите Врача",
 
-        options: [
+    options: [
         {
             value: "Кардиолог",
             text: "запись к Кардиологу",
@@ -31,8 +31,8 @@ export const visitPurpose = {
     id: "purpose",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__purpose",
-    labelText:"Цель визита:",
+    elementClass: "visit__purpose al-c",
+    labelText: "Цель визита:",
 };
 
 // краткое описание визита:
@@ -40,8 +40,8 @@ export const visitDescription = {
     id: "description",
     tag: "textarea",
     containerClass: "visit__container",
-    elementClass: "visit__description",
-    labelText:"Опишите цель визита:",
+    elementClass: "visit__description al-c",
+    labelText: "Опишите цель визита:",
 };
 
 // конфигурируем select -срочность визита:   обычная, приоритетная, неотложная
@@ -49,8 +49,8 @@ export const urgency = {
     id: "urgency",
     tag: "select",
     containerClass: "visit__container",
-    elementClass: "visit__urgency-select",
-    labelText:"Задайте срочность посещения:",
+    elementClass: "visit__urgency-select al-c",
+    labelText: "Задайте срочность посещения:",
 
     options: [
         {
@@ -78,8 +78,8 @@ export const visitorName = {
     id: "visitor-name",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__name",
-    labelText:"введите Имя:",
+    elementClass: "visit__name al-c",
+    labelText: "Ведите Имя:",
 };
 
 // конфигурируем Фамилию
@@ -87,8 +87,8 @@ export const visitorLastName = {
     id: "visitor-last-name",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__last-name",
-    labelText:"введите Фамилию:",
+    elementClass: "visit__last-name al-c",
+    labelText: "Введите Фамилию:",
 };
 
 
@@ -105,29 +105,29 @@ export const visitorRegularPressure = {
     id: "visitor-normal-pressure",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__normal-pressure",
-    labelText:"Обычное давление посетителя:",
+    elementClass: "visit__normal-pressure al-c",
+    labelText: "Обычное давление посетителя:",
 };
 export const visitorBodyWeightIndex = {
     id: "visitor-BWI",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__visitor-BWI",
-    labelText:"Введите индекс массы тела:",
+    elementClass: "visit__visitor-BWI al-c",
+    labelText: "Введите индекс массы тела:",
 };
 export const DeseasesVisitorHasHad = {
     id: "visitor-deseases",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__deseases",
-    labelText:"Перечислить перенесенные болезни:",
+    elementClass: "visit__deseases al-c",
+    labelText: "Перечислить перенесенные болезни:",
 };
 export const visitorAge = {
     id: "visitor-age",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__visitor-age",
-    labelText:"введите возраст посетителя:",
+    elementClass: "visit__visitor-age al-c",
+    labelText: "Введите возраст посетителя:",
 };
 
 // для Стоматолога:
@@ -135,8 +135,8 @@ export const lastVisitDate = {
     id: "last-visit-date",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__last-visit-date",
-    labelText:"введите дату последнего посещения:",
+    elementClass: "visit__last-visit-date al-c",
+    labelText: "Введите дату последнего посещения:",
 };
 
 // // кнопка "Закрыть"
