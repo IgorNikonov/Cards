@@ -1,4 +1,4 @@
-import {createVisitBtnCfg, globContainerID} from "../componentsDeclaration/configInFieldComp.js";
+import {createVisitBtnCfg, globContainerID} from "../componentsDeclaration/configElements.js";
 import {CreateBtn} from "./classesExtend.js";
 
 export const globContainer = document.querySelector(globContainerID);

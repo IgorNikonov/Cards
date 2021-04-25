@@ -1,7 +1,7 @@
 import * as visits from "./classesExtend.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 import VisitForm from "./visitForm.js";
-import {globContainerID} from "../componentsDeclaration/configInFieldComp.js";
+import {globContainerID} from "../componentsDeclaration/configElements.js";
 
 export default class InFieldsComponent {
 
@@ -92,19 +92,4 @@ export default class InFieldsComponent {
     //     return [a, b, text, value];
     //}
 
-    //
-    // remove() {
-    //     const {component} = this._DOMelements;
-    //     component.remove();
-    // }
-    //
-    // hide() {
-    //     const {component} = this._DOMelements;
-    //     component.style.opacity = "0";
-    // }
-    //
-    // show() {
-    //     const {component} = this._DOMelements;
-    //     component.style.opacity = "1";
-    // }
 }

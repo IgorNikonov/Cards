@@ -1,7 +1,6 @@
-import {globContainer} from "./script.js";
 import InFieldsComponent from "./InFieldsComponent.js";
 import Form from "./form.js";
-import * as cfg from "../componentsDeclaration/configInFieldComp.js";
+import * as cfg from "../componentsDeclaration/configElements.js";
 
 export class CreateBtn {
     constructor(parent, {id, className, innerText, handler}){

@@ -3,7 +3,7 @@ import Form from "./form.js"
 import {CreateBtn} from "./classesExtend.js";
 import InFieldsComponent from "./InFieldsComponent.js";
 //импорт конфигураций:
-import * as cfg from "../componentsDeclaration/configInFieldComp.js";
+import * as cfg from "../componentsDeclaration/configElements.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 
 /***  Класс для формирования Формы Визитов  ***/

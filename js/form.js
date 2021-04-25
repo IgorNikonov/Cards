@@ -1,4 +1,4 @@
-import {globContainerID} from "../componentsDeclaration/configInFieldComp.js";
+import {globContainerID} from "../componentsDeclaration/configElements.js";
 //импорт  классов
 import VisitForm from "./visitForm.js";
 //импорт конфигураций:
