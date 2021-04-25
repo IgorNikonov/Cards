@@ -10,36 +10,16 @@ export class CreateBtn {
         this.innerText = innerText;
         this.btnEl = document.createElement('button');
         this.handler = handler;
+        this.parent = parent;
     }
-    // static showVisitForm(){
-    //         const visitForm = new VisitForm(globContainer, visitFormCfg);
-    //         visitForm.render();
-    //         document.getElementById('create-visit-btn').remove(); //и сразу себя же и у
-    // }
-
     render(){
-        const {id, className, innerText, btnEl} = this;
+        const {id, className, innerText, btnEl, parent} = this;
         btnEl.id = id;
         btnEl.className = className;
         btnEl.innerText = innerText;
-        switch (this.innerText) {
-            case "Создать визит":
-                btnEl.addEventListener('click', ()=> this.handler() /*CreateBtn.showVisitForm()*/ );
-                globContainer.append(btnEl);
-                break;
-            case "Закрыть":
-                btnEl.addEventListener('click', ()=> this.handler() );
-                globContainer.append(btnEl);
-                break;
-            case "Создать":
-                btnEl.addEventListener('click', ()=> this.handler() );
-                globContainer.append(btnEl);
-                break;
-            default:
+        btnEl.addEventListener('click', ()=> this.handler() );
+        parent.append(btnEl);
         }
-
-
-    }
 }
 
 

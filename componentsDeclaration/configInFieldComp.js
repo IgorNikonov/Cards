@@ -27,7 +27,6 @@ export const createVisitBtnCfg = {
     }
 };
 
-
 // кнопка "Закрыть"
 export const closeBtnCfg = {
     id: "close-btn",

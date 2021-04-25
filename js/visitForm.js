@@ -1,8 +1,8 @@
-//импорт родительских классов
+//импорт классов
 import Form from "./form.js"
 import {CreateBtn} from "./classesExtend.js";
-//импорт конфигураций:
 import InFieldsComponent from "./InFieldsComponent.js";
+//импорт конфигураций:
 import * as cfg from "../componentsDeclaration/configInFieldComp.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 
@@ -15,7 +15,7 @@ export default class VisitForm extends Form {
      }
 
      static renderIdleForm(){ // общий метод рендеринга исходной формы  visitForm
-         if (!document.getElementById("form")) document.getElementById("form").remove();
+         if (document.getElementById("form")) document.getElementById("form").remove();
          const visitForm = new VisitForm(document.querySelector(cfg.globContainerID), cfig.visitFormCfg);
          visitForm.render();
      }
@@ -23,8 +23,7 @@ export default class VisitForm extends Form {
     bodyCloseHandler({target}){
         const form_ = document.querySelector("form");
         if (target.closest('form')) {}
-        else if (form_.id !== cfig.visitFormCfg.id) // если это не основная форма выбора врача -то закрыть
-        {
+        else if (form_.id !== cfig.visitFormCfg.id){ // если это не основная форма выбора врача -то закрыть
             form_.remove();
             VisitForm.renderIdleForm(); // и вернуться к дефолтной форме выбора врача!
         }
@@ -53,8 +52,6 @@ export default class VisitForm extends Form {
       const createBtn = new CreateBtn(innerComponent, cfg.createBtn);
       closeBtn.render();
       createBtn.render();
-
-      innerComponent.append(closeBtn, createBtn);
      }
 
      render(){
