@@ -1,4 +1,4 @@
-import {globContainer} from "./script.js";
+import {globContainerID} from "../componentsDeclaration/configInFieldComp.js";
 //импорт  классов
 import VisitForm from "./visitForm.js";
 //импорт конфигураций:
@@ -7,7 +7,7 @@ import * as cfig from "../componentsDeclaration/configForms.js"
 
 export default class Form {
     constructor(parent, {id, tag, componentClass, title} ) {
-        this.className = "Form";
+        this.ES6classTitle = "Form";
         this.id = id;
         this.componentClass = componentClass;
         this.title = title;
@@ -22,6 +22,7 @@ export default class Form {
         const {id, componentClass, title} = this;
         const {parent, component, titleEl, returnBut} = this._DOMelements;
 
+        // document.getElementById('create-visit-btn').remove(); //сходу удалить себя
         component.className = componentClass;
         component.id = id;
         component.classList.add("test"); //TODO для теста. Потом эту строку удалить
@@ -35,15 +36,15 @@ export default class Form {
     }
     showPreviousMenu(){
         this.remove();
-        switch (this.className) {
-            case VisitForm:
-                const form = new Form(document.querySelector(globContainer), cfig.form);
+        switch (this.ES6classTitle) {
+            case "VisitForm":
+                const form = new Form(document.querySelector(globContainerID), cfig.form);
                 form.render();
                 break;
                 case "VisitCardiologist":
                 case     "VisitDentist":
                 case   "VisitTherapist":
-                const visitForm = new VisitForm(document.querySelector(globContainer), cfig.visitForm);
+                const visitForm = new VisitForm(document.querySelector(globContainerID), cfig.visitFormCfg);
                     visitForm.render();
                 break;
             default:
@@ -54,14 +55,6 @@ export default class Form {
     remove(){
         const {component} = this._DOMelements;
         component.remove();
-    }
-    hide(){
-        const {component} = this._DOMelements;
-        component.style.opacity = "0";
-    }
-    show(){
-        const {component} = this._DOMelements;
-        component.style.opacity = "1";
     }
 
 }

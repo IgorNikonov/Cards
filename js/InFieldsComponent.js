@@ -1,7 +1,7 @@
 import * as visits from "./classesExtend.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 import VisitForm from "./visitForm.js";
-import {globContainer} from "./script.js";
+import {globContainerID} from "../componentsDeclaration/configInFieldComp.js";
 
 export default class InFieldsComponent {
 
@@ -61,19 +61,19 @@ export default class InFieldsComponent {
         switch (target.value) {
 
             case "Кардиолог":
-                const visitCardiologist = new visits.VisitCardiologist(document.querySelector(globContainer), cfig.cardiologist);
+                const visitCardiologist = new visits.VisitCardiologist(document.querySelector(globContainerID), cfig.cardiologistCfg);
                 visitCardiologist.render();
                 VisitForm.renderAdditionalFields(visitCardiologist._DOMelements.component);
                 break;
 
             case "Стоматолог":
-                const visitDentist = new visits.VisitDentist(document.querySelector(globContainer), cfig.dentist);
+                const visitDentist = new visits.VisitDentist(document.querySelector(globContainerID), cfig.dentistCfg);
                 visitDentist.render();
                 VisitForm.renderAdditionalFields(visitDentist._DOMelements.component);
                 break;
 
             case "Терапевт":
-                const visitTherapist = new visits.VisitTherapist(document.querySelector(globContainer), cfig.therapist);
+                const visitTherapist = new visits.VisitTherapist(document.querySelector(globContainerID), cfig.therapistCfg);
                 visitTherapist.render();
                 VisitForm.renderAdditionalFields(visitTherapist._DOMelements.component);
                 break;

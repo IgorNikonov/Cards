@@ -1,3 +1,43 @@
+import {globContainer} from "../js/script.js";
+import VisitForm from "../js/visitForm.js";
+import {visitFormCfg} from "./configForms.js";
+export const globContainerID = ".global-container";
+
+//кнопка "Создать Визит"
+export const createBtn = {
+    id: "create-btn",
+    tag: "button",
+    className: "visit__create-btn",
+    innerText:"Создать карточку посетителя",
+    handler: function cardCreateHandler(){}
+};
+
+
+
+// кнопка "создать визит"   (первая кнопка входа в систему
+export const createVisitBtnCfg = {
+    id: "create-visit-btn",
+    className: "create-visit-btn",
+    innerText: "Создать визит",
+    handler: function showVisitForm(){
+        if (document.getElementById("form")) document.getElementById("form").remove();
+        const visitForm = new VisitForm(globContainer, visitFormCfg);
+        visitForm.render();
+        document.getElementById('create-visit-btn').remove(); //и сразу себя же и у
+    }
+};
+
+
+// кнопка "Закрыть"
+export const closeBtnCfg = {
+    id: "close-btn",
+    className: "visit__close-btn",
+    innerText:"Закрыть",
+    handler:  function cardCloseHandler(){document.querySelector("form").remove();
+VisitForm.renderIdleForm();} // и вернуться к дефолтной форме выбора врача!
+};
+
+
 // конфигурируем select - Выбор специализации врача к посещению:  Терапевт, стоматолог, кардиолог
 export const doctorSelect = {
         id: "select-doctor",
@@ -138,19 +178,3 @@ export const lastVisitDate = {
     elementClass: "visit__last-visit-date",
     labelText:"введите дату последнего посещения:",
 };
-
-// // кнопка "Закрыть"
-// export const closeBtn = {
-//     id: "close-btn",
-//     tag: "button",
-//     elementClass: "visit__close-btn",
-//     labelText:"Закрыть",
-// };
-//
-// //кнопка "Создать"
-// export const createBtn = {
-//     id: "create-btn",
-//     tag: "button",
-//     elementClass: "visit__create-btn",
-//     labelText:"Создать",
-// };

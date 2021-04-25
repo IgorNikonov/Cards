@@ -1,6 +1,6 @@
 //импорт родительских классов
 import Form from "./form.js"
-import {globContainer} from "./script.js"
+import {CreateBtn} from "./classesExtend.js";
 //импорт конфигураций:
 import InFieldsComponent from "./InFieldsComponent.js";
 import * as cfg from "../componentsDeclaration/configInFieldComp.js";
@@ -11,33 +11,23 @@ export default class VisitForm extends Form {
 
      constructor(parent, {id, tag, componentClass, title} ) {
         super(parent, {id, tag, componentClass, title});
-         this.className = "VisitForm";
+         this.ES6classTitle = "VisitForm";
      }
 
      static renderIdleForm(){ // общий метод рендеринга исходной формы  visitForm
-         const visitForm = new VisitForm(document.querySelector(globContainer), cfig.visitForm);
+         if (!document.getElementById("form")) document.getElementById("form").remove();
+         const visitForm = new VisitForm(document.querySelector(cfg.globContainerID), cfig.visitFormCfg);
          visitForm.render();
      }
 
     bodyCloseHandler({target}){
         const form_ = document.querySelector("form");
-        console.log("form_.id= ",  form_.id);
-        console.dir(target);
         if (target.closest('form')) {}
-        else if (form_.id !== cfig.visitForm.id) // если это не основная форма выбора врача -то закрыть
+        else if (form_.id !== cfig.visitFormCfg.id) // если это не основная форма выбора врача -то закрыть
         {
             form_.remove();
             VisitForm.renderIdleForm(); // и вернуться к дефолтной форме выбора врача!
         }
-    }
-
-    static cardCloseHandler(){
-        document.querySelector("form").remove();
-        VisitForm.renderIdleForm(); // и вернуться к дефолтной форме выбора врача!
-
-    };
-    static cardCreateHandler(){
-        // document.querySelector("form").remove();
     }
 
  //выполняем эту ф-цию сразу после выбора доктора
@@ -57,14 +47,14 @@ export default class VisitForm extends Form {
 
       const visitorLastName = new InFieldsComponent(innerComponent, cfg.visitorLastName);
       visitorLastName.render();
-      // создаём кнопки
-      const closeBtn = document.createElement('button');
-      const createBtn = document.createElement('button');
-      closeBtn.innerText = "Закрыть";
-      createBtn.innerText = "Создать";
-      closeBtn.addEventListener("click", ()=>VisitForm.cardCloseHandler() );
-      createBtn.addEventListener("click", ()=>this.cardCreateHandler() );
-         innerComponent.append(closeBtn, createBtn);
+
+        // создаём кнопки closeBtn, createBtn
+      const closeBtn = new CreateBtn(innerComponent, cfg.closeBtnCfg);
+      const createBtn = new CreateBtn(innerComponent, cfg.createBtn);
+      closeBtn.render();
+      createBtn.render();
+
+      innerComponent.append(closeBtn, createBtn);
      }
 
      render(){

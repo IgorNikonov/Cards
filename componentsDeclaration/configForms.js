@@ -1,4 +1,3 @@
-
 export const modal = {
     id: "",
     tag: "div",
@@ -13,28 +12,28 @@ export const form = {
     title: "Типовая форма",
 };
 
-export const visitForm = {
+export const visitFormCfg = {
     id: "visit-form",
     tag: "form",
     componentClass: "form__visit",
     title: "Создать запись к врачу",
 };
 
-export const cardiologist = {
+export const cardiologistCfg = {
     id: "visit-cardiologist",
     tag: "form",
     componentClass: "form__visit",
     title: "Запись к кардиологу",
 };
 
-export const dentist = {
+export const dentistCfg = {
     id: "visit-dentist",
     tag: "form",
     componentClass: "form__visit",
     title: "Запись к стоматологу",
 };
 
-export const therapist = {
+export const therapistCfg = {
     id: "visit-therapist",
     tag: "form",
     componentClass: "form__visit",
