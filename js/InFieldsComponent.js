@@ -6,7 +6,7 @@ import {globContainerID} from "../componentsDeclaration/configElements.js";
 export default class InFieldsComponent {
 
     constructor(parent, {id, tag, containerClass, elementClass, labelText, options} ) {
-        this.className = InFieldsComponent;
+        this.ES6classTitle = InFieldsComponent;
         this.id = id;
         this.tag = tag;
         this.containerClass = containerClass;
@@ -20,9 +20,6 @@ export default class InFieldsComponent {
             labelEl: document.createElement("label"),
     }
     }
-
-    // label = this.createElement("label", {for: this.id}, this.label);
-    // const select = this.createElement("select", this.classes, selectOptions); // Єто типа наш кастомный метод из класса Conponent, котрый умеет создавать компоненты
     render() {
         const {parent, selfEl, labelEl, component} = this._DOMelements;
         const { id, tag, containerClass, elementClass, labelText, options } = this;

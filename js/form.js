@@ -22,7 +22,6 @@ export default class Form {
         const {id, componentClass, title} = this;
         const {parent, component, titleEl, returnBut} = this._DOMelements;
 
-        // document.getElementById('create-visit-btn').remove(); //сходу удалить себя
         component.className = componentClass;
         component.id = id;
         component.classList.add("test"); //TODO для теста. Потом эту строку удалить
@@ -30,11 +29,10 @@ export default class Form {
         titleEl.innerText = title;
         returnBut.innerText = "К предыдущему меню";
         returnBut.addEventListener("click", ()=> this.showPreviousMenu() );
-        component.append(titleEl);
-        component.append(returnBut);
+        component.append(returnBut, titleEl);
         parent.prepend(component);
     }
-    showPreviousMenu(){
+     showPreviousMenu(){
         this.remove();
         switch (this.ES6classTitle) {
             case "VisitForm":

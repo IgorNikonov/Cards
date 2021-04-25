@@ -1,6 +1,6 @@
 //импорт классов
 import Form from "./form.js"
-import {CreateBtn} from "./classesExtend.js";
+import {CreateBtn} from "./createBtn.js";
 import InFieldsComponent from "./InFieldsComponent.js";
 //импорт конфигураций:
 import * as cfg from "../componentsDeclaration/configElements.js";
@@ -49,7 +49,7 @@ export default class VisitForm extends Form {
 
         // создаём кнопки closeBtn, createBtn
       const closeBtn = new CreateBtn(innerComponent, cfg.closeBtnCfg);
-      const createBtn = new CreateBtn(innerComponent, cfg.createBtn);
+      const createBtn = new CreateBtn(innerComponent, cfg.createCardBtnCfg);
       closeBtn.render();
       createBtn.render();
      }

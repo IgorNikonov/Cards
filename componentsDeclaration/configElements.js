@@ -1,23 +1,52 @@
 import {globContainer} from "../js/script.js";
 import VisitForm from "../js/visitForm.js";
+import Form from "../js/Form.js";
 import {visitFormCfg} from "./configForms.js";
+import * as cfig from "./configForms.js";
 export const globContainerID = ".global-container";
 
-//кнопка "Создать Визит"
-export const createBtn = {
-    id: "create-btn",
+
+//кнопка "reset   -очистка данных формы"
+export const resetBtnCfg = {
+    id: "reset-btn",
     tag: "button",
-    className: "visit__create-btn",
-    innerText:"Создать карточку посетителя",
-    handler: function cardCreateHandler(){}
+    type: "reset",
+    className: "visit__reset-btn  btn",
+    innerText:"очистить форму",
+    handler: function formResetHandler(){}
+};
+
+export const returnBtnCfg = {
+    id: "return-btn",
+    tag: "button",
+    type: "button",
+    className: "visit__return-btn  btn",
+    innerText:"К предыдущему меню",
+    handler: function(){
+      Form.showPreviousMenu();
+    }
+
 };
 
 
+//кнопка "Создать карточку посещения"
+export const createCardBtnCfg = {
+    id: "create-btn",
+    tag: "button",
+    type: "button",  //TODO потом сменить на "submit"
+    className: "visit__create-btn  btn",
+    innerText:"Создать карточку посетителя",
+    handler: function cardCreateHandler(){
+        console.log("ура!")
+    }
+};
 
-// кнопка "создать визит"   (первая кнопка входа в систему
+// первая кнопка входа в систему
 export const createVisitBtnCfg = {
     id: "create-visit-btn",
-    className: "create-visit-btn",
+    tag: "button",
+    type: "button",
+    className: "create-visit-btn  btn",
     innerText: "Создать визит",
     handler: function showVisitForm(){
         if (document.getElementById("form")) document.getElementById("form").remove();
@@ -30,7 +59,7 @@ export const createVisitBtnCfg = {
 // кнопка "Закрыть"
 export const closeBtnCfg = {
     id: "close-btn",
-    className: "visit__close-btn",
+    className: "visit__close-btn btn",
     innerText:"Закрыть",
     handler:  function cardCloseHandler(){document.querySelector("form").remove();
 VisitForm.renderIdleForm();} // и вернуться к дефолтной форме выбора врача!
@@ -133,13 +162,6 @@ export const visitorLastName = {
 
 // конфигурация уникальных полей для заполнения к каждому из докторов
 
-// для Кардиолога:
-/*
-обычное давление
-индекс массы тела
-перенесенные заболевания сердечно-сосудистой системы
-возраст
-*/
 export const visitorRegularPressure = {
     id: "visitor-normal-pressure",
     tag: "input",
