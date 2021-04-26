@@ -1,5 +1,6 @@
 import {globContainer} from "../js/script.js";
 import VisitForm from "../js/visitForm.js";
+import {Card, cardData} from "../js/card.js";
 import {visitFormCfg} from "./configForms.js";
 export const globContainerID = ".global-container";
 
@@ -22,7 +23,13 @@ export const createCardBtnCfg = {
     className: "visit__create-btn  btn",
     innerText:"Создать карточку посетителя",
     handler: function cardCreateHandler(){
-        console.log("ура!")
+        console.log("ура, создаём карточку!");
+        const card = new Card();
+
+        console.log( card.getLastName() );
+
+        // cardData[0] = card.lastName;
+        // console.log(cardData[0]);
     }
 };
 
@@ -57,6 +64,7 @@ export const doctorSelect = {
         tag: "select",
         containerClass: "visit__container",
         elementClass: "visit__select",
+        elementName: "selectDoctor",
         labelText:"Выберите Врача",
 
         options: [
@@ -85,6 +93,9 @@ export const visitPurpose = {
     tag: "input",
     containerClass: "visit__container",
     elementClass: "visit__purpose",
+    elementName: "purpose",
+    placeholder: "цель:",
+    elementType: "text",
     labelText:"Цель визита:",
 };
 
@@ -94,6 +105,8 @@ export const visitDescription = {
     tag: "textarea",
     containerClass: "visit__container",
     elementClass: "visit__description",
+    elementName: "description",
+    placeholder: "--текст описания--",
     labelText:"Опишите цель визита:",
 };
 
@@ -103,6 +116,7 @@ export const urgency = {
     tag: "select",
     containerClass: "visit__container",
     elementClass: "visit__urgency-select",
+    elementName: "urgency",
     labelText:"Задайте срочность посещения:",
 
     options: [
@@ -125,6 +139,17 @@ export const urgency = {
 
 };
 
+// конфигурируем Фамилию
+export const visitorLastName = {
+    id: "visitor-last-name",
+    tag: "input",
+    containerClass: "visit__container",
+    elementClass: "visit__last-name",
+    elementName: "visitorLastName",
+    placeholder: "фамилия",
+    elementType: "text",
+    labelText:"введите Фамилию:",
+};
 
 // конфигурируем Имя
 export const visitorName = {
@@ -132,40 +157,52 @@ export const visitorName = {
     tag: "input",
     containerClass: "visit__container",
     elementClass: "visit__name",
+    elementName: "visitorName",
+    placeholder: "имя",
+    elementType: "text",
     labelText:"введите Имя:",
 };
 
-// конфигурируем Фамилию
-export const visitorLastName = {
-    id: "visitor-last-name",
+// конфигурируем Отчество
+export const visitorPatrName = {
+    id: "visitor-patr-name",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__last-name",
-    labelText:"введите Фамилию:",
+    elementClass: "visit__patr-name",
+    elementName: "visitorPatrName",
+    placeholder: "отчество",
+    elementType: "text",
+    labelText:"введите Отчество:",
 };
-
 
 // конфигурация уникальных полей для заполнения к каждому из докторов
-
-export const visitorRegularPressure = {
-    id: "visitor-normal-pressure",
+export const visitorPressure = {
+    id: "visitor-pressure",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__normal-pressure",
+    elementClass: "visit__pressure",
+    elementName: "visitorPressure",
+    placeholder: "пример: 120х80",
+    elementType: "text",
     labelText:"Обычное давление посетителя:",
 };
-export const visitorBodyWeightIndex = {
-    id: "visitor-BWI",
+export const bodyWeightIndex = {
+    id: "weight-index",
     tag: "input",
     containerClass: "visit__container",
-    elementClass: "visit__visitor-BWI",
+    elementClass: "visit__weight-index",
+    elementName: "bodyWeightIndex",
+    elementType: "number",
     labelText:"Введите индекс массы тела:",
 };
-export const DeseasesVisitorHasHad = {
+export const hadDeseases = {
     id: "visitor-deseases",
     tag: "input",
     containerClass: "visit__container",
     elementClass: "visit__deseases",
+    elementName: "hadDeseases",
+    placeholder: "перенесённые болезни",
+    elementType: "text",
     labelText:"Перечислить перенесенные болезни:",
 };
 export const visitorAge = {
@@ -173,6 +210,8 @@ export const visitorAge = {
     tag: "input",
     containerClass: "visit__container",
     elementClass: "visit__visitor-age",
+    elementName: "age",
+    elementType: "number",
     labelText:"введите возраст посетителя:",
 };
 
@@ -182,5 +221,8 @@ export const lastVisitDate = {
     tag: "input",
     containerClass: "visit__container",
     elementClass: "visit__last-visit-date",
+    elementName: "lastVisitDate",
+    placeholder: "формат: день.месяц.год",
+    elementType: "date",
     labelText:"введите дату последнего посещения:",
 };

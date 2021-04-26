@@ -1,6 +1,7 @@
 //импорт классов
 import Form from "./form.js"
 import {CreateBtn} from "./createBtn.js";
+import {Card} from "./card.js";
 import InFieldsComponent from "./InFieldsComponent.js";
 //импорт конфигураций:
 import * as cfg from "../componentsDeclaration/configElements.js";
@@ -9,60 +10,80 @@ import * as cfig from "../componentsDeclaration/configForms.js";
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
 
-     constructor(parent, {id, tag, componentClass, title} ) {
+    constructor(parent, {id, tag, componentClass, title}) {
         super(parent, {id, tag, componentClass, title});
-         this.ES6classTitle = "VisitForm";
-     }
+        this.ES6classTitle = "VisitForm";
+    }
 
-     static renderIdleForm(){ // общий метод рендеринга исходной формы  visitForm
-         if (document.getElementById("form")) document.getElementById("form").remove();
-         const visitForm = new VisitForm(document.querySelector(cfg.globContainerID), cfig.visitFormCfg);
-         visitForm.render();
-     }
+    static renderIdleForm() { // общий метод рендеринга исходной формы  visitForm
+        if (document.getElementById("form")) document.getElementById("form").remove();
+        const visitForm = new VisitForm(document.querySelector(cfg.globContainerID), cfig.visitFormCfg);
+        visitForm.render();
+    }
 
-    bodyCloseHandler({target}){
+    bodyCloseHandler({target}) {
         const form_ = document.querySelector("form");
-        if (target.closest('form')) {}
-        else if (form_.id !== cfig.visitFormCfg.id){ // если это не основная форма выбора врача -то закрыть
+        if (target.closest('form')) {
+        } else if (form_.id !== cfig.visitFormCfg.id) { // если это не основная форма выбора врача -то закрыть
             form_.remove();
             VisitForm.renderIdleForm(); // и вернуться к дефолтной форме выбора врача!
         }
     }
 
- //выполняем эту ф-цию сразу после выбора доктора
-     static renderAdditionalFields(innerComponent){
+    static formSubmitHandler() {
+        const card = new Card();
+    }
 
-      const purpose = new InFieldsComponent(innerComponent, cfg.visitPurpose);
-      purpose.render();
+    static initForm(myForm) {
+        myForm.name = "form"; //задали name для работы формы с сервером
+        myForm.action = "#";
+        myForm.setAttribute("acceptCharset", "utf-8");
+        myForm.enctype = "application/x-www-form-urlencoded";  //"text/plain";  http://htmlbook.ru/html/form/enctype
+        myForm.method = "post";
+        myForm.noValidate = true;
+        myForm.autocomplete = "off";
+        myForm.addEventListener("submit", () => VisitForm.formSubmitHandler());
+    }
 
-      const description = new InFieldsComponent(innerComponent, cfg.visitDescription);
-      description.render();
+    //выполняем эту ф-цию сразу после выбора доктора
+    static renderAdditionalFields(innerComponent) { //innerComponent это и есть наша form к выводу в сервер
+        VisitForm.initForm(innerComponent); //в инициализации прописываем все необходимые артибуты формы для работы с сервером
 
-      const urgency = new InFieldsComponent(innerComponent, cfg.urgency);
-      urgency.render();
+        const visitorLastName = new InFieldsComponent(innerComponent, cfg.visitorLastName);
+        visitorLastName.render();
 
-      const visitorName = new InFieldsComponent(innerComponent, cfg.visitorName);
-      visitorName.render();
+        const visitorName = new InFieldsComponent(innerComponent, cfg.visitorName);
+        visitorName.render();
 
-      const visitorLastName = new InFieldsComponent(innerComponent, cfg.visitorLastName);
-      visitorLastName.render();
+        const visitorPartName = new InFieldsComponent(innerComponent, cfg.visitorPatrName);
+        visitorPartName.render();
+
+        const purpose = new InFieldsComponent(innerComponent, cfg.visitPurpose);
+        purpose.render();
+
+        const description = new InFieldsComponent(innerComponent, cfg.visitDescription);
+        description.render();
+
+        const urgency = new InFieldsComponent(innerComponent, cfg.urgency);
+        urgency.render();
+
 
         // создаём кнопки closeBtn, createBtn
-      const closeBtn = new CreateBtn(innerComponent, cfg.closeBtnCfg);
-      const createBtn = new CreateBtn(innerComponent, cfg.createCardBtnCfg);
-      const resetBtn = new CreateBtn(innerComponent, cfg.resetBtnCfg);
-      closeBtn.render();
-      createBtn.render();
-      resetBtn.render();
-     }
+        const closeBtn = new CreateBtn(innerComponent, cfg.closeBtnCfg);
+        const createBtn = new CreateBtn(innerComponent, cfg.createCardBtnCfg);
+        const resetBtn = new CreateBtn(innerComponent, cfg.resetBtnCfg);
+        closeBtn.render();
+        createBtn.render();
+        resetBtn.render();
+    }
 
-     render(){
+    render() {
         super.render();
         const {component} = this._DOMelements;
 
-         const selectDoctor = new InFieldsComponent(component, cfg.doctorSelect);
-         selectDoctor.render();
-         document.addEventListener("click", this.bodyCloseHandler);
-     }
+        const selectDoctor = new InFieldsComponent(component, cfg.doctorSelect);
+        selectDoctor.render();
+        document.addEventListener("click", this.bodyCloseHandler);
+    }
 
 }

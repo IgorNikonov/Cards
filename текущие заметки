@@ -1,0 +1,32 @@
+
+Формирования карты с данными посетителя: card form,  которая выводится на сервер:
+в файле visitForm.js  стр. 37-45:
+ вызов здесь:  static renderAdditionalFields(innerComponent){ //innerComponent это и есть наша form к выводу в сервер
+ инициализация здесь:  static initForm(myForm){
+
+функция обработки карточки - стр. 45:
+    myForm.addEventListener("submit", ()=> VisitForm.formSubmitHandler());
+
+Создание карточки визита:
+в файле visitForm.js, строки 33-35:
+
+    static formSubmitHandler(){
+        const card = new Card();  -- тут создаем функционал создания карточки визита
+    }
+
+
+elementName  для элементов формы:
+-------------------------------------------
+doctorSelect        id: "select-doctor"     elementName: "selectDoctor"
+visitPurpose        id: "purpose"            elementName: "purpose"
+visitDescription    id: "description"       elementName: "description"
+urgency             id: "urgency"           elementName: "urgency"
+visitorLastName     id: "visitor-last-name" elementName: "visitorLastName"
+visitorName         id: "visitor-name"      elementName: "visitorName"
+visitorPatrName     id: "visitor-patr-name" elementName: "visitorPatrName"
+visitorPressure     id: "visitor-pressure"  elementName: "visitorPressure"
+bodyWeightIndex     id: "weight-index"      elementName: "bodyWeightIndex"
+hadDeseases         id: "visitor-deseases"  elementName: "hadDeseases"
+visitorAge          id: "visitor-age"       elementName: "age"
+lastVisitDate       id: "last-visit-date"   elementName: "lastVisitDate"
+

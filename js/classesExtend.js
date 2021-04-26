@@ -12,13 +12,13 @@ export class VisitCardiologist extends Form {
     render(){
         super.render();
         const {component} = this._DOMelements;
-        const visitorRegularPressure = new InFieldsComponent(component, cfg.visitorRegularPressure);
+        const visitorRegularPressure = new InFieldsComponent(component, cfg.visitorPressure);
         visitorRegularPressure.render();
 
-        const visitorBodyWeightIndex = new InFieldsComponent(component, cfg.visitorBodyWeightIndex);
+        const visitorBodyWeightIndex = new InFieldsComponent(component, cfg.bodyWeightIndex);
         visitorBodyWeightIndex.render();
 
-        const DeseasesVisitorHasHad = new InFieldsComponent(component, cfg.DeseasesVisitorHasHad);
+        const DeseasesVisitorHasHad = new InFieldsComponent(component, cfg.hadDeseases);
         DeseasesVisitorHasHad.render();
 
         const visitorAge = new InFieldsComponent(component, cfg.visitorAge);
