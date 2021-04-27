@@ -11,19 +11,19 @@ export default function Login() {
             login.name = "login";
             login.placeholder = "Login";
             login.required = true;
-            login.classList = "modal_input"
+            login.className = "modal_input";
 
             const password = document.createElement("input");
             password.type = "password";
             password.name = "password";
             password.placeholder = "Password";
             password.required = true;
-            password.classList = "modal_input"
+            password.classList.add("modal_input");
 
             const submitBtn = document.createElement("button");
             submitBtn.type = "submit";
             submitBtn.textContent = "Login";
-            submitBtn.classList = "modal_login_button"
+            submitBtn.classList.add("modal_login_button");
 
             return [login, password, submitBtn];
         }

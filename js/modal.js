@@ -33,13 +33,4 @@ export default class Modal {
         const {component} = this._DOMelements;
         component.remove();
     }
-    hide(){
-        const {component} = this._DOMelements;
-        component.style.opacity = "0";
-    }
-    show(){
-        const {component} = this._DOMelements;
-        component.style.opacity = "1";
-    }
-
 }

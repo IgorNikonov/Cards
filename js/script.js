@@ -1,5 +1,3 @@
-// console.log('script.js');
-// import allComponentsTest from "./test-components-and-their-methods.js"
 import VisitForm from "./visitForm.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 
@@ -8,4 +6,3 @@ const visitForm = new VisitForm(document.querySelector(globContainer), cfig.visi
 visitForm.render();
 
 
-// allComponentsTest();  //раскомментировать для теста вывода всех компонентов
