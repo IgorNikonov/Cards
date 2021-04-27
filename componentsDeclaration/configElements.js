@@ -1,7 +1,6 @@
 import {globContainer} from "../js/script.js";
 import VisitForm from "../js/visitForm.js";
 import {visitFormCfg} from "./configForms.js";
-import {cardHandler} from "../js/card.js";
 
 
 
@@ -15,7 +14,7 @@ export const createCardBtnCfg = {
     className: "visit__create-btn  btn",
     innerText:"Создать карточку посетителя",
     handler: ()=>{
-        cardHandler();
+        VisitForm.formSubmitHandler();
     }
 };
 
@@ -70,16 +69,19 @@ export const doctorSelect = {
 
         options: [
         {
+            id:0,
             value: "Кардиолог",
             text: "запись к Кардиологу",
             defaultSelected: false,
         },
         {
+            id:1,
             value: "Стоматолог",
             text: "запись к Стоматологу",
             defaultSelected: false,
         },
         {
+            id:2,
             value: "Терапевт",
             text: "запись к Терапевту",
             defaultSelected: false,

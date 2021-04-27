@@ -1,0 +1,27 @@
+значение свойства element.Name  для соответствующих элементов формы:
+Сноска:  по свойству HTMLelement.Name происходит идентификация нужных полей формы, при считывании из них значений.
+
+
+-------------------------------------------
+doctorSelect        id: "select-doctor"    HTMLelement формы: "selectDoctor"
+
+visitorLastName     id: "visitor-last-name" elementName: "visitorLastName"
+visitorName         id: "visitor-name"      elementName: "visitorName"
+visitorPatrName     id: "visitor-patr-name" elementName: "visitorPatrName"
+
+visitPurpose        id: "purpose"            elementName: "purpose"
+visitDescription    id: "description"       elementName: "description"
+urgency             id: "urgency"           elementName: "urgency"
+
+для кардиолога:
+visitorPressure     id: "visitor-pressure"  elementName: "visitorPressure"
+bodyWeightIndex     id: "weight-index"      elementName: "bodyWeightIndex"
+hadDeseases         id: "visitor-deseases"  elementName: "hadDeseases"
+visitorAge          id: "visitor-age"       elementName: "age"
+для стоматолога:
+lastVisitDate       id: "last-visit-date"   elementName: "lastVisitDate"
+
+для терапевта:  дублируется поле visitorAge как и для кардиолога
+
+
+

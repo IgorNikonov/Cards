@@ -1,9 +1,9 @@
 import Form from "./form.js"
 import {CreateBtn} from "./createBtn.js";
-import {cardHandler} from "./card.js";
 import InFieldsComponent from "./InFieldsComponent.js";
 import * as cfg from "../componentsDeclaration/configElements.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
+import {CardHandler, cards} from "./card.js";
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
@@ -29,8 +29,22 @@ export default class VisitForm extends Form {
     }
 
     static formSubmitHandler() {
-        cardHandler();
+
+        try {
+            const card = new CardHandler();
+            // card.correctUndefinds();
+                /*этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
+                        лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
+            card.create();
+            console.log(card);
+            cards.push(card);
+        }
+        catch (err) {
+            (console.log(err))
+        }
+
     }
+
 
     static initForm(myForm) {
         myForm.action = "#";
@@ -66,7 +80,7 @@ export default class VisitForm extends Form {
     }
 
     // создаём кнопки closeBtn, createBtn
-    static showButtons(innerComponent){
+    static showButtons(innerComponent) {
         const closeBtn = new CreateBtn(innerComponent, cfg.closeBtnCfg);
         const createBtn = new CreateBtn(innerComponent, cfg.createCardBtnCfg);
         const resetBtn = new CreateBtn(innerComponent, cfg.resetBtnCfg);
