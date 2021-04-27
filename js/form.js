@@ -5,9 +5,10 @@ import VisitForm from "./visitForm.js";
 import * as cfig from "../componentsDeclaration/configForms.js"
 
 export default class Form {
-    constructor(parent, {id, tag, componentClass, title} ) {
+    constructor(parent, {id, name, tag, componentClass, title} ) {
         this.ES6classTitle = "Form";
         this.id = id;
+        this.name = name;
         this.componentClass = componentClass;
         this.title = title;
         this._DOMelements = {
@@ -18,11 +19,12 @@ export default class Form {
         }
     }
     render() {
-        const {id, componentClass, title} = this;
+        const {id, name, componentClass, title} = this;
         const {parent, component, titleEl, returnBut} = this._DOMelements;
 
         component.className = componentClass;
         component.id = id;
+        component.name = name;
         component.classList.add("test"); //TODO для теста. Потом эту строку удалить
         component.style.display = "block"; //TODO для теста. Потом эту строку удалить
         titleEl.innerText = title;

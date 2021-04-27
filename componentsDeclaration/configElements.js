@@ -1,8 +1,23 @@
 import {globContainer} from "../js/script.js";
 import VisitForm from "../js/visitForm.js";
-import {Card, cardData} from "../js/card.js";
 import {visitFormCfg} from "./configForms.js";
+import {cardHandler} from "../js/card.js";
+
+
+
 export const globContainerID = ".global-container";
+
+//кнопка "Создать карточку посещения"
+export const createCardBtnCfg = {
+    id: "create-btn",
+    tag: "button",
+    type: "button",  //TODO потом сменить на "submit"
+    className: "visit__create-btn  btn",
+    innerText:"Создать карточку посетителя",
+    handler: ()=>{
+        cardHandler();
+    }
+};
 
 
 //кнопка "reset   -очистка данных формы"
@@ -15,23 +30,6 @@ export const resetBtnCfg = {
     handler: function formResetHandler(){}
 };
 
-//кнопка "Создать карточку посещения"
-export const createCardBtnCfg = {
-    id: "create-btn",
-    tag: "button",
-    type: "button",  //TODO потом сменить на "submit"
-    className: "visit__create-btn  btn",
-    innerText:"Создать карточку посетителя",
-    handler: function cardCreateHandler(){
-        console.log("ура, создаём карточку!");
-        const card = new Card();
-
-        console.log( card.getLastName() );
-
-        // cardData[0] = card.lastName;
-        // console.log(cardData[0]);
-    }
-};
 
 // кнопка "Закрыть"
 export const closeBtnCfg = {

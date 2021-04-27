@@ -1,9 +1,7 @@
-//импорт классов
 import Form from "./form.js"
 import {CreateBtn} from "./createBtn.js";
-import {Card} from "./card.js";
+import {cardHandler} from "./card.js";
 import InFieldsComponent from "./InFieldsComponent.js";
-//импорт конфигураций:
 import * as cfg from "../componentsDeclaration/configElements.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 
@@ -31,11 +29,10 @@ export default class VisitForm extends Form {
     }
 
     static formSubmitHandler() {
-        const card = new Card();
+        cardHandler();
     }
 
     static initForm(myForm) {
-        myForm.name = "form"; //задали name для работы формы с сервером
         myForm.action = "#";
         myForm.setAttribute("acceptCharset", "utf-8");
         myForm.enctype = "application/x-www-form-urlencoded";  //"text/plain";  http://htmlbook.ru/html/form/enctype
@@ -46,7 +43,7 @@ export default class VisitForm extends Form {
     }
 
     //выполняем эту ф-цию сразу после выбора доктора
-    static renderAdditionalFields(innerComponent) { //innerComponent это и есть наша form к выводу в сервер
+    static renderAdditionalFields(innerComponent) {  //innerComponent это и есть наша form к выводу в сервер
         VisitForm.initForm(innerComponent); //в инициализации прописываем все необходимые артибуты формы для работы с сервером
 
         const visitorLastName = new InFieldsComponent(innerComponent, cfg.visitorLastName);

@@ -5,8 +5,8 @@ import * as cfg from "../componentsDeclaration/configElements.js";
 
 /*** КЛАССЫ - НАСЛЕДНИКИ формы FORM***/
 export class VisitCardiologist extends Form {
-    constructor(parent, {id, tag, componentClass, title} ) {
-        super(parent, {id, tag, componentClass, title});
+    constructor(parent, {id, name, tag, componentClass, title} ) {
+        super(parent, {id, name, tag, componentClass, title});
         this.ES6classTitle = "VisitCardiologist";
     }
     renderHeader(){
@@ -31,8 +31,8 @@ export class VisitCardiologist extends Form {
 }
 
 export class VisitDentist extends Form {
-    constructor(parent, {id, tag, componentClass, title} ) {
-        super(parent, {id, tag, componentClass, title});
+    constructor(parent, {id, name, tag, componentClass, title} ) {
+        super(parent, {id, name, tag, componentClass, title});
         this.ES6classTitle = "VisitDentist";
     }
     renderHeader(){
@@ -47,8 +47,8 @@ export class VisitDentist extends Form {
 }
 
 export class VisitTherapist extends Form {
-    constructor(parent, {id, tag, componentClass, title} ) {
-        super(parent, {id, tag, componentClass, title});
+    constructor(parent, {id, name, tag, componentClass, title} ) {
+        super(parent, {id, name, tag, componentClass, title});
         this.ES6classTitle = "VisitTherapist";
     }
     renderHeader(){

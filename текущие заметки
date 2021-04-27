@@ -15,6 +15,11 @@
     }
 
 
+Все формы:  id: "visit-form"
+форма выбора доктора:   name: "form"
+форма Кардиолога        name: "form-cardiologist"
+форма Стоматолога       name: "form-dentist"
+форма Терапевта         name: "therapist"
 
 elementName  для элементов формы:
 -------------------------------------------

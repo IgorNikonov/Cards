@@ -1,21 +1,21 @@
-import * as ids from "../componentsDeclaration/configElements.js";
-export const cardData = [];
+const cards=[];
+const cardHandler =()=>{
+    console.log( "ура, создаём карточку!" );
+
+    const
+        doctor = document.getElementById('header-doctor');
 
 
-export class Card {
 
-    constructor(){
-        // const {visitorLastName, visitorName, visitorPatrName,  } = ids;
-        if (document.getElementById("visitorLastName"))
-        {
-            this.elParent = document.getElementById("visitorLastName").closest('form');
-            this.lastName = document.getElementById("visitorLastName").innerHTML;
-            console.log("form for: ", this.elParent.name);
-            console.log("lastname: ", this.lastName);
-        }
 
-    }
-    getLastName(){
-        return this.lastName;
-    }
-}
+
+
+
+
+
+
+};
+
+console.log(cards);
+
+export {cardHandler, cards};

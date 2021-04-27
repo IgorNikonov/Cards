@@ -14,27 +14,31 @@ export const form = {
 
 export const visitFormCfg = {
     id: "visit-form",
+    name: "form",
     tag: "form",
     componentClass: "form__visit",
     title: "Создать запись к врачу",
 };
 
 export const cardiologistCfg = {
-    id: "visit-cardiologist",
+    id: "visit-form",
+    name: "form-cardiologist",
     tag: "form",
     componentClass: "form__visit",
     title: "Запись к кардиологу",
 };
 
 export const dentistCfg = {
-    id: "visit-dentist",
+    id: "visit-form",
+    name: "form-dentist",
     tag: "form",
     componentClass: "form__visit",
     title: "Запись к стоматологу",
 };
 
 export const therapistCfg = {
-    id: "visit-therapist",
+    id: "visit-form",
+    name: "form-therapist",
     tag: "form",
     componentClass: "form__visit",
     title: "Запись к терапевту",
