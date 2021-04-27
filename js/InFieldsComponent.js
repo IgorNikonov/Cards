@@ -66,27 +66,32 @@ export default class InFieldsComponent {
 
             case "Кардиолог":
                 const visitCardiologist = new visits.VisitCardiologist(document.querySelector(globContainerID), cfig.cardiologistCfg);
-                visitCardiologist.render();
+                visitCardiologist.renderHeader();
                 VisitForm.renderAdditionalFields(visitCardiologist._DOMelements.component);
+                visitCardiologist.render();
+                VisitForm.showButtons(visitCardiologist._DOMelements.component);
                 form.name = doctorSelect.options[0].value;
                 break;
 
             case "Стоматолог":
                 const visitDentist = new visits.VisitDentist(document.querySelector(globContainerID), cfig.dentistCfg);
-                visitDentist.render();
+                visitDentist.renderHeader();
                 VisitForm.renderAdditionalFields(visitDentist._DOMelements.component);
+                visitDentist.render();
+                VisitForm.showButtons(visitDentist._DOMelements.component);
                 form.name = doctorSelect.options[1].value;
                 break;
 
             case "Терапевт":
                 const visitTherapist = new visits.VisitTherapist(document.querySelector(globContainerID), cfig.therapistCfg);
-                visitTherapist.render();
+                visitTherapist.renderHeader();
                 VisitForm.renderAdditionalFields(visitTherapist._DOMelements.component);
+                visitTherapist.render();
+                VisitForm.showButtons(visitTherapist._DOMelements.component);
                 form.name = doctorSelect.options[2].value;
                 break;
             default:
     }}
-
     }
 
 

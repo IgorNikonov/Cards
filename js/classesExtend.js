@@ -9,8 +9,10 @@ export class VisitCardiologist extends Form {
         super(parent, {id, tag, componentClass, title});
         this.ES6classTitle = "VisitCardiologist";
     }
-    render(){
+    renderHeader(){
         super.render();
+    }
+    render(){
         const {component} = this._DOMelements;
         const visitorRegularPressure = new InFieldsComponent(component, cfg.visitorPressure);
         visitorRegularPressure.render();
@@ -24,6 +26,7 @@ export class VisitCardiologist extends Form {
         const visitorAge = new InFieldsComponent(component, cfg.visitorAge);
         visitorAge.render();
 
+
     }
 }
 
@@ -32,8 +35,10 @@ export class VisitDentist extends Form {
         super(parent, {id, tag, componentClass, title});
         this.ES6classTitle = "VisitDentist";
     }
-    render(){
+    renderHeader(){
         super.render();
+    }
+    render(){
         const {component} = this._DOMelements;
 
         const lastVisitDate = new InFieldsComponent(component, cfg.lastVisitDate);
@@ -46,8 +51,10 @@ export class VisitTherapist extends Form {
         super(parent, {id, tag, componentClass, title});
         this.ES6classTitle = "VisitTherapist";
     }
-    render(){
+    renderHeader(){
         super.render();
+    }
+    render(){
         const {component} = this._DOMelements;
 
         const visitorAge = new InFieldsComponent(component, cfg.visitorAge);

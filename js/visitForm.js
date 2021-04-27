@@ -66,9 +66,10 @@ export default class VisitForm extends Form {
 
         const urgency = new InFieldsComponent(innerComponent, cfg.urgency);
         urgency.render();
+    }
 
-
-        // создаём кнопки closeBtn, createBtn
+    // создаём кнопки closeBtn, createBtn
+    static showButtons(innerComponent){
         const closeBtn = new CreateBtn(innerComponent, cfg.closeBtnCfg);
         const createBtn = new CreateBtn(innerComponent, cfg.createCardBtnCfg);
         const resetBtn = new CreateBtn(innerComponent, cfg.resetBtnCfg);
