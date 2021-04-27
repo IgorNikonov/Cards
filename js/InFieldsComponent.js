@@ -1,8 +1,4 @@
-import * as visits from "./classesExtend.js";
-import * as cfig from "../componentsDeclaration/configForms.js";
-import VisitForm from "./visitForm.js";
-import {globContainerID, doctorSelect} from "../componentsDeclaration/configElements.js";
-
+import changeDoctor from "./changeDoctor.js";
 export default class InFieldsComponent {
 
     constructor(parent, {id, tag, containerClass, elementClass, elementType, elementName, labelText, placeholder, options} ) {
@@ -39,10 +35,12 @@ export default class InFieldsComponent {
         if (this.elementType) selfEl.type = this.elementType;
         if (this.placeholder) selfEl.placeholder = this.placeholder;
         selfEl.id = id;
+        if (this.id === "select-doctor"){
+            selfEl.addEventListener("click", (e) => {
+                changeDoctor(e);
+            });
+        }
 
-        selfEl.addEventListener("click", (e) => {
-            this.changeDoctor(e); //TODO потом переписать с проверкой это select/input or textarea
-        });
         labelEl.htmlFor = `${id}`;
         labelEl.innerText = labelText;
 
@@ -55,53 +53,4 @@ export default class InFieldsComponent {
         component.append(labelEl, selfEl );
         parent.append(component);
     }
-
-    changeDoctor({target}){
-        if (  !doctorSelect.options.some(el=> el.value === target.value)  ) return;
-        else { //удаляем форму ТОЛЬКО если событие вызвано select-doctor (внутренние элементы формы так же вызовут эту функцию)
-        const form = document.getElementById('visit-form');
-        form.remove();
-
-        switch (target.value) {
-
-            case "Кардиолог":
-                const visitCardiologist = new visits.VisitCardiologist(document.querySelector(globContainerID), cfig.cardiologistCfg);
-                visitCardiologist.renderHeader();
-                VisitForm.renderAdditionalFields(visitCardiologist._DOMelements.component);
-                visitCardiologist.render();
-                VisitForm.showButtons(visitCardiologist._DOMelements.component);
-                form.name = doctorSelect.options[0].value;
-                break;
-
-            case "Стоматолог":
-                const visitDentist = new visits.VisitDentist(document.querySelector(globContainerID), cfig.dentistCfg);
-                visitDentist.renderHeader();
-                VisitForm.renderAdditionalFields(visitDentist._DOMelements.component);
-                visitDentist.render();
-                VisitForm.showButtons(visitDentist._DOMelements.component);
-                form.name = doctorSelect.options[1].value;
-                break;
-
-            case "Терапевт":
-                const visitTherapist = new visits.VisitTherapist(document.querySelector(globContainerID), cfig.therapistCfg);
-                visitTherapist.renderHeader();
-                VisitForm.renderAdditionalFields(visitTherapist._DOMelements.component);
-                visitTherapist.render();
-                VisitForm.showButtons(visitTherapist._DOMelements.component);
-                form.name = doctorSelect.options[2].value;
-                break;
-            default:
-    }}
-    }
-
-
-    // getSelected() {
-    //     const {selfEl} = this._DOMelements;
-    //     const a = selfEl.options[selfEl.selectedIndex].value;
-    //     const b = selfEl.selectedIndex;
-    //     const text = selfEl.text;
-    //     const value = selfEl.value;
-    //     return [a, b, text, value];
-    //}
-
 }

@@ -14,8 +14,6 @@
         const card = new Card();  -- тут создаем функционал создания карточки визита
     }
 
-Код переключения форм select doctor:  changeDoctor({target}){
-находится в файле InFieldsComponents.js , стр.59  (что не правильно -потом вынести отдельно)
 
 
 elementName  для элементов формы:

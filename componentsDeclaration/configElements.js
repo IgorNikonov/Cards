@@ -33,6 +33,18 @@ export const createCardBtnCfg = {
     }
 };
 
+// кнопка "Закрыть"
+export const closeBtnCfg = {
+    id: "close-btn",
+    tag: "button",
+    type: "button",
+    className: "visit__close-btn btn",
+    innerText:"Закрыть",
+    handler:  function cardCloseHandler(){document.querySelector("form").remove();
+        VisitForm.renderIdleForm();} // и вернуться к дефолтной форме выбора врача!
+};
+
+
 // первая кнопка входа в систему
 export const createVisitBtnCfg = {
     id: "create-visit-btn",
@@ -46,15 +58,6 @@ export const createVisitBtnCfg = {
         visitForm.render();
         document.getElementById('create-visit-btn').remove(); //и сразу себя же и у
     }
-};
-
-// кнопка "Закрыть"
-export const closeBtnCfg = {
-    id: "close-btn",
-    className: "visit__close-btn btn",
-    innerText:"Закрыть",
-    handler:  function cardCloseHandler(){document.querySelector("form").remove();
-VisitForm.renderIdleForm();} // и вернуться к дефолтной форме выбора врача!
 };
 
 
