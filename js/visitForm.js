@@ -28,16 +28,20 @@ export default class VisitForm extends Form {
         }
     }
 
-    static formSubmitHandler() {
+    static async formSubmitHandler() {
+        localStorage.removeItem('cards');
 
         try {
             const card = new CardHandler();
             // card.correctUndefinds();
                 /*этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
                         лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
-            card.create();
-            console.log(card);
-            cards.push(card);
+            // card.create();
+            let newCard = await card.create();
+            console.log(newCard);
+            cards.push(newCard);
+
+            localStorage.setItem('cards', JSON.stringify(cards));
         }
         catch (err) {
             (console.log(err))

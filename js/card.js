@@ -1,4 +1,5 @@
 import {doctorSelect} from "../componentsDeclaration/configElements.js";
+import Server from "./server.js";
 
 const cards = [];
 export {cards};
@@ -11,7 +12,7 @@ export class CardHandler {
 
             this.lastName = document.getElementsByName("visitorLastName")[0].value || "";
             this.mainName = document.getElementsByName("visitorName")[0].value || "";
-            this.partName = document.getElementsByName("visitorPatrName")[0].value || "";
+            this.patrName = document.getElementsByName("visitorPatrName")[0].value || "";
 
             this.visitPurpose = document.getElementsByName("purpose")[0].value || "";
             this.visitDescription = document.getElementsByName("description")[0].value || "";
@@ -42,8 +43,20 @@ export class CardHandler {
         //лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";
         for (let key in this) if (this.key === undefined) this.key = "";
     }
-    create() {
-        console.log("ура, здесь создаём карточку!");
+    async create() {
+        const nextCard = await Server.createCard({
+            lastName: this.lastName,
+            mainName: this.mainName,
+            patrName: this.patrName,
+            visitPurpose: this.visitPurpose,
+            visitDescription: this.visitDescription,
+            visitUrgency: this.visitUrgency,
+            visitorAge: this.visitorAge,
+            lastVisitDate: this.lastVisitDate,
+            doctor: this.doctor,
+        }, 'e4d44614-f3af-486c-ae85-8d0bcd76f052');
+
+        return nextCard;
     }
 
 }
