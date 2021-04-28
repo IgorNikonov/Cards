@@ -14,24 +14,25 @@ export class CardHandler {
             this.visitDescription = document.getElementsByName("description")[0].value || "";
             this.visitUrgency = document.getElementsByName("urgency")[0].value || "";
 
+        if (document.getElementsByName("hadDeseases")[0])
+            this.hadDeseases = document.getElementsByName("hadDeseases")[0].value || "";
+
+ if (document.getElementsByName("bodyWeightIndex")[0])
+            this.bodyWeightIndex = document.getElementsByName("bodyWeightIndex")[0].value || "";
+
         if (document.getElementsByName("age")[0])
             this.visitorAge = document.getElementsByName("age")[0].value || "";
-        if (this.doctorEl.name === "form-cardiologist") {
 
-            if(document.getElementsByName("lastVisitDate")[0])
-                this.lastVisitDate = document.getElementsByName("lastVisitDate")[0].value || "";
-
+        if (this.doctorEl.name === "form-cardiologist")
             this.doctor = doctorSelect.options[0].value; //TODO потом переписать этот костыль на:
-            // this.doctor = doctorSelect.options[doctorSelect.options.id].value;
-        }
+        else
         if (this.doctorEl.name === "form-dentist") {
             this.lastVisitDate = document.getElementsByName("lastVisitDate")[0].value || "";
             this.doctor = doctorSelect.options[1].value || "";
-        }
-        if (this.doctorEl.name === "form-therapist") {
-            // this.visitorAge = document.getElementsByName("age").value;
+        } else
+        if (this.doctorEl.name === "form-therapist")
             this.doctor = doctorSelect.options[2].value || "";
-        }
+
 
     }
 

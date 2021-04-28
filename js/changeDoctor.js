@@ -7,8 +7,7 @@ import {deskComp} from "../LizaModal/main.js";
 export default function changeDoctor({target}){
     if (  !doctorSelect.options.some(el=> el.value === target.value)  ) return; //TODO потом проверить надобность этой проверки и удалить , если больше не надо
     else { //удаляем форму ТОЛЬКО если событие вызвано select-doctor (внутренние элементы формы так же вызовут эту функцию)
-        // const form = document.getElementById('visit-form');
-        // form.remove();
+        document.getElementById('select-form').remove();
 
         switch (target.value) {
 
@@ -18,7 +17,7 @@ export default function changeDoctor({target}){
                 VisitForm.renderAdditionalFields(visitCardiologist._DOMelements.component);
                 visitCardiologist.render();
                 VisitForm.showButtons(visitCardiologist._DOMelements.component);
-                form.name = doctorSelect.options[0].value; //TODO потом переделать этот hardcore
+                // form.name = doctorSelect.options[0].value; //TODO потом переделать этот hardcore
                 break;
 
             case "Стоматолог":
@@ -27,7 +26,7 @@ export default function changeDoctor({target}){
                 VisitForm.renderAdditionalFields(visitDentist._DOMelements.component);
                 visitDentist.render();
                 VisitForm.showButtons(visitDentist._DOMelements.component);
-                form.name = doctorSelect.options[1].value;
+                // form.name = doctorSelect.options[1].value;
                 break;
 
             case "Терапевт":
@@ -36,7 +35,7 @@ export default function changeDoctor({target}){
                 VisitForm.renderAdditionalFields(visitTherapist._DOMelements.component);
                 visitTherapist.render();
                 VisitForm.showButtons(visitTherapist._DOMelements.component);
-                form.name = doctorSelect.options[2].value;
+                // form.name = doctorSelect.options[2].value;
                 break;
             default:
         }}
