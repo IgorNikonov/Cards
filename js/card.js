@@ -1,8 +1,5 @@
 import {doctorSelect} from "../componentsDeclaration/configElements.js";
 
-const cards = [];
-export {cards};
-
 export class CardHandler {
 
     constructor() {
@@ -42,8 +39,6 @@ export class CardHandler {
         //лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";
         for (let key in this) if (this.key === undefined) this.key = "";
     }
-    create() {
-        console.log("ура, здесь создаём карточку!");
-    }
+
 
 }

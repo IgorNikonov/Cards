@@ -1,10 +1,5 @@
-import {globContainer} from "../js/script.js";
 import VisitForm from "../js/visitForm.js";
 import {visitFormCfg} from "./configForms.js";
-
-
-
-export const globContainerID = ".global-container";
 
 //кнопка "Создать карточку посещения"
 export const createCardBtnCfg = {
@@ -35,27 +30,16 @@ export const closeBtnCfg = {
     id: "close-btn",
     tag: "button",
     type: "button",
-    className: "visit__close-btn btn  btn-outline-success return_btn",
+    className: "visit__close-btn btn-outline-success return_btn",
     innerText:"Закрыть",
-    handler:  function cardCloseHandler(){document.querySelector("form").remove();
+    handler:  function cardCloseHandler(){document.getElementById("visit-form").remove();
         VisitForm.renderIdleForm();} // и вернуться к дефолтной форме выбора врача!
 };
 
 
-// первая кнопка входа в систему
-export const createVisitBtnCfg = {
-    id: "create-visit-btn",
-    tag: "button",
-    type: "button",
-    className: "create-visit-btn  btn  btn-outline-success return_btn",
-    innerText: "Создать визит",
-    handler: function showVisitForm(){
-        if (document.getElementById("form")) document.getElementById("form").remove();
-        const visitForm = new VisitForm(globContainer, visitFormCfg);
-        visitForm.render();
-        document.getElementById('create-visit-btn').remove(); //и сразу себя же и у
-    }
-};
+
+// захардкодили логин и пароль для входа в систему:
+export const userEntryData = {userLogin: "team", userPassword: "team"};
 
 
 // конфигурируем select - Выбор специализации врача к посещению:  Терапевт, стоматолог, кардиолог

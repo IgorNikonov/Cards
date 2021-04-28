@@ -55,6 +55,7 @@ export default class Modal {
         this.modal.classList.add('active')
     }
     closeModal() {
-        this.modal.classList.remove('active')
+        this.modal.classList.remove('active');
+        console.log("closeModal!!!!")
     }
 }

@@ -3,7 +3,9 @@ import {CreateBtn} from "./createBtn.js";
 import InFieldsComponent from "./InFieldsComponent.js";
 import * as cfg from "../componentsDeclaration/configElements.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
-import {CardHandler, cards} from "./card.js";
+import {CardHandler} from "./card.js";
+import Desk from "../LizaModal/desk.js";
+import {deskComp} from "../LizaModal/main.js";
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
@@ -13,13 +15,14 @@ export default class VisitForm extends Form {
         this.ES6classTitle = "VisitForm";
     }
 
-    static renderIdleForm() { // общий метод рендеринга исходной формы  visitForm
-        if (document.getElementById("form")) document.getElementById("form").remove();
-        const visitForm = new VisitForm(document.querySelector(cfg.globContainerID), cfig.visitFormCfg);
-        visitForm.render();
+    static renderIdleForm() { // общий метод рендеринга исходной формы  selectForm
+        if ( document.getElementById("btn_log") ) document.getElementById("btn_log").remove();
+        if ( document.getElementById("visit-form") ) document.getElementById("visit-form").remove();
+        const selectForm = new VisitForm(deskComp, cfig.visitFormCfg);
+        selectForm.render();
     }
 
-    bodyCloseHandler({target}) {
+    bodyCloseHandler({target}) { //TODO перестало работать закрывание формы по клику вне формы
         const form_ = document.querySelector("form");
         if (target.closest('form')) {
         } else if (form_.id !== cfig.visitFormCfg.id) { // если это не основная форма выбора врача -то закрыть
@@ -35,9 +38,8 @@ export default class VisitForm extends Form {
             // card.correctUndefinds();
                 /*этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
                         лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
-            card.create();
+            Desk.addCard(card);
             console.log(card);
-            cards.push(card);
         }
         catch (err) {
             (console.log(err))
@@ -53,7 +55,7 @@ export default class VisitForm extends Form {
         myForm.method = "post";
         myForm.noValidate = true;
         myForm.autocomplete = "off";
-        myForm.addEventListener("submit", () => VisitForm.formSubmitHandler());
+        // myForm.addEventListener("submit", () => VisitForm.formSubmitHandler());
     }
 
     //выполняем эту ф-цию сразу после выбора доктора
