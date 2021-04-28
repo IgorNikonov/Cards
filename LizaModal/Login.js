@@ -1,4 +1,5 @@
 import Modal from "./Modal.js";
+import runVladForms from "../js/script.js"
 
 export default function Login() {
     class LoginModal extends Modal {
@@ -24,6 +25,7 @@ export default function Login() {
             submitBtn.type = "submit";
             submitBtn.textContent = "Login";
             submitBtn.classList.add("modal_login_button");
+            submitBtn.addEventListener("click", (e)=>runVladForms(e));
 
             return [login, password, submitBtn];
         }

@@ -33,4 +33,6 @@ export default class Modal {
         const {component} = this._DOMelements;
         component.remove();
     }
+
+
 }

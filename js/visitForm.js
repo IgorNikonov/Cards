@@ -1,47 +1,73 @@
-//импорт родительских классов
 import Form from "./form.js"
-import { globContainer } from "./script.js"
-//импорт конфигураций:
+import {CreateBtn} from "./createBtn.js";
 import InFieldsComponent from "./InFieldsComponent.js";
-import * as cfg from "../componentsDeclaration/configInFieldComp.js";
+import * as cfg from "../componentsDeclaration/configElements.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
+import {CardHandler, cards} from "./card.js";
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
 
-    constructor(parent, { id, tag, componentClass, title }) {
-        super(parent, { id, tag, componentClass, title });
-        this.className = "VisitForm";
+    constructor(parent, {id, tag, componentClass, title}) {
+        super(parent, {id, tag, componentClass, title});
+        this.ES6classTitle = "VisitForm";
     }
 
     static renderIdleForm() { // общий метод рендеринга исходной формы  visitForm
-        const visitForm = new VisitForm(document.querySelector(globContainer), cfig.visitForm);
+        if (document.getElementById("form")) document.getElementById("form").remove();
+        const visitForm = new VisitForm(document.querySelector(cfg.globContainerID), cfig.visitFormCfg);
         visitForm.render();
     }
 
-    bodyCloseHandler({ target }) {
+    bodyCloseHandler({target}) {
         const form_ = document.querySelector("form");
-        console.log("form_.id= ", form_.id);
-        console.dir(target);
-        if (target.closest('form')) { }
-        else if (form_.id !== cfig.visitForm.id) // если это не основная форма выбора врача -то закрыть
-        {
+        if (target.closest('form')) {
+        } else if (form_.id !== cfig.visitFormCfg.id) { // если это не основная форма выбора врача -то закрыть
             form_.remove();
             VisitForm.renderIdleForm(); // и вернуться к дефолтной форме выбора врача!
         }
     }
 
-    static cardCloseHandler() {
-        document.querySelector("form").remove();
-        VisitForm.renderIdleForm(); // и вернуться к дефолтной форме выбора врача!
+    static formSubmitHandler() {
 
-    };
-    static cardCreateHandler() {
-        // document.querySelector("form").remove();
+        try {
+            const card = new CardHandler();
+            // card.correctUndefinds();
+                /*этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
+                        лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
+            card.create();
+            console.log(card);
+            cards.push(card);
+        }
+        catch (err) {
+            (console.log(err))
+        }
+
+    }
+
+
+    static initForm(myForm) {
+        myForm.action = "#";
+        myForm.setAttribute("acceptCharset", "utf-8");
+        myForm.enctype = "application/x-www-form-urlencoded";  //"text/plain";  http://htmlbook.ru/html/form/enctype
+        myForm.method = "post";
+        myForm.noValidate = true;
+        myForm.autocomplete = "off";
+        myForm.addEventListener("submit", () => VisitForm.formSubmitHandler());
     }
 
     //выполняем эту ф-цию сразу после выбора доктора
-    static renderAdditionalFields(innerComponent) {
+    static renderAdditionalFields(innerComponent) {  //innerComponent это и есть наша form к выводу в сервер
+        VisitForm.initForm(innerComponent); //в инициализации прописываем все необходимые артибуты формы для работы с сервером
+
+        const visitorLastName = new InFieldsComponent(innerComponent, cfg.visitorLastName);
+        visitorLastName.render();
+
+        const visitorName = new InFieldsComponent(innerComponent, cfg.visitorName);
+        visitorName.render();
+
+        const visitorPartName = new InFieldsComponent(innerComponent, cfg.visitorPatrName);
+        visitorPartName.render();
 
         const purpose = new InFieldsComponent(innerComponent, cfg.visitPurpose);
         purpose.render();
@@ -51,27 +77,21 @@ export default class VisitForm extends Form {
 
         const urgency = new InFieldsComponent(innerComponent, cfg.urgency);
         urgency.render();
+    }
 
-        const visitorName = new InFieldsComponent(innerComponent, cfg.visitorName);
-        visitorName.render();
-
-        const visitorLastName = new InFieldsComponent(innerComponent, cfg.visitorLastName);
-        visitorLastName.render();
-        // создаём кнопки
-        const closeBtn = document.createElement('button');
-        const createBtn = document.createElement('button');
-        closeBtn.innerText = "Закрыть";
-        closeBtn.classList.add('btn-danger', 'btn-lg', 'form_btn')
-        createBtn.innerText = "Создать";
-        createBtn.classList.add('btn-success', 'btn-lg', 'form_btn')
-        closeBtn.addEventListener("click", () => VisitForm.cardCloseHandler());
-        createBtn.addEventListener("click", () => this.cardCreateHandler());
-        innerComponent.append(closeBtn, createBtn);
+    // создаём кнопки closeBtn, createBtn
+    static showButtons(innerComponent) {
+        const closeBtn = new CreateBtn(innerComponent, cfg.closeBtnCfg);
+        const createBtn = new CreateBtn(innerComponent, cfg.createCardBtnCfg);
+        const resetBtn = new CreateBtn(innerComponent, cfg.resetBtnCfg);
+        closeBtn.render();
+        createBtn.render();
+        resetBtn.render();
     }
 
     render() {
         super.render();
-        const { component } = this._DOMelements;
+        const {component} = this._DOMelements;
 
         const selectDoctor = new InFieldsComponent(component, cfg.doctorSelect);
         selectDoctor.render();

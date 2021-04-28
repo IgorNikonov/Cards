@@ -1,9 +1,26 @@
+/*Vlad's styles*/
+.hidden {
+    display: none;
+}
+.visible {
+    display: flex;
+}
+
+/*.test {*/
+/*    border: 2px solid red;*/
+/*    width: 30%;*/
+/*    display: inline-block;*/
+/*}*/
+
+
 /*Main*/
 
 *,*::after,*::before{
     box-sizing: border-box;
 }
 body{
+    max-width: 800px;
+    margin: 0 auto;
     font-size: 18px;
     color: #2c2b2b;
     font-weight: 300;
@@ -253,8 +270,9 @@ button{
 }
 .global-container{
     border: 1px solid green;
-    margin: 100px;
+    margin: 100px auto;
     padding: 30px 0;
+    display: table;
 }
 .al-c{
     display: block;
@@ -265,6 +283,10 @@ button{
     margin: 14px 10px 10px 10px;
     position: relative;
     display: inline-block;
-    left: 43%;
+    left: 46%;
     transform: translateX(-50%)
+}
+
+.visit__description {
+    width: 320px;
 }
