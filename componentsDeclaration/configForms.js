@@ -13,8 +13,8 @@ export const form = {
 };
 
 export const visitFormCfg = {
-    id: "visit-form",
-    name: "form",
+    id: "select-form",
+    name: "select-form",
     tag: "form",
     componentClass: "form__visit",
     title: "Создать запись к врачу",

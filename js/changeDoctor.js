@@ -1,27 +1,28 @@
-import {doctorSelect, globContainerID} from "../componentsDeclaration/configElements.js";
+import {doctorSelect} from "../componentsDeclaration/configElements.js";
 import * as visits from "./classesExtend.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 import VisitForm from "./visitForm.js";
+import {deskComp} from "../LizaModal/main.js";
 
 export default function changeDoctor({target}){
-    if (  !doctorSelect.options.some(el=> el.value === target.value)  ) return;
+    if (  !doctorSelect.options.some(el=> el.value === target.value)  ) return; //TODO потом проверить надобность этой проверки и удалить , если больше не надо
     else { //удаляем форму ТОЛЬКО если событие вызвано select-doctor (внутренние элементы формы так же вызовут эту функцию)
-        const form = document.getElementById('visit-form');
-        form.remove();
+        // const form = document.getElementById('visit-form');
+        // form.remove();
 
         switch (target.value) {
 
             case "Кардиолог":
-                const visitCardiologist = new visits.VisitCardiologist(document.querySelector(globContainerID), cfig.cardiologistCfg);
+                const visitCardiologist = new visits.VisitCardiologist(deskComp, cfig.cardiologistCfg);
                 visitCardiologist.renderHeader();
                 VisitForm.renderAdditionalFields(visitCardiologist._DOMelements.component);
                 visitCardiologist.render();
                 VisitForm.showButtons(visitCardiologist._DOMelements.component);
-                form.name = doctorSelect.options[0].value;
+                form.name = doctorSelect.options[0].value; //TODO потом переделать этот hardcore
                 break;
 
             case "Стоматолог":
-                const visitDentist = new visits.VisitDentist(document.querySelector(globContainerID), cfig.dentistCfg);
+                const visitDentist = new visits.VisitDentist(deskComp, cfig.dentistCfg);
                 visitDentist.renderHeader();
                 VisitForm.renderAdditionalFields(visitDentist._DOMelements.component);
                 visitDentist.render();
@@ -30,7 +31,7 @@ export default function changeDoctor({target}){
                 break;
 
             case "Терапевт":
-                const visitTherapist = new visits.VisitTherapist(document.querySelector(globContainerID), cfig.therapistCfg);
+                const visitTherapist = new visits.VisitTherapist(deskComp, cfig.therapistCfg);
                 visitTherapist.renderHeader();
                 VisitForm.renderAdditionalFields(visitTherapist._DOMelements.component);
                 visitTherapist.render();
