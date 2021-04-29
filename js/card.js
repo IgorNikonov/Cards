@@ -39,5 +39,19 @@ export class CardHandler {
         for (let key in this) if (this.key === undefined) this.key = "";
     }
 
+    async create() {
+        const nextCard = await Server.createCard({
+            lastName: this.lastName.toLowerCase(),
+            mainName: this.mainName.toLowerCase(),
+            patrName: this.patrName.toLowerCase(),
+            visitPurpose: this.visitPurpose.toLowerCase(),
+            visitDescription: this.visitDescription.toLowerCase(),
+            visitUrgency: this.visitUrgency,
+            visitorAge: this.visitorAge,
+            lastVisitDate: this.lastVisitDate,
+            doctor: this.doctor,
+        }, localStorage.getItem('token'));
 
+        return nextCard;
+    }
 }
