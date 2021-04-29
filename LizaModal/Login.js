@@ -1,5 +1,6 @@
 import Modal from "./Modal.js";
 import VisitForm from "../js/visitForm.js";
+import Server from "../js/server.js"
 
 export default function Login() {
     class LoginModal extends Modal {
@@ -35,9 +36,11 @@ export default function Login() {
         }
 
         //Это уже Влад переписал строки  37-44
-        checkUserLogin(){
+        async checkUserLogin(){
             const loginInput = document.getElementsByName("login")[0].value;
             const passInput = document.getElementsByName("password")[0].value;
+            const token = await Server.getToken({email: loginInput, password: passInput});
+            localStorage.setItem('token', `${token}`);
             document.getElementById("modalLogin").classList.remove("active");
             VisitForm.renderIdleForm();
         }
