@@ -13,12 +13,12 @@ export default class Desk {
                 <div class="input">
                     <input id="search-by-description" type="text" placeholder="Search name">
                     <select id="visit-status" class="form_sm form-select " aria-label=".form-select-sm example">
-                        <option selected>Выбор по статусу</option>
+                        <option value="all">Выбор по статусу</option>
                         <option value="актуален">Визит актуален</option>
                         <option value="закрыт">Визит прошёл</option>
                     </select>
                     <select id="urgency-status" class="form-select form_sm " aria-label=".form-select-sm example">
-                        <option selected>По срочности</option>
+                        <option value="all">По срочности</option>
                         <option value="Обычная">Обычная</option>
                         <option value="Приоритетная">Приоритетная</option>
                         <option value="Неотложная">Неотложная</option>
