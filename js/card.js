@@ -32,8 +32,6 @@ export class CardHandler {
         } else
         if (this.doctorEl.name === "form-therapist")
             this.doctor = doctorSelect.options[2].value || "";
-
-
     }
 
     correctUndefinds(){ // этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более

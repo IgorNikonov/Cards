@@ -12,6 +12,7 @@ export default function Login() {
             const login = document.createElement("input");
             login.type = "text";
             login.name = "login";
+            login.value = "team"; //TODO Влад временно добавляет логин для облегчения тестирования
             login.placeholder = "Login";
             login.required = true;
             login.className = "modal_input";
@@ -19,6 +20,7 @@ export default function Login() {
             const password = document.createElement("input");
             password.type = "password";
             password.name = "password";
+            password.value = "team"; //TODO Влад временно добавляет пароль для облегчения тестирования
             password.placeholder = "Password";
             password.required = true;
             password.classList.add("modal_input");

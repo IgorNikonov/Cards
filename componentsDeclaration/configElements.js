@@ -1,6 +1,50 @@
 import VisitForm from "../js/visitForm.js";
 import {visitFormCfg} from "./configForms.js";
 
+
+/*** КНОПКИ КАРТОЧКИ***/
+
+//кнопка "Показать больше элементов карточки"
+export const showMoreCardBtnCfg = {
+    id: "show-btn",
+    tag: "button",
+    type: "button",  //TODO потом сменить на "submit"
+    className: "card__show-more-btn btn btn-outline-success",
+    innerText:"Показать больше",
+    handler: ()=>{
+        WrapCardHTML.showMoreInCard();
+    }
+};
+
+//кнопка "Редактировать элементы карточки"
+export const editCardBtnCfg = {
+    id: "edit-btn",
+    tag: "button",
+    type: "button",  //TODO потом сменить на "submit"
+    className: "card__edit-btn btn btn-outline-success",
+    innerText:"Редактировать карточку",
+    handler: ()=>{
+        WrapCardHTML.editCard();
+    }
+};
+
+//кнопка "Редактировать элементы карточки"
+export const deleteCardBtnCfg = {
+    id: "delete-btn",
+    tag: "button",
+    type: "button",
+    className: "delete-btn btn btn-outline-success",
+    innerText:"Удалить карточку",
+    handler: ()=>{
+        WrapCardHTML.deleteCard();
+    }
+};
+//----------------------------------------------------------------
+
+
+
+/*** КНОПКИ ФОРМ ***/
+
 //кнопка "Создать карточку посещения"
 export const createCardBtnCfg = {
     id: "create-btn",
@@ -35,12 +79,17 @@ export const closeBtnCfg = {
     handler:  function cardCloseHandler(){document.getElementById("visit-form").remove();
         VisitForm.renderIdleForm();} // и вернуться к дефолтной форме выбора врача!
 };
+//----------------------------------------------------------------
 
 
 
 // захардкодили логин и пароль для входа в систему:
 export const userEntryData = {userLogin: "team", userPassword: "team"};
 
+//----------------------------------------------------------------
+
+
+/*** ЭЛЕМЕНТЫ ФОРМ ***/
 
 // конфигурируем select - Выбор специализации врача к посещению:  Терапевт, стоматолог, кардиолог
 export const doctorSelect = {

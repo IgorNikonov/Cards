@@ -1,3 +1,4 @@
+import WrapCardHTML from "../js/WrapCardHTML.js";
 import {deskComp} from "../LizaModal/main.js";
 
 export default class Desk {
@@ -12,16 +13,15 @@ export default class Desk {
                 <div class="input">
                     <input id='searchInput' type="text" placeholder="Search name">
                     <select class="form_sm form-select " aria-label=".form-select-sm example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected>Выбор по статусу</option>
+                        <option value="актуален">Визит актуален</option>
+                        <option value="закрыт">Визит прошёл</option>
                     </select>
                     <select class="form-select form_sm " aria-label=".form-select-sm example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected>По срочности</option>
+                        <option value="Обычная">Обычная</option>
+                        <option value="Приоритетная">Приоритетная</option>
+                        <option value="Неотложная">Неотложная</option>
                     </select>
                 </div>
             </div>
@@ -39,23 +39,25 @@ export default class Desk {
     static render(){
         document.getElementById('desk').insertAdjacentHTML("afterbegin", Desk.cardDesk);
     }
-    static addCard(newCardObj){
-        if(document.getElementById("no-cards-note")) document.getElementById("no-cards-note").remove();
-        console.log("ура, здесь создаём HTML карточку и переходим к выкладыванию ее на стол desk !");
+
+    static addCard(newCardObj) {
+        document.getElementById("visit-form").remove();
+        if (document.getElementById("no-cards-note")) document.getElementById("no-cards-note").remove();
+        console.log("Здесь создаём HTML карточку и переходим к выкладыванию ее на стол desk !");
         const cardContainer = document.getElementById("card-container");
-        const newCard = document.createElement("div");
-        newCard.className = "desk-card"; //TODO отдать этот класс Лизе на стилизацию
-        newCard.innerHTML = `<p>${newCardObj}</p>`;  //пока-что вывожу обьект по-корявому!!!
-        cardContainer.append(newCard);
+        const newCard = new WrapCardHTML(cardContainer, newCardObj);
+        newCard.render();
     }
-    static hide(){
-        deskComp.classList.add("hidden");
-        deskComp.classList.remove("visible");
-    }
-    static show(){
-        deskComp.classList.remove("hidden");
-        deskComp.classList.add("visible");
-    }
+
+
+    // static hide(){
+    //     deskComp.classList.add("hidden");
+    //     deskComp.classList.remove("visible");
+    // }
+    // static show(){
+    //     deskComp.classList.remove("hidden");
+    //     deskComp.classList.add("visible");
+    // }
 
 }
 

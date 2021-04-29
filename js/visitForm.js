@@ -31,14 +31,17 @@ export default class VisitForm extends Form {
         }
     }
 
+
+
     static formSubmitHandler() {
 
         try {
-            const card = new CardHandler();
+            const card = new CardHandler(); //здесь получаю просто сырой ОБЪЕКТ значений
             // card.correctUndefinds();
                 /*этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
                         лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
             Desk.addCard(card);
+            debugger
             console.log(card);
         }
         catch (err) {
