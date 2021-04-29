@@ -43,6 +43,9 @@ export default function Login() {
             localStorage.setItem('token', `${token}`);
             document.getElementById("modalLogin").classList.remove("active");
             VisitForm.renderIdleForm();
+
+            const cardsToShow = await Server.getAllCards(Server.token);
+            // localStorage.setItem('cards', JSON.stringify(cardsToShow));
         }
 
     }

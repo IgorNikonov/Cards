@@ -9,11 +9,15 @@ import Desk from "./desk.js";
 Desk.render(deskComp);
 Login();
 
+
 JSON.parse(localStorage.getItem('cards')).forEach(card => Desk.addCard(card));
 
 // Delete Card functionality
 const deleteCardBtn = document.getElementById('delete-btn');
-deleteCardBtn.addEventListener('click', deleteCard);
+
+if (deleteCardBtn) {
+  deleteCardBtn.addEventListener('click', deleteCard);
+}
 
 async function deleteCard() {
   await Server.deleteCard(this.id, Server.token);
