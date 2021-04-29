@@ -1,19 +1,15 @@
 /*Vlad's styles*/
-.--hidden {
+.hidden {
     display: none;
 }
-.--visible {
+.visible {
     display: flex;
 }
-
-
 /*Main*/
-
 *,*::after,*::before{
     box-sizing: border-box;
 }
 body{
-    max-width: 800px;
     margin: 0 auto;
     font-size: 18px;
     color: #2c2b2b;
@@ -24,14 +20,10 @@ body{
     max-width: 1200px;
     margin: 30px auto;
 }
-
-
 /*Header*/
-
 .header{
     height: 150px;
 }
-
 .header__nav{
     display: flex;
     justify-content: space-between;
@@ -52,7 +44,6 @@ body{
     font-weight: 700;
     margin-top: 25px;
 }
-
 .btn_log{
     background: none;
     border: 2px solid;
@@ -63,9 +54,7 @@ body{
     padding: 1em 2em;
     color: #8fc866;
 }
-
 /*Search navbar*/
-
 .search_nav {
     border: 2px solid #2F2F2F;
     border-radius:3px;
@@ -81,7 +70,6 @@ body{
     justify-content:space-between;
     align-items:center;
 }
-
 .icon_btn {
     height: 15px;
     width: 15px;
@@ -90,21 +78,17 @@ body{
     display: inline-block;
     margin-right: 1px;
 }
-
 .close {
     background: #FF5F57;
 }
-
 .minimize {
     background: #FFBE2F;
 }
-
 .maximize {
     background: #28CA42;
 }
-
 .main_content-window {
-    min-height: 350px;
+    min-height: 600px;
     position: relative;
 }
 .main_content-text {
@@ -116,16 +100,13 @@ body{
     font-style: italic;
     color: #838383;
 }
-
 .input{
     display: flex;
 }
-
 #searchInput{
     width: 75px;
     font-size: 10px;
 }
-
 .form_sm {
     padding-top: .25rem;
     padding-bottom: .25rem;
@@ -134,12 +115,8 @@ body{
     width: 100px;
     margin-left: 10px;
     height: 31px;
-
 }
-
-
 /*Modal*/
-
 .modal {
     display: none;
     position: fixed;
@@ -153,11 +130,9 @@ body{
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
-
 .modal.active {
     display: block;
 }
-
 .close-modal{
     color: lightgray;
     font-size: 28px;
@@ -165,16 +140,12 @@ body{
     padding-bottom: 20px;
     width: 20px;
 }
-
 .close-modal:hover,
 .close-modal:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
-
-
-
 .modal-content{
     position: relative;
     z-index: 1;
@@ -185,7 +156,6 @@ body{
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-
 .modal_input {
     outline: 0;
     background: #f2f2f2;
@@ -196,7 +166,6 @@ body{
     box-sizing: border-box;
     font-size: 14px;
 }
-
 .modal_login_button{
     text-transform: uppercase;
     outline: 0;
@@ -210,11 +179,6 @@ body{
     cursor: pointer;
     margin-top: 15px;
 }
-
-
-
-
-
 /* For Forms design  */
 .create__btn{
     display: none;
@@ -241,7 +205,7 @@ button{
     font-weight: 400;
     line-height: 1.5;
     text-align: center;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     background-color: transparent;
     border: 1px solid transparent;
     padding: .375rem .75rem;
@@ -266,7 +230,7 @@ button{
     border: 1px solid green;
     margin: 100px auto;
     padding: 30px 0;
-    display: table;
+    /*display: table;*/
 }
 .al-c{
     display: block;
@@ -280,7 +244,48 @@ button{
     left: 46%;
     transform: translateX(-50%)
 }
-
 .visit__description {
     width: 320px;
+}
+.visit__container  {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.visit__containe label {
+    margin-bottom: 7px;
+}
+/*Desk*/
+.main_content-window{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+.desk-card{
+    text-align: center;
+    border: 1px solid green;
+    border-radius: 5px;
+    max-width: 350px;
+    margin: 25px 0 0 10px;
+    position: relative;
+}
+.card__show-more-btn{
+    font-size: 10px;
+    height: 30px;
+    margin: 10px 5px 0 0;
+    padding: 5px;
+}
+.card__edit-btn{
+    font-size: 10px;
+    height: 30px;
+    margin: 10px 5px 0 0;
+    padding: 5px;
+}
+.delete-btn {
+    font-size: 10px;
+    height: 30px;
+    margin: 10px 0 0 0;
+    padding: 5px;
+}
+.card-item{
+    margin-top: 10px;
 }
