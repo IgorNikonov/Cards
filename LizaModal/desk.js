@@ -1,5 +1,5 @@
 import WrapCardHTML from "../js/WrapCardHTML.js";
-import {deskComp} from "../LizaModal/main.js";
+// import {deskComp} from "../LizaModal/main.js";
 
 export default class Desk {
     static cardDesk = `<div class="search_nav">
