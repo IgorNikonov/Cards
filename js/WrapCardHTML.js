@@ -50,17 +50,17 @@ export default class WrapCardHTML {
         visitorAgeEl.innerText          = visitorAge;
         lastVisitDateEl.innerText       = lastVisitDate;
 
-        // doctorEl.innerText              =
-        // lastNameEl.innerText            =
-        // mainNameEl.innerText            =
-        // partNameEl.innerText            =
-        // visitPurposeEl.innerText        =
-        // visitDescriptionEl.innerText    =
-        // visitUrgencyEl.innerText        =
-        // hadDeseasesEl.innerText         =
-        // bodyWeightIndexEl.innerText     =
-        // visitorAgeEl.innerText          =
-        // lastVisitDateEl.innerText       =
+        doctorEl.className              = "card-item";
+        lastNameEl.className            = "card-item";
+        mainNameEl.className            = "card-item";
+        partNameEl.className            = "card-item";
+        visitPurposeEl.className        = "card-item --hidden";
+        visitDescriptionEl.className    = "card-item --hidden";
+        visitUrgencyEl.className        = "card-item --hidden";
+        hadDeseasesEl.className         = "card-item --hidden";
+        bodyWeightIndexEl.className     = "card-item --hidden";
+        visitorAgeEl.className          = "card-item --hidden";
+        lastVisitDateEl.className       = "card-item --hidden";
 
 
         cardEl.className = "desk-card"; //TODO отдать этот класс Лизе на стилизацию
@@ -72,6 +72,20 @@ export default class WrapCardHTML {
             visitUrgencyEl, hadDeseasesEl, bodyWeightIndexEl, visitorAgeEl);
         parent.append(cardEl);
     }
+
+    /*** ФУНКЦИИ, назначаемые обработчикам КНОПОК каждой КАРТОЧКИ ***/
+    static showMoreCardItems(){
+        const cardItems = document.querySelectorAll(".card-item.--hidden");
+        cardItems.forEach(item=> item.classList.remove("--hidden") );
+    };
+    static editCard(){
+
+    };
+    static deleteCard(){
+
+    };
+
+
 
 
 }

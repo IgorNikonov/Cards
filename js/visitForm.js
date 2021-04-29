@@ -5,7 +5,6 @@ import * as cfg from "../componentsDeclaration/configElements.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 import {CardHandler} from "./card.js";
 import Desk from "../LizaModal/desk.js";
-import {deskComp} from "../LizaModal/main.js";
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
@@ -17,17 +16,19 @@ export default class VisitForm extends Form {
 
     static renderIdleForm() { // общий метод рендеринга исходной формы  selectForm
         if ( document.getElementById("btn_log") ) document.getElementById("btn_log").remove();
-        if ( document.getElementById("visit-form") ) document.getElementById("visit-form").remove();
-        const selectForm = new VisitForm(deskComp, cfig.visitFormCfg);
+        // if ( document.getElementById("visit-form") ) document.getElementById("visit-form").remove();
+        const selectForm = new VisitForm(document.getElementById("modal"), cfig.visitFormCfg);
         selectForm.render();
     }
 
     bodyCloseHandler({target}) { //TODO перестало работать закрывание формы по клику вне формы
-        const form_ = document.querySelector("form");
-        if (target.closest('form')) {
-        } else if (form_.id !== cfig.visitFormCfg.id) { // если это не основная форма выбора врача -то закрыть
-            form_.remove();
-            VisitForm.renderIdleForm(); // и вернуться к дефолтной форме выбора врача!
+
+        if (target.closest('#visit-form') || target.closest('#select-form') || target.tagName === "OPTION" ) return;
+        else
+        {
+            if (document.getElementById("visit-form")) document.getElementById("visit-form").remove();
+
+            // VisitForm.renderIdleForm(); // и вернуться к дефолтной форме выбора врача!
         }
     }
 
@@ -41,7 +42,6 @@ export default class VisitForm extends Form {
                 /*этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
                         лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
             Desk.addCard(card);
-            debugger
             console.log(card);
         }
         catch (err) {
@@ -84,11 +84,14 @@ export default class VisitForm extends Form {
         urgency.render();
     }
 
-    // создаём кнопки closeBtn, createBtn
+    // создаём кнопки closeBtn, createBtn для формы ввода пациентов
     static showButtons(innerComponent) {
-        const closeBtn = new CreateBtn(innerComponent, cfg.closeBtnCfg);
-        const createBtn = new CreateBtn(innerComponent, cfg.createCardBtnCfg);
-        const resetBtn = new CreateBtn(innerComponent, cfg.resetBtnCfg);
+        const btnContainer = document.createElement("div");
+        btnContainer.className = "visit-form__button-container";
+        const closeBtn = new CreateBtn(btnContainer, cfg.closeBtnCfg);
+        const createBtn = new CreateBtn(btnContainer, cfg.createCardBtnCfg);
+        const resetBtn = new CreateBtn(btnContainer, cfg.resetBtnCfg);
+        innerComponent.append(btnContainer);
         closeBtn.render();
         createBtn.render();
         resetBtn.render();

@@ -1,5 +1,5 @@
 import VisitForm from "../js/visitForm.js";
-import {visitFormCfg} from "./configForms.js";
+import WrapCardHTML from "../js/WrapCardHTML.js";
 
 
 /*** КНОПКИ КАРТОЧКИ***/
@@ -12,7 +12,7 @@ export const showMoreCardBtnCfg = {
     className: "card__show-more-btn btn btn-outline-success",
     innerText:"Показать больше",
     handler: ()=>{
-        WrapCardHTML.showMoreInCard();
+        WrapCardHTML.showMoreCardItems();
     }
 };
 
@@ -76,8 +76,10 @@ export const closeBtnCfg = {
     type: "button",
     className: "visit__close-btn btn-outline-success return_btn",
     innerText:"Закрыть",
-    handler:  function cardCloseHandler(){document.getElementById("visit-form").remove();
-        VisitForm.renderIdleForm();} // и вернуться к дефолтной форме выбора врача!
+    handler:  function cardCloseHandler(){
+        document.getElementById("visit-form").remove();
+        // VisitForm.renderIdleForm();
+    } // и вернуться к дефолтной форме выбора врача!
 };
 //----------------------------------------------------------------
 

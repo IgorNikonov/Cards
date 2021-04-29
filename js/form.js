@@ -23,6 +23,6 @@ export default class Form {
         component.style.display = "block"; //TODO для теста. Потом эту строку удалить
         titleEl.innerText = title;
         component.append(titleEl);
-        parent.prepend(component);
+        parent.append(component);
     }
 }

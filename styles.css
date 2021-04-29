@@ -1,8 +1,8 @@
 /*Vlad's styles*/
-.hidden {
+.--hidden {
     display: none;
 }
-.visible {
+.--visible {
     display: flex;
 }
 
