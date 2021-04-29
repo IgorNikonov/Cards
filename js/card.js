@@ -1,4 +1,5 @@
 import {doctorSelect} from "../componentsDeclaration/configElements.js";
+import Server from "./server.js"
 
 export class CardHandler {
 
@@ -8,7 +9,7 @@ export class CardHandler {
 
             this.lastName = document.getElementsByName("visitorLastName")[0].value || "";
             this.mainName = document.getElementsByName("visitorName")[0].value || "";
-            this.partName = document.getElementsByName("visitorPatrName")[0].value || "";
+            this.patrName = document.getElementsByName("visitorPatrName")[0].value || "";
 
             this.visitPurpose = document.getElementsByName("purpose")[0].value || "";
             this.visitDescription = document.getElementsByName("description")[0].value || "";
@@ -40,18 +41,20 @@ export class CardHandler {
     }
 
     async create() {
-        const nextCard = await Server.createCard({
+        const cardToAdd = await Server.createCard({
             lastName: this.lastName.toLowerCase(),
             mainName: this.mainName.toLowerCase(),
             patrName: this.patrName.toLowerCase(),
             visitPurpose: this.visitPurpose.toLowerCase(),
             visitDescription: this.visitDescription.toLowerCase(),
             visitUrgency: this.visitUrgency,
+            hadDeseases: this.hadDeseases,
+            bodyWeightIndex: this.bodyWeightIndex,
             visitorAge: this.visitorAge,
             lastVisitDate: this.lastVisitDate,
             doctor: this.doctor,
-        }, localStorage.getItem('token'));
+        }, Server.token);
 
-        return nextCard;
+        return cardToAdd;
     }
 }

@@ -11,13 +11,13 @@ export default class Desk {
                 </div>
                 <!--                Bootstrap Test Inputs          -->
                 <div class="input">
-                    <input id='searchInput' type="text" placeholder="Search name">
-                    <select class="form_sm form-select " aria-label=".form-select-sm example">
+                    <input id="search-by-description" type="text" placeholder="Search name">
+                    <select id="visit-status" class="form_sm form-select " aria-label=".form-select-sm example">
                         <option selected>Выбор по статусу</option>
                         <option value="актуален">Визит актуален</option>
                         <option value="закрыт">Визит прошёл</option>
                     </select>
-                    <select class="form-select form_sm " aria-label=".form-select-sm example">
+                    <select id="urgency-status" class="form-select form_sm " aria-label=".form-select-sm example">
                         <option selected>По срочности</option>
                         <option value="Обычная">Обычная</option>
                         <option value="Приоритетная">Приоритетная</option>
@@ -41,7 +41,9 @@ export default class Desk {
     }
 
     static addCard(newCardObj) {
-        document.getElementById("visit-form").remove();
+        if (document.getElementById("visit-form")) {
+            document.getElementById("visit-form").remove();
+        }
         if (document.getElementById("no-cards-note")) document.getElementById("no-cards-note").remove();
         console.log("Здесь создаём HTML карточку и переходим к выкладыванию ее на стол desk !");
         const cardContainer = document.getElementById("card-container");

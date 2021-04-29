@@ -6,6 +6,8 @@ import * as cfig from "../componentsDeclaration/configForms.js";
 import {CardHandler} from "./card.js";
 import Desk from "../LizaModal/desk.js";
 import {deskComp} from "../LizaModal/main.js";
+// import {cardsToStore} from "../LizaModal/main.js"
+import Server from "./server.js";
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
@@ -33,15 +35,22 @@ export default class VisitForm extends Form {
 
 
 
-    static formSubmitHandler() {
-
+    static async formSubmitHandler() {
+        
         try {
             const card = new CardHandler(); //здесь получаю просто сырой ОБЪЕКТ значений
             // card.correctUndefinds();
                 /*этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
                         лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
-            Desk.addCard(card);
-            console.log(card);
+            const newCard = await card.create();
+            // cardsToStore.push(newCard);
+
+            Desk.addCard(newCard);
+
+            let allCards = await Server.getAllCards(Server.token);
+
+            localStorage.setItem('cards', JSON.stringify(allCards));
+            console.log(allCards);
         }
         catch (err) {
             (console.log(err))
