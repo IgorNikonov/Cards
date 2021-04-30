@@ -4,7 +4,7 @@ import InFieldsComponent from "./InFieldsComponent.js";
 import * as cfg from "../componentsDeclaration/configElements.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 import {CardHandler} from "./card.js";
-import Desk from "../LizaModal/desk.js";
+import {newCardHandle} from "./newCardHandle.js"
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
@@ -37,15 +37,13 @@ export default class VisitForm extends Form {
     static formSubmitHandler() {
 
         try {
-            const card = new CardHandler(); //здесь получаю просто сырой ОБЪЕКТ значений
-            // card.correctUndefinds();
-                /*этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
+            const card = new CardHandler(); //здесь получаю просто сырой ОБЪЕКТ значений из инпут-полей формы
+/* card.correctUndefinds();  - этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
                         лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
-            Desk.addCard(card);
-            console.log(card);
+        newCardHandle(card); //отправил новую карточку на сервер, в рендер и в locakStorage
         }
         catch (err) {
-            (console.log(err))
+            (console.log(err.name, err.message))
         }
 
     }

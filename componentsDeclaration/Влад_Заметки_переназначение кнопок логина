@@ -1,20 +1,16 @@
-Лизына нопка формы логина:  файл Login.js, стр.55 - 62
+Лизына нопка формы логина:  файл Login.js, стр.87:
+ loginBtn.addEventListener("click", loginBtnHandler);
 
 Конфигурация моей старой кнопки "создать визит": - в файле  configElements.js, стр.46
-Моё старое назначение кнопки логина на кнопку вызова форм к заполнению:  файл  script.js,  стр.27
 
 Новая конфигурация (под лизину кн. логина): этот же файл, стр. 62
 
 
-
-
 Мои формы должны запускаться после принятия логина и пароля здесь:
-Лизына submit- кнопка отправки логина и пароля:   <button type="submit" class="modal_login_button">Login</button>
-Ее обработчик:  файл  Login.js, стр.28
-
-логин и пароль для входа хранятся в файле configElements.js  строка 61:
-userEntryData = {userLogin: "team", userPassword: "team"};
 
 
-Моя новая ф-ция сверки логина и пароля:  файл Login.js  стр. 36-43  (ф-ция  checkUserLogin()  )
-и  Login.js , стр. 56 - 60:        function loginBtnHandler(e)
+Переназначаем Лизыну кнопка модального окна:  Login.js стр. 87:
+loginBtn.addEventListener("click", loginBtnHandler);
+Мой новый обработчик для этой кнопки: Login.js, стр. 92-98:
+function renderSelectFormBtn()
+loginBtn.removeEventListener("click", loginBtnHandler);

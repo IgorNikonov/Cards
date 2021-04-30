@@ -28,7 +28,7 @@ export const editCardBtnCfg = {
     }
 };
 
-//кнопка "Редактировать элементы карточки"
+//кнопка "Удалить карточку"
 export const deleteCardBtnCfg = {
     id: "delete-btn",
     tag: "button",
@@ -49,7 +49,7 @@ export const deleteCardBtnCfg = {
 export const createCardBtnCfg = {
     id: "create-btn",
     tag: "button",
-    type: "button",  //TODO потом сменить на "submit"
+    type: "button",
     className: "visit__create-btn  btn btn-outline-success return_btn",
     innerText:"Создать карточку посетителя",
     handler: ()=>{
@@ -78,17 +78,10 @@ export const closeBtnCfg = {
     innerText:"Закрыть",
     handler:  function cardCloseHandler(){
         document.getElementById("visit-form").remove();
-        // VisitForm.renderIdleForm();
-    } // и вернуться к дефолтной форме выбора врача!
+    }
 };
 //----------------------------------------------------------------
 
-
-
-// захардкодили логин и пароль для входа в систему:
-export const userEntryData = {userLogin: "team", userPassword: "team"};
-
-//----------------------------------------------------------------
 
 
 /*** ЭЛЕМЕНТЫ ФОРМ ***/

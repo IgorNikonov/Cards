@@ -2,14 +2,13 @@ export default class Server {
     static url = 'https://ajax.test-danit.com/api/v2/cards';
     static token = localStorage.getItem('token');
 
-    static async getToken(userData) {
+    static async getTokenFromServer(userData) {
         const response = await fetch(`${Server.url}/login`, {
             method: 'POST',
-            headers: {'Content-Type' : 'application/json'},
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(userData)
         });
-        const token = await response.text();
-        return token;
+         return await response.text();
     }
 
     static async createCard(userData, token) {
@@ -21,9 +20,7 @@ export default class Server {
             },
             body: JSON.stringify(userData)
         });
-
-        const data = await response.json();
-        return data;
+        return await response.json();
     }
 
     static async editCard(userData, cardId, token) {
@@ -35,17 +32,17 @@ export default class Server {
             },
             body: JSON.stringify(userData)
         });
-
-        const data = await response.json();
-        return data;
+        return await response.json();
     }
 
     static async deleteCard(cardId, token) {
-        const response = await fetch(`${Server.url}/${cardId}`, {
+        return await fetch(`${Server.url}/${cardId}`, {
             method: 'DELETE',
-            headers: {'Authorization': `Bearer ${token}`}
+            headers: {
+                // 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
         });
-        return response;
     }
 
     static async getAllCards(token) {
@@ -55,9 +52,9 @@ export default class Server {
                 'Authorization': `Bearer ${token}`
             }
         });
-        const data = await response.json();
-        return data;
+        return await response.json();
     }
+
 
     static async getOneCard(cardId, token) {
         const response = await fetch(`${Server.url}/${cardId}`, {
@@ -66,7 +63,6 @@ export default class Server {
                 'Authorization': `Bearer ${token}`
             }
         });
-        const data = await response.json();
-        return data;
+        return await response.json();
     }
 }
