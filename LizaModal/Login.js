@@ -39,26 +39,28 @@ export default function Login() {
 
 
         async getToken(loginInput, passInput) {
-            return await Server.getToken({ email: loginInput, password: passInput });
+            return await Server.getTokenFromServer({ email: loginInput, password: passInput });
         }
 
         async checkUserLogin() {
-            debugger
+
             let token;
             const loginInput = document.getElementsByName("login")[0].value;
             const passInput = document.getElementsByName("password")[0].value;
-
             try {
-                token = this.getToken(loginInput, passInput);
+                token = await this.getToken(loginInput, passInput);
             } catch (err) { console.log(err.name, err.message) }
 
-            if (token === "Incorrect username or password") {
-                throw new Error("Такой пользователь не зарегистрирован!");
+            if (token === "Incorrect username or password" || token === undefined) {
+                throw new Error("Такой пользователь не зарегистрирован, либо token undefined !");
             }
             else
                 localStorage.setItem('token', `${token}`);
+
+            reassignLogBtn();
+            console.log("Вы залогинились!");
             document.getElementById("modalLogin").classList.remove("active");
-            VisitForm.renderIdleForm();
+            // VisitForm.renderIdleForm(); - запуск форм переназначили на кнопку loginbtn  (стр.93)
 
 
             const cardsToShow = await Server.getAllCards(Server.token);
@@ -77,7 +79,6 @@ export default function Login() {
     const loginBtn = document.getElementById("btn_log");
 
 
-    //Это уже Влад переписал строки  56 - 60:
     function loginBtnHandler(e) {
         e.preventDefault();
         loginForm.openModal();
@@ -85,5 +86,17 @@ export default function Login() {
 
     modal.append(loginForm.modal);
     loginBtn.addEventListener("click", loginBtnHandler); //только в таком виде можно снять обработчик в будущем
+
+    function renderSelFormBtn() {
+
+        VisitForm.renderIdleForm();
+    }
+
+    function reassignLogBtn() {
+        loginBtn.removeEventListener("click", loginBtnHandler);
+        loginBtn.addEventListener("click", renderSelFormBtn);
+        loginBtn.innerText = "Добавить визит";
+
+    }
 
 }
