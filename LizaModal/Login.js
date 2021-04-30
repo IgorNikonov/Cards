@@ -14,7 +14,7 @@ export default function Login() {
             const login = document.createElement("input");
             login.type = "text";
             login.name = "login";
-            login.value = "team"; //TODO Влад временно добавляет логин для облегчения тестирования
+            login.value = "uts_@ukr.net"; //TODO Влад временно добавляет логин для облегчения тестирования
             login.placeholder = "Login";
             login.required = true;
             login.className = "modal_input";
@@ -22,7 +22,7 @@ export default function Login() {
             const password = document.createElement("input");
             password.type = "password";
             password.name = "password";
-            password.value = "team"; //TODO Влад временно добавляет пароль для облегчения тестирования
+            password.value = "slyslysly"; //TODO Влад временно добавляет пароль для облегчения тестирования
             password.placeholder = "Password";
             password.required = true;
             password.classList.add("modal_input");
@@ -31,26 +31,34 @@ export default function Login() {
             submitBtn.type = "button";
             submitBtn.textContent = "Login";
             submitBtn.classList.add("modal_login_button");
-            submitBtn.addEventListener("click", ()=>this.checkUserLogin());
+            submitBtn.addEventListener("click", () => this.checkUserLogin());
 
             return [login, password, submitBtn];
         }
 
-        //Это уже Влад переписал строки  37-44
-        // checkUserLogin(){
-        //     const loginInput = document.getElementsByName("login")[0].value;
-        //     const passInput = document.getElementsByName("password")[0].value;
-        //     document.getElementById("modalLogin").classList.remove("active");
-        //     VisitForm.renderIdleForm();
-        // }
-        // НОВЫЙ КОД ИГОРЯ на замену:
-        async checkUserLogin(){
+
+
+        async getToken(loginInput, passInput) {
+            return await Server.getToken({ email: loginInput, password: passInput });
+        }
+
+        async checkUserLogin() {
+            let token;
             const loginInput = document.getElementsByName("login")[0].value;
             const passInput = document.getElementsByName("password")[0].value;
-            const token = await Server.getToken({email: loginInput, password: passInput});
-            localStorage.setItem('token', `${token}`);
+
+            try {
+                token = this.getToken(loginInput, passInput);
+            } catch (err) { console.log(err.name, err.message) }
+
+            if (token === "Incorrect username or password") {
+                throw new Error("Такой пользователь не зарегистрирован!");
+            }
+            else
+                localStorage.setItem('token', `${token}`);
             document.getElementById("modalLogin").classList.remove("active");
             VisitForm.renderIdleForm();
+
 
             const cardsToShow = await Server.getAllCards(Server.token);
             // localStorage.setItem('cards', JSON.stringify(cardsToShow));
@@ -69,7 +77,7 @@ export default function Login() {
 
 
     //Это уже Влад переписал строки  56 - 60:
-    function loginBtnHandler(e){
+    function loginBtnHandler(e) {
         e.preventDefault();
         loginForm.openModal();
     }
