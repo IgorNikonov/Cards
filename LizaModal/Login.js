@@ -1,48 +1,54 @@
-import Modal from "./Modal.js";
+import { Modal } from './Modal.js'
+import LoginComp from './loginComponents.js';
 
-export default function Login() {
-    class LoginModal extends Modal {
-        constructor({ id, classes }) {
-            super({ id, classes });
-        }
-        createFormElements() {
-            const login = document.createElement("input");
-            login.type = "text";
-            login.name = "login";
-            login.placeholder = "Login";
-            login.required = true;
-            login.classList = "modal_input"
-
-            const password = document.createElement("input");
-            password.type = "password";
-            password.name = "password";
-            password.placeholder = "Password";
-            password.required = true;
-            password.classList = "modal_input"
-
-            const submitBtn = document.createElement("button");
-            submitBtn.type = "submit";
-            submitBtn.textContent = "Login";
-            submitBtn.classList = "modal_login_button"
-
-            return [login, password, submitBtn];
-        }
+export class LoginModal extends Modal {
+    constructor(modal) {
+        super(modal);
+        this.modalTitle.textContent = 'Welcome!'
     }
 
-    const loginForm = new LoginModal({
-        id: "modalLogin",
-        classes: ["modal"],
-    });
+    renderModal(modal) {
+        super.renderModal(modal);
+        const fields = new LoginComp();
+        fields.render(this.form)
+        const autorization = document.querySelector('.btn_log');
+        autorization.addEventListener('click', () => {
+            this.self.classList.add('active');
+        });
 
-    const modal = document.getElementById("modal");
-    const loginBtn = document.getElementById("btn_log");
+        this.closeBtn.addEventListener('click', () => {
+            this.self.classList.remove('active');
+        });
 
+        window.addEventListener('click', (e) => {
+            if (e.target === this.self) {
+                this.self.classList.remove('active')
+            }
+        })
 
+        //    JUST TRYNG TO UNDERSTAND THIS SHIT
 
-    modal.append(loginForm.modal);
-    loginBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        loginForm.openModal();
-    });
+        window.onload = () => {
+            window.sessionStorage.setItem('login', 'liza');
+            window.sessionStorage.setItem('password', '123');
+            const btn1 = document.getElementById('btn_log')
+            const btn2 = document.getElementById('btn_create')
+            const logV = document.getElementById('login');
+            const passV = document.getElementById('password');
+            const subBtn = document.querySelector('.modal_login_button')
+            subBtn.onsubmit = () => { return false }
+            subBtn.onclick = (e) => {
+                e.preventDefault()
+                if ((logV.value == sessionStorage.getItem('login')) && (passV.value == sessionStorage.getItem('password'))) {
+                    console.log("AMEN!!!!!!")
+                    this.self.classList.remove('active')
+                    btn1.style.display = 'none'
+                    btn2.style.display = 'block'
+                    btn2.classList.remove('none')
+                }
+            }
+        }
 
+    }
 }
+

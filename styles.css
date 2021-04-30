@@ -291,3 +291,7 @@ button{
 .card-item{
     margin-top: 10px;
 }
+
+.none{
+    display: none;
+}

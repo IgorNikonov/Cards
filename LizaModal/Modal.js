@@ -1,60 +1,44 @@
-export default class Modal {
-    constructor({ id, classes }) {
-        this.id = id;
-        this.classes = classes;
-        this.modal = this.render()
-
+import LoginComp from './loginComponents.js'
+export class Modal {
+    constructor(modal) {
+        this.modal = modal;
+        this.self = document.createElement('div');
+        this.modalContent = document.createElement('div');
+        this.modalHeader = document.createElement('div');
+        this.modalTitle = document.createElement('h5');
+        this.closeBtn = document.createElement('span')
+        this.form = document.createElement('div')
     }
-    render() {
-        const content = this.createForm(this.createFormElements());
-        const x = this.createElement({
-            elem: 'span',
-            content: 'x',
-            classes: ['close-modal']
+
+    renderModal() {
+        this.self.classList.add('modal');
+        this.self.id = 'modal';
+        this.modalContent.classList.add('modal-content');
+        this.modalHeader.classList.add('modal-header');
+        this.closeBtn.classList.add('close-modal');
+        this.closeBtn.innerText = 'x';
+        this.modalTitle.classList.add('modal-title');
+        this.form.classList.add('modal-form');
+        this.modalHeader.append(this.modalTitle, this.closeBtn);
+        this.modalContent.append(this.modalHeader, this.form);
+        this.self.append(this.modalContent);
+        modal.append(this.self)
+
+        const autorization = document.querySelector('.btn_log');
+        autorization.addEventListener('click', () => {
+            this.self.classList.add('active');
         });
 
-        x.addEventListener('click', () => this.closeModal());
-        const divModalContent = this.createElement({
-            elem: 'div',
-            classes: ['modal-content'],
-            content: [x, content]
+        this.closeBtn.addEventListener('click', () => {
+            this.self.classList.remove('active');
         });
-        const divModal = this.createElement({
-            elem: "div",
-            classes: this.classes,
-            content: [divModalContent],
-            id: this.id,
-        });
-        return divModal;
-    }
-    createElement({ elem, id, classes, content }) {
-        const element = document.createElement(elem);
 
-        if (id) {
-            element.id = id;
-        }
-        if (classes) {
-            element.classList.add(...classes);
-        }
-        if (content) {
-            element.append(...content)
-        }
-        return element
-    }
-    createForm(formElements = []) {
-        const form = document.createElement('form');
-        form.id = 'log-form';
-        form.action = "";
-        form.append(...formElements);
-        return form;
-    }
+        window.addEventListener('click', (e) => {
+            if (e.target === this.self) {
+                this.self.classList.remove('active')
+            }
+        })
 
-    createFormElements() { }
 
-    openModal() {
-        this.modal.classList.add('active')
-    }
-    closeModal() {
-        this.modal.classList.remove('active')
     }
 }

@@ -1,2 +1,10 @@
-import Login from "./Login.js";
-Login()
+import { LoginModal } from './Login.js';
+
+
+
+
+function log() {
+    const login = new LoginModal().renderModal(modal)
+}
+
+log()
