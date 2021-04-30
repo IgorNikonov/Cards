@@ -43,6 +43,7 @@ export default function Login() {
         }
 
         async checkUserLogin() {
+            debugger
             let token;
             const loginInput = document.getElementsByName("login")[0].value;
             const passInput = document.getElementsByName("password")[0].value;
