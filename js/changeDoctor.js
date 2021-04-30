@@ -7,6 +7,7 @@ import {deskComp} from "../LizaModal/main.js";
 export default function changeDoctor({target}){
     if (  !doctorSelect.options.some(el=> el.value === target.value)  ) return; //TODO потом проверить надобность этой проверки и удалить , если больше не надо
     else {
+        if ( document.getElementById("visit-form")) document.getElementById("visit-form").remove();
         const visitFormParent = document.getElementById("select-form");
         switch (target.value) {
 

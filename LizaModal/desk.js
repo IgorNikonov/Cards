@@ -49,16 +49,6 @@ export default class Desk {
         newCard.render();
     }
 
-
-    // static hide(){
-    //     deskComp.classList.add("hidden");
-    //     deskComp.classList.remove("visible");
-    // }
-    // static show(){
-    //     deskComp.classList.remove("hidden");
-    //     deskComp.classList.add("visible");
-    // }
-
 }
 
 
