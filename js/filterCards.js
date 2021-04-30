@@ -31,11 +31,12 @@ export default class FilterCards{
             const cardsToShow = cards.filter(card => card.visitUrgency === e.target.value);
             cardsToShow.forEach(card => Desk.addCard(card));
         } else {
-            JSON.parse(localStorage.getItem('cards')).forEach(card => Desk.addCard(card));
+            const noFilter = await Server.getAllCards(localStorage.getItem('token'))
+            noFilter.forEach(card => Desk.addCard(card));
         }
     }
 
-    static async searchStatus() {
+    static async searchStatus(e) {
         document.getElementById('card-container').innerHTML = '';
 
         const cards = await Server.getAllCards(localStorage.getItem('token'));
@@ -44,7 +45,8 @@ export default class FilterCards{
             const cardsToShow = cards.filter(card => card.visitStatus === e.target.value);
             cardsToShow.forEach(card => Desk.addCard(card));
         } else {
-            JSON.parse(localStorage.getItem('cards')).forEach(card => Desk.addCard(card));
+            const noFilter = await Server.getAllCards(localStorage.getItem('token'))
+            noFilter.forEach(card => Desk.addCard(card));
         }
     }
 }
