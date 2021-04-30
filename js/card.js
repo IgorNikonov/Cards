@@ -32,6 +32,7 @@ export class CardHandler {
         } else
         if (this.doctorEl.name === "form-therapist")
             this.doctor = doctorSelect.options[2].value || "";
+        this.visitStatus =  ( Math.random() > 0.5 ) ? "актуален" : "закрыт";
     }
 
     correctUndefinds(){ // этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
