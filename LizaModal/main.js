@@ -10,7 +10,7 @@ Login();  //запустили процедуру логина
 
 
 //  ВЕСЬ КОД НИЖЕ - ОТ ИГОРЯ:
-if (localStorage.getItem("cards")) localStorage.removeItem("cards");
+//  localStorage.removeItem("cards");
 
 // Delete Card functionality
 const deleteCardBtn = document.getElementById('delete-btn');

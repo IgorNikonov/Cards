@@ -4,7 +4,7 @@ import Modal from "./Modal.js";
 import VisitForm from "../js/visitForm.js";
 import { deskComp } from "./main.js";
 // import Desk from "./desk.js";
-import {handleData} from "../js/handleData.js"
+// import {handleData} from "../js/handleData.js"
 
 export default function Login() {
     class LoginModal extends Modal {
@@ -46,7 +46,7 @@ export default function Login() {
         }
 
         async checkUserLogin(){
-            localStorage.removeItem('cards')
+            // localStorage.removeItem('cards')
             
             let token;
             const loginInput = document.getElementsByName("login")[0].value;
@@ -66,13 +66,8 @@ export default function Login() {
             document.getElementById("modalLogin").classList.remove("active");
             // VisitForm.renderIdleForm(); - запуск форм переназначили на кнопку loginbtn  (стр.93)
             
-            handleData(token);
-
-            // const cardsToShow = await Server.getAllCards(Server.token);
-            // localStorage.setItem('cards', JSON.stringify(cardsToShow));
+            Server.handleData(token);
         }
-
-
     }
 
     const loginForm = new LoginModal({
