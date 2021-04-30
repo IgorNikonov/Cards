@@ -40,7 +40,9 @@ export default class Desk {
     }
 
     static addCard(newCardObj) {
-        document.getElementById("visit-form").remove();
+        if (document.getElementById("visit-form")) {
+            document.getElementById("visit-form").remove();
+        }
 
         if (document.getElementById("no-cards-note")) document.getElementById("no-cards-note").remove();
         console.log("Здесь создаём HTML карточку и переходим к выкладыванию ее на стол desk !");

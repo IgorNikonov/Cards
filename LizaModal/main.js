@@ -10,15 +10,16 @@ Login();  //запустили процедуру логина
 
 
 //  ВЕСЬ КОД НИЖЕ - ОТ ИГОРЯ:
-if (localStorage.getItem("cards"))  JSON.parse(localStorage.getItem('cards')).forEach(card => Desk.addCard(card));
+if (localStorage.getItem("cards")) localStorage.removeItem("cards");
 
 // Delete Card functionality
 const deleteCardBtn = document.getElementById('delete-btn');
 if (deleteCardBtn) deleteCardBtn.addEventListener('click', deleteCard);
 
 async function deleteCard() {
+    console.log('asdkfj')
     await Server.deleteCard(this.id, Server.token);
-    localStorage.removeItem('cards');
+    // localStorage.removeItem('cards');
     const allCards = await Server.getAllCards(Server.token);
     localStorage.setItem('cards', JSON.stringify(allCards));
 }

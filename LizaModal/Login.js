@@ -2,6 +2,9 @@ import Server from "../js/server.js"
 
 import Modal from "./Modal.js";
 import VisitForm from "../js/visitForm.js";
+import { deskComp } from "./main.js";
+// import Desk from "./desk.js";
+import {handleData} from "../js/handleData.js"
 
 export default function Login() {
     class LoginModal extends Modal {
@@ -43,27 +46,29 @@ export default function Login() {
         }
 
         async checkUserLogin(){
-
+            localStorage.removeItem('cards')
+            
             let token;
             const loginInput = document.getElementsByName("login")[0].value;
             const passInput = document.getElementsByName("password")[0].value;
             try{
-            token = await this.getToken(loginInput, passInput);
+                token = await this.getToken(loginInput, passInput);
             } catch(err) {console.log(err.name, err.message)}
-
+            
             if (token === "Incorrect username or password" || token === undefined) {
                 throw new Error("Такой пользователь не зарегистрирован, либо token undefined !");
             }
             else
             localStorage.setItem('token', `${token}`);
-
+            
             reassignLogBtn();
             console.log("Вы залогинились!");
             document.getElementById("modalLogin").classList.remove("active");
             // VisitForm.renderIdleForm(); - запуск форм переназначили на кнопку loginbtn  (стр.93)
+            
+            handleData(token);
 
-
-            const cardsToShow = await Server.getAllCards(Server.token);
+            // const cardsToShow = await Server.getAllCards(Server.token);
             // localStorage.setItem('cards', JSON.stringify(cardsToShow));
         }
 
