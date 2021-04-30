@@ -1,3 +1,5 @@
+import Server from "../js/server.js"
+
 import Modal from "./Modal.js";
 import VisitForm from "../js/visitForm.js";
 
@@ -35,12 +37,25 @@ export default function Login() {
         }
 
         //Это уже Влад переписал строки  37-44
-        checkUserLogin(){
+        // checkUserLogin(){
+        //     const loginInput = document.getElementsByName("login")[0].value;
+        //     const passInput = document.getElementsByName("password")[0].value;
+        //     document.getElementById("modalLogin").classList.remove("active");
+        //     VisitForm.renderIdleForm();
+        // }
+        // НОВЫЙ КОД ИГОРЯ на замену:
+        async checkUserLogin(){
             const loginInput = document.getElementsByName("login")[0].value;
             const passInput = document.getElementsByName("password")[0].value;
+            const token = await Server.getToken({email: loginInput, password: passInput});
+            localStorage.setItem('token', `${token}`);
             document.getElementById("modalLogin").classList.remove("active");
             VisitForm.renderIdleForm();
+
+            const cardsToShow = await Server.getAllCards(Server.token);
+            // localStorage.setItem('cards', JSON.stringify(cardsToShow));
         }
+
 
     }
 
