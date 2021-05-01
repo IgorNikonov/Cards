@@ -5,23 +5,10 @@ import WrapCardHTML from "../js/WrapCardHTML.js";
 export const deskComp = document.getElementById('desk'); // сюда будем выкладывать все формы
 import Login from "./Login.js";
 import Desk from "./desk.js";
+
 Desk.render(deskComp); //выводим в DOM рабочий стол карточек
 Login();  //запустили процедуру логина
 
-
-// раскладываем имеющиеся карточки на desk, при каждом входе в систему
-if (localStorage.getItem("cards"))  JSON.parse(localStorage.getItem('cards')).forEach(card => Desk.addCard(card));
-
-// Delete Card functionality
-const deleteCardBtn = document.getElementById('delete-btn');
-if (deleteCardBtn) deleteCardBtn.addEventListener('click', deleteCard);
-
-async function deleteCard() {
-    await Server.deleteCard(this.id, Server.token);
-    localStorage.removeItem('cards');
-    const allCards = await Server.getAllCards(Server.token);
-    localStorage.setItem('cards', JSON.stringify(allCards));
-}
 
 // Filter functionality
 const searchCardInput = document.getElementById('search-by-description');

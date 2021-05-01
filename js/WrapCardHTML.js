@@ -1,5 +1,7 @@
 import {CreateBtn} from "./createBtn.js";
 import {deleteCardBtnCfg, editCardBtnCfg, showMoreCardBtnCfg} from "../componentsDeclaration/configElements.js";
+import Server from "./server.js";
+import Desk from "../LizaModal/desk.js";
 
 export default class WrapCardHTML { // сюда получили объект из res сервера, содержащий id
     constructor(parent, {id, doctor, lastName, mainName, partName, visitPurpose, visitDescription,
@@ -92,10 +94,12 @@ export default class WrapCardHTML { // сюда получили объект и
         const currentID = e.target.dataset.name; //получили id из сработавшей кнопки
         const currentCard = document.querySelector(`div[data-name = "${currentID}" ]`); //получили карточку с данным id
     };
-    static deleteCard(e){
+    static async deleteCard(e){
         const currentID = e.target.dataset.name; //получили id из сработавшей кнопки
-        const currentCard = document.querySelector(`div[data-name = "${currentID}" ]`); //получили карточку с данным id
-
+        // const currentCard = document.querySelector(`div[data-name = "${currentID}" ]`); //получили карточку с данным id
+        await Server.deleteCard(currentID, Server.token);
+        document.getElementById('card-container').innerHTML = ''; //удаляет все карточки из desk
+        await Desk.refreshDesk();  //обновляет всекарточки на столе  из БД
     };
 
 

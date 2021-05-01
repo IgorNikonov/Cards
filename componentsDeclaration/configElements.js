@@ -36,7 +36,7 @@ export const deleteCardBtnCfg = {
     className: "delete-btn btn btn-outline-success",
     innerText:"Удалить карточку",
     handler: (e)=>{
-        WrapCardHTML.deleteCard(e);
+        WrapCardHTML.deleteCard(e);//TODO  решить вопрос с непринятым промисом
     }
 };
 //----------------------------------------------------------------

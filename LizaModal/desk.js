@@ -1,5 +1,5 @@
 import WrapCardHTML from "../js/WrapCardHTML.js";
-import {deskComp} from "../LizaModal/main.js";
+import Server from "../js/server.js";
 export default class Desk {
     static cardDesk =
         `<div class="search_nav">
@@ -50,6 +50,10 @@ export default class Desk {
         newCard.render();
     }
 
+    static async refreshDesk() { //обновляет на столе всекарточки с получением их из БД
+        const renewedCards = await Server.getAllCards(localStorage.getItem('token'));
+        renewedCards.forEach(card => Desk.addCard(card));
+    }
 }
 
 

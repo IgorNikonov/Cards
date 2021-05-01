@@ -22,13 +22,10 @@ export default class VisitForm extends Form {
     }
 
     bodyCloseHandler({target}) { //TODO перестало работать закрывание формы по клику вне формы
-
         if (target.closest('#visit-form') || target.closest('#select-form') || target.tagName === "OPTION" ) return;
         else
         {
             if (document.getElementById("visit-form")) document.getElementById("visit-form").remove();
-
-            // VisitForm.renderIdleForm(); // и вернуться к дефолтной форме выбора врача!
         }
     }
 

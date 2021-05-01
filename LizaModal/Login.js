@@ -61,8 +61,6 @@ export default function Login() {
             reassignLogBtn();
             console.log("Вы залогинились!");
             document.getElementById("modalLogin").classList.remove("active");
-            // VisitForm.renderIdleForm(); - запуск форм переназначили на кнопку loginbtn  (стр.93)
-
 
             const cardsToShow = await Server.getAllCards(Server.token);
             // localStorage.setItem('cards', JSON.stringify(cardsToShow));
@@ -91,9 +89,8 @@ export default function Login() {
 
 
     function renderSelectFormBtn(){
-
-        const renewedCards = Server.getAllCards(localStorage.getItem('token'));
-        renewedCards.forEach(card => Desk.addCard(card));
+        // const renewedCards = Server.getAllCards(localStorage.getItem('token'));
+        // renewedCards.forEach(card => Desk.addCard(card));
 
         VisitForm.renderIdleForm();
     }
