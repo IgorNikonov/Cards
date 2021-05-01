@@ -65,12 +65,6 @@ export default class WrapCardHTML { // сюда получили объект и
         lastVisitDateEl.className       = "card-item --hidden";
         cardEl.className = "desk-card";
 
-        //сейчас кнопки отрендерятся вверху карточки. Для рендера ПОД карточкой - перенести
-        //этот блок под строку (см.ниже) содержащую: cardEl.append(doctorEl, lastNameEl, mainNameEl, pa
-        // const showMoreBtn = new CreateBtn(cardEl, showMoreCardBtnCfg).render();
-        // const editBtn = new CreateBtn(cardEl, editCardBtnCfg).render();
-        // const deleteBtn = new CreateBtn(cardEl, deleteCardBtnCfg).render();
-
         cardEl.append(doctorEl, lastNameEl, mainNameEl, partNameEl, visitPurposeEl, visitDescriptionEl,
             visitUrgencyEl, /*hadDeseasesEl, bodyWeightIndexEl,*/ visitorAgeEl);
         parent.append(cardEl);
@@ -79,7 +73,8 @@ export default class WrapCardHTML { // сюда получили объект и
         const editBtn = new CreateBtn(cardEl, editCardBtnCfg).render();
         const deleteBtn = new CreateBtn(cardEl, deleteCardBtnCfg).render();
         // назначаем id всем только что созданным кнопкам:
-
+        const showMoreBtnDOM = document.querySelectorAll('div[data-name = id] button');
+        showMoreBtnDOM.forEach(btn=> btn.name = id);
     }
 
     /*** ФУНКЦИИ, назначаемые обработчикам КНОПОК каждой КАРТОЧКИ ***/
