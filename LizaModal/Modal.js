@@ -14,6 +14,12 @@ export default class Modal {
         });
 
         x.addEventListener('click', () => this.closeModal());
+        window.addEventListener('click', (e) => {
+            if (e.target === this.modal) {
+                this.modal.classList.remove('active')
+            }
+        })
+
         const divModalContent = this.createElement({
             elem: 'div',
             classes: ['modal-content'],
