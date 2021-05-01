@@ -39,8 +39,8 @@ export default class Desk {
         document.getElementById('desk').insertAdjacentHTML("afterbegin", Desk.cardDesk);
     }
 
-    static addCard(newCardObj) {
-        document.getElementById("visit-form").remove();
+    static addCard(newCardObj) { //здесь, в newCardObj уже есть id
+        if (document.getElementById("visit-form"))  document.getElementById("visit-form").remove();
 
         if (document.getElementById("no-cards-note")) document.getElementById("no-cards-note").remove();
         console.log("Здесь создаём HTML карточку и переходим к выкладыванию ее на стол desk !");

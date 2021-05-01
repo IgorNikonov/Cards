@@ -9,7 +9,7 @@ Desk.render(deskComp); //выводим в DOM рабочий стол карт�
 Login();  //запустили процедуру логина
 
 
-//  ВЕСЬ КОД НИЖЕ - ОТ ИГОРЯ:
+// раскладываем имеющиеся карточки на desk, при каждом входе в систему
 if (localStorage.getItem("cards"))  JSON.parse(localStorage.getItem('cards')).forEach(card => Desk.addCard(card));
 
 // Delete Card functionality

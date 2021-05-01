@@ -1,0 +1,16 @@
+в файле WrapCardHTML.js, стр. 68-70:   -создание трех кнопок карточки:
+        const showMoreBtn = new CreateBtn(cardEl, showMoreCardBtnCfg).render();
+        const editBtn = new CreateBtn(cardEl, editCardBtnCfg).render();
+        const deleteBtn = new CreateBtn(cardEl, deleteCardBtnCfg).render();
+
+Конфигурация кнопок:   файл  configElements.js, стр. 8 - 40:
+export const showMoreCardBtnCfg = {
+export const editCardBtnCfg = {
+export const deleteCardBtnCfg = {
+
+
+/***  Для кнопки "показать больше":   ***/
+назначение handler
+файл  configElements.js,  стр. 15:   WrapCardHTML.showMoreCardItems();
+
+Реализация handler:    WrapCardHTML.js, стр.80

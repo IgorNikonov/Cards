@@ -1,9 +1,10 @@
 import {CreateBtn} from "./createBtn.js";
 import {deleteCardBtnCfg, editCardBtnCfg, showMoreCardBtnCfg} from "../componentsDeclaration/configElements.js";
 
-export default class WrapCardHTML {
-    constructor(parent, {doctor, lastName, mainName, partName, visitPurpose, visitDescription,
+export default class WrapCardHTML { // сюда получили объект из res сервера, содержащий id
+    constructor(parent, {id, doctor, lastName, mainName, partName, visitPurpose, visitDescription,
                     visitUrgency, hadDeseases, bodyWeightIndex, visitorAge, lastVisitDate }){
+        this.id = id;
         this.doctor = doctor;
         this.lastName = lastName;
         this.mainName = mainName;
@@ -33,22 +34,23 @@ export default class WrapCardHTML {
     }
     }
     render(){
-        const {doctor, lastName, mainName, partName, visitPurpose, visitDescription,
+        const {id, doctor, lastName, mainName, partName, visitPurpose, visitDescription,
             visitUrgency, hadDeseases, bodyWeightIndex, visitorAge, lastVisitDate } =this;
         const {parent, cardEl, doctorEl, lastNameEl, mainNameEl, partNameEl, visitPurposeEl, visitDescriptionEl,
             visitUrgencyEl, hadDeseasesEl, bodyWeightIndexEl, visitorAgeEl, lastVisitDateEl } = this.DOMelements;
 
-        doctorEl.innerText              = doctor;
-        lastNameEl.innerText            = lastName;
-        mainNameEl.innerText            = mainName;
-        partNameEl.innerText            = partName;
-        visitPurposeEl.innerText        = visitPurpose;
-        visitDescriptionEl.innerText    = visitDescription;
-        visitUrgencyEl.innerText        = visitUrgency;
-        hadDeseasesEl.innerText         = hadDeseases;
-        bodyWeightIndexEl.innerText     = bodyWeightIndex;
-        visitorAgeEl.innerText          = visitorAge;
-        lastVisitDateEl.innerText       = lastVisitDate;
+        cardEl.name                     =       id;
+        doctorEl.innerText              = `Врач:            ${doctor}`;
+        lastNameEl.innerText            = `Фамилия:         ${lastName}`;
+        mainNameEl.innerText            = `Имя:             ${mainName}`;
+        partNameEl.innerText            = `Отчество:        ${partName}`;
+        visitPurposeEl.innerText        = `Цель:            ${visitPurpose}`;
+        visitDescriptionEl.innerText    = `Описание:        ${visitDescription}`;
+        visitUrgencyEl.innerText        = `Срочность:             ${visitUrgency}`;
+        hadDeseasesEl.innerText         = `Перенесеные болезни:   ${hadDeseases}`;
+        bodyWeightIndexEl.innerText     = `Индекс массы тела:     ${bodyWeightIndex}`;
+        visitorAgeEl.innerText          = `Возраст:               ${visitorAge}`;
+        lastVisitDateEl.innerText       = `День последнего визита:${lastVisitDate}`;
 
         doctorEl.className              = "card-item";
         lastNameEl.className            = "card-item";
@@ -61,20 +63,28 @@ export default class WrapCardHTML {
         bodyWeightIndexEl.className     = "card-item --hidden";
         visitorAgeEl.className          = "card-item --hidden";
         lastVisitDateEl.className       = "card-item --hidden";
+        cardEl.className = "desk-card";
 
+        //сейчас кнопки отрендерятся вверху карточки. Для рендера ПОД карточкой - перенести
+        //этот блок под строку (см.ниже) содержащую: cardEl.append(doctorEl, lastNameEl, mainNameEl, pa
+        // const showMoreBtn = new CreateBtn(cardEl, showMoreCardBtnCfg).render();
+        // const editBtn = new CreateBtn(cardEl, editCardBtnCfg).render();
+        // const deleteBtn = new CreateBtn(cardEl, deleteCardBtnCfg).render();
 
-        cardEl.className = "desk-card"; //TODO отдать этот класс Лизе на стилизацию
+        cardEl.append(doctorEl, lastNameEl, mainNameEl, partNameEl, visitPurposeEl, visitDescriptionEl,
+            visitUrgencyEl, /*hadDeseasesEl, bodyWeightIndexEl,*/ visitorAgeEl);
+        parent.append(cardEl);
+        // сюда перенести блок кнопок (см.выше), если хочу их видеть под карточкой.
         const showMoreBtn = new CreateBtn(cardEl, showMoreCardBtnCfg).render();
         const editBtn = new CreateBtn(cardEl, editCardBtnCfg).render();
         const deleteBtn = new CreateBtn(cardEl, deleteCardBtnCfg).render();
+        // назначаем id всем только что созданным кнопкам:
 
-        cardEl.append(doctorEl, lastNameEl, mainNameEl, partNameEl, visitPurposeEl, visitDescriptionEl,
-            visitUrgencyEl, hadDeseasesEl, bodyWeightIndexEl, visitorAgeEl);
-        parent.append(cardEl);
     }
 
     /*** ФУНКЦИИ, назначаемые обработчикам КНОПОК каждой КАРТОЧКИ ***/
     static showMoreCardItems(){
+
         const cardItems = document.querySelectorAll(".card-item.--hidden");
         cardItems.forEach(item=> item.classList.remove("--hidden") );
     };

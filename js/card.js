@@ -3,8 +3,9 @@ import {doctorSelect} from "../componentsDeclaration/configElements.js";
 export class CardHandler {
 
     constructor() {
-
-        this.doctorEl = document.getElementById("visit-form");
+// внимание: это полученный объект из visitForm, в нем НЕТ еще id карточки!
+// id карточки будет позднее возвращёт с сервера в response
+        let doctorEl = document.getElementById("visit-form");
 
             this.lastName = document.getElementsByName("visitorLastName")[0].value || "";
             this.mainName = document.getElementsByName("visitorName")[0].value || "";
@@ -23,14 +24,14 @@ export class CardHandler {
         if (document.getElementsByName("age")[0])
             this.visitorAge = document.getElementsByName("age")[0].value || "";
 
-        if (this.doctorEl.name === "form-cardiologist")
+        if (doctorEl.name === "form-cardiologist")
             this.doctor = doctorSelect.options[0].value; //TODO потом переписать этот костыль на:
         else
-        if (this.doctorEl.name === "form-dentist") {
+        if (doctorEl.name === "form-dentist") {
             this.lastVisitDate = document.getElementsByName("lastVisitDate")[0].value || "";
             this.doctor = doctorSelect.options[1].value || "";
         } else
-        if (this.doctorEl.name === "form-therapist")
+        if (doctorEl.name === "form-therapist")
             this.doctor = doctorSelect.options[2].value || "";
         this.visitStatus =  ( Math.random() > 0.5 ) ? "актуален" : "закрыт";
     }
