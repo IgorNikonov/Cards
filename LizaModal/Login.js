@@ -2,6 +2,7 @@ import Server from "../js/server.js"
 
 import Modal from "./Modal.js";
 import VisitForm from "../js/visitForm.js";
+import Desk from "./desk.js";
 
 export default function Login() {
     class LoginModal extends Modal {
@@ -90,6 +91,10 @@ export default function Login() {
 
 
     function renderSelectFormBtn(){
+
+        const renewedCards = Server.getAllCards(localStorage.getItem('token'));
+        renewedCards.forEach(card => Desk.addCard(card));
+
         VisitForm.renderIdleForm();
     }
     function reassignLogBtn() {
