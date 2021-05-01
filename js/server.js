@@ -1,3 +1,5 @@
+import Desk from "../LizaModal/desk.js"
+
 export default class Server {
     static url = 'https://ajax.test-danit.com/api/v2/cards';
     static token = localStorage.getItem('token');
@@ -64,5 +66,10 @@ export default class Server {
             }
         });
         return await response.json();
+    }
+
+    static async handleData(token) {
+        const cardsFromServer = await Server.getAllCards(token);
+        cardsFromServer.forEach(card => Desk.addCard(card));
     }
 }
