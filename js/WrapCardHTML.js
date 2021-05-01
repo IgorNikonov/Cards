@@ -39,7 +39,7 @@ export default class WrapCardHTML { // сюда получили объект и
         const {parent, cardEl, doctorEl, lastNameEl, mainNameEl, partNameEl, visitPurposeEl, visitDescriptionEl,
             visitUrgencyEl, hadDeseasesEl, bodyWeightIndexEl, visitorAgeEl, lastVisitDateEl } = this.DOMelements;
 
-        cardEl.name                     =       id;
+        cardEl.dataset.name = id;
         doctorEl.innerText              = `Врач:            ${doctor}`;
         lastNameEl.innerText            = `Фамилия:         ${lastName}`;
         mainNameEl.innerText            = `Имя:             ${mainName}`;
@@ -66,27 +66,35 @@ export default class WrapCardHTML { // сюда получили объект и
         cardEl.className = "desk-card";
 
         cardEl.append(doctorEl, lastNameEl, mainNameEl, partNameEl, visitPurposeEl, visitDescriptionEl,
-            visitUrgencyEl, /*hadDeseasesEl, bodyWeightIndexEl,*/ visitorAgeEl);
+            visitUrgencyEl, hadDeseasesEl, bodyWeightIndexEl, visitorAgeEl);
         parent.append(cardEl);
         // сюда перенести блок кнопок (см.выше), если хочу их видеть под карточкой.
         const showMoreBtn = new CreateBtn(cardEl, showMoreCardBtnCfg).render();
         const editBtn = new CreateBtn(cardEl, editCardBtnCfg).render();
         const deleteBtn = new CreateBtn(cardEl, deleteCardBtnCfg).render();
-        // назначаем id всем только что созданным кнопкам:
-        const showMoreBtnDOM = document.querySelectorAll('div[data-name = id] button');
-        showMoreBtnDOM.forEach(btn=> btn.name = id);
+
+        // следующие 2стр кода: назначаем id всем только что созданным кнопкам:
+        const showMoreBtnDOM = document.querySelectorAll(`div[data-name = "${id}"] button`);
+        //ниже сработает код с:  `${id}` );
+        showMoreBtnDOM.forEach(btn=> btn.dataset.name = `${id}`);
+        //так же, как и сработал бы код с: id  =>  showMoreBtnDOM.forEach(btn=> btn.dataset.name = id);
     }
 
     /*** ФУНКЦИИ, назначаемые обработчикам КНОПОК каждой КАРТОЧКИ ***/
-    static showMoreCardItems(){
-
-        const cardItems = document.querySelectorAll(".card-item.--hidden");
-        cardItems.forEach(item=> item.classList.remove("--hidden") );
+    static showMoreCardItems(e){
+        const currentID = e.target.dataset.name; //получили id из сработавшей кнопки
+        // const currentCard = document.querySelector(`div[data-name = "${currentID}" ]`); //получили карточку с данным id
+        const cardItems = document.querySelectorAll(`div[data-name = "${currentID}" ] .--hidden`); //получил все скрытые элементы внутри карточки с данным id
+        cardItems.forEach(item=> item.classList.remove("--hidden"));
     };
-    static editCard(){
 
+    static editCard(e){
+        const currentID = e.target.dataset.name; //получили id из сработавшей кнопки
+        const currentCard = document.querySelector(`div[data-name = "${currentID}" ]`); //получили карточку с данным id
     };
-    static deleteCard(){
+    static deleteCard(e){
+        const currentID = e.target.dataset.name; //получили id из сработавшей кнопки
+        const currentCard = document.querySelector(`div[data-name = "${currentID}" ]`); //получили карточку с данным id
 
     };
 

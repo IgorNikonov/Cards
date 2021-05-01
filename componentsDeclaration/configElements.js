@@ -11,8 +11,8 @@ export const showMoreCardBtnCfg = {
     type: "button",  //TODO потом сменить на "submit"
     className: "card__show-more-btn btn btn-outline-success",
     innerText:"Показать больше",
-    handler: ()=>{
-        WrapCardHTML.showMoreCardItems();
+    handler: (e)=>{
+        WrapCardHTML.showMoreCardItems(e);
     }
 };
 
@@ -23,8 +23,8 @@ export const editCardBtnCfg = {
     type: "button",  //TODO потом сменить на "submit"
     className: "card__edit-btn btn btn-outline-success",
     innerText:"Редактировать карточку",
-    handler: ()=>{
-        WrapCardHTML.editCard();
+    handler: (e)=>{
+        WrapCardHTML.editCard(e);
     }
 };
 
@@ -35,8 +35,8 @@ export const deleteCardBtnCfg = {
     type: "button",
     className: "delete-btn btn btn-outline-success",
     innerText:"Удалить карточку",
-    handler: ()=>{
-        WrapCardHTML.deleteCard();
+    handler: (e)=>{
+        WrapCardHTML.deleteCard(e);
     }
 };
 //----------------------------------------------------------------

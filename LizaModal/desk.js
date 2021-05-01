@@ -1,7 +1,8 @@
 import WrapCardHTML from "../js/WrapCardHTML.js";
 import {deskComp} from "../LizaModal/main.js";
 export default class Desk {
-    static cardDesk = `<div class="search_nav">
+    static cardDesk =
+        `<div class="search_nav">
             <div class="search_header">
                 <div class="search_icons">
                     <span class="icon_btn close"></span>
@@ -31,7 +32,7 @@ export default class Desk {
                     Login!
                 </p>
             </div>
-</div>`;
+        </div>`;
 
     constructor(){
     }
@@ -43,7 +44,7 @@ export default class Desk {
         if (document.getElementById("visit-form"))  document.getElementById("visit-form").remove();
 
         if (document.getElementById("no-cards-note")) document.getElementById("no-cards-note").remove();
-        console.log("Здесь создаём HTML карточку и переходим к выкладыванию ее на стол desk !");
+        // Здесь создаём HTML карточку и переходим к выкладыванию ее на стол desk !
         const cardContainer = document.getElementById("card-container");
         const newCard = new WrapCardHTML(cardContainer, newCardObj);
         newCard.render();

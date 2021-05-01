@@ -8,7 +8,8 @@ export function newCardHandle(card) { //card еще не содержит id - �
         Desk.addCard(res);   // и отправил объект res сервера- в новую карточку на рендер на экран
 // на этом этапе, res уже содержит полученный от сервера id
         cardPull.push(res);
+        console.log(res);
         localStorage.setItem("cards", JSON.stringify(cardPull));
     });
-    console.log(cardPull);
+
 }
