@@ -70,7 +70,6 @@ export default class Server {
 
     static async handleData(token) {
         const cardsFromServer = await Server.getAllCards(token);
-        // localStorage.setItem('cards', JSON.stringify(cardsFromServer));
         cardsFromServer.forEach(card => Desk.addCard(card));
     }
 }

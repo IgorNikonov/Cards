@@ -67,6 +67,7 @@ export default function Login() {
             // VisitForm.renderIdleForm(); - запуск форм переназначили на кнопку loginbtn  (стр.93)
             
             Server.handleData(token);
+            
         }
     }
 
