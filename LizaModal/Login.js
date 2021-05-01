@@ -46,8 +46,6 @@ export default function Login() {
         }
 
         async checkUserLogin(){
-            // localStorage.removeItem('cards')
-            
             let token;
             const loginInput = document.getElementsByName("login")[0].value;
             const passInput = document.getElementsByName("password")[0].value;
@@ -64,10 +62,8 @@ export default function Login() {
             reassignLogBtn();
             console.log("Вы залогинились!");
             document.getElementById("modalLogin").classList.remove("active");
-            // VisitForm.renderIdleForm(); - запуск форм переназначили на кнопку loginbtn  (стр.93)
-            
+
             Server.handleData(token);
-            
         }
     }
 
@@ -97,7 +93,6 @@ export default function Login() {
         loginBtn.removeEventListener("click", loginBtnHandler);
         loginBtn.addEventListener("click", renderSelectFormBtn);
         loginBtn.innerText = "Добавить визит";
-
     }
 
 }
