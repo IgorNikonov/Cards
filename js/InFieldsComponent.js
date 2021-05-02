@@ -37,7 +37,9 @@ export default class InFieldsComponent {
         selfEl.id = id;
         if (this.id === "select-doctor"){
             selfEl.addEventListener("click", (e) => {
-                changeDoctor(e);
+    //вызываем функцию вывода пустых формы для заполнения
+                changeDoctor(e, null, null); //если бы передали сюда второй и третий параметр-
+      // система перешла бы в режим редактирования карточки с номером в id
             });
         }
 
