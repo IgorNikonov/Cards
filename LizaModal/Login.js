@@ -3,6 +3,7 @@ import Server from "../js/server.js"
 import Modal from "./Modal.js";
 import VisitForm from "../js/visitForm.js";
 import Desk from "./desk.js";
+import {handleData} from "../js/handleData.js";
 
 export default function Login() {
     class LoginModal extends Modal {
@@ -57,13 +58,10 @@ export default function Login() {
             }
             else
             localStorage.setItem('token', `${token}`);
-
-            reassignLogBtn();
+            handleData(Server.token).then(r => console.log("success!")); // получили все карточки с сервера и выложили на рабочий стол
+            reassignLogBtn(); //переназзначили кнопку логина на кнопку "создать форму"
             console.log("Вы залогинились!");
             document.getElementById("modalLogin").classList.remove("active");
-
-            const cardsToShow = await Server.getAllCards(Server.token);
-            // localStorage.setItem('cards', JSON.stringify(cardsToShow));
         }
 
 
@@ -91,6 +89,7 @@ export default function Login() {
     function renderSelectFormBtn(){
         // const renewedCards = Server.getAllCards(localStorage.getItem('token'));
         // renewedCards.forEach(card => Desk.addCard(card));
+
 
         VisitForm.renderIdleForm();
     }
