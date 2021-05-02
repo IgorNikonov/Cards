@@ -10,7 +10,7 @@ export default class Server {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(userData)
         });
-         return await response.text();
+        return await response.text();
     }
 
     static async createCard(userData, token) {
@@ -41,7 +41,6 @@ export default class Server {
         return await fetch(`${Server.url}/${cardId}`, {
             method: 'DELETE',
             headers: {
-                // 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         });
@@ -67,9 +66,9 @@ export default class Server {
         });
         return await response.json();
     }
-
-    static async handleData(token) {
-        const cardsFromServer = await Server.getAllCards(token);
-        cardsFromServer.forEach(card => Desk.addCard(card));
-    }
+// Рекомендую код ниже убрать. Его функционал выполняет недавно написанная тобой функция Desk.refreshDesk()
+    // static async handleData(token) {
+    //     const cardsFromServer = await Server.getAllCards(token);
+    //     cardsFromServer.forEach(card => Desk.addCard(card));
+    // }
 }

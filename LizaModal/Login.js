@@ -3,7 +3,7 @@ import Server from "../js/server.js"
 import Modal from "./Modal.js";
 import VisitForm from "../js/visitForm.js";
 import { deskComp } from "./main.js";
-// import Desk from "./desk.js";
+import Desk from "./desk.js";
 // import {handleData} from "../js/handleData.js"
 
 export default function Login() {
@@ -63,7 +63,8 @@ export default function Login() {
             console.log("Вы залогинились!");
             document.getElementById("modalLogin").classList.remove("active");
 
-            Server.handleData(token);
+            Desk.refreshDesk();
+            // строка выше заменила ранее-тут-присутствующую: Server.handleData().
         }
     }
 

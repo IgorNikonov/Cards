@@ -1,4 +1,5 @@
 import WrapCardHTML from "../js/WrapCardHTML.js";
+import Server from "../js/server.js"
 import {deskComp} from "../LizaModal/main.js";
 export default class Desk {
     static cardDesk = `<div class="search_nav">
@@ -10,7 +11,7 @@ export default class Desk {
                 </div>
                 <!--                Bootstrap Test Inputs          -->
                 <div class="input">
-                    <input id="search-by-description" type="text" placeholder="Search name">
+                    <input id="search-by-description" type="text" placeholder="Цель/описание визита">
                     <select id="visit-status" class="form_sm form-select " aria-label=".form-select-sm example">
                         <option value="all">Выбор по статусу</option>
                         <option value="актуален">Визит актуален</option>
@@ -51,6 +52,10 @@ export default class Desk {
         newCard.render();
     }
 
+    static async refreshDesk() { //обновляет на столе всекарточки с получением их из БД
+        const renewedCards = await Server.getAllCards(localStorage.getItem('token'));
+        renewedCards.forEach(card => Desk.addCard(card));
+    }
 }
 
 
