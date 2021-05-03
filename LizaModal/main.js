@@ -14,6 +14,7 @@ const statusSelect = document.getElementById('visit-status');
 const urgencySelect = document.getElementById('urgency-status');
 
 searchCardInput.addEventListener('input', FilterCards.searchTitle);
+statusSelect.addEventListener('change', FilterCards.searchStatus);
 urgencySelect.addEventListener('change', FilterCards.searchUrgency);
 
 
