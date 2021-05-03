@@ -1,9 +1,7 @@
 import Server from "../js/server.js"
-
 import Modal from "./Modal.js";
 import VisitForm from "../js/visitForm.js";
-import Desk from "./desk.js";
-import {handleData} from "../js/handleData.js";
+import {handleData} from "../LizaModal/main.js";
 
 export default function Login() {
     class LoginModal extends Modal {

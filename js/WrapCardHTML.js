@@ -49,14 +49,14 @@ export default class WrapCardHTML { // сюда получили объект и
         lastNameEl.innerText            = `Фамилия:         ${lastName}`;
         mainNameEl.innerText            = `Имя:             ${mainName}`;
         partNameEl.innerText            = `Отчество:        ${partName}`;
-        visitPurposeEl.innerText        = `Цель:            ${visitPurpose}`;
-        visitDescriptionEl.innerText    = `Описание:        ${visitDescription}`;
-        visitUrgencyEl.innerText        = `Срочность:             ${visitUrgency}`;
-        visitorPressureEl.innerText     = `Нормальное давление: ${visitorPressure}`;
-        hadDeseasesEl.innerText         = `Перенесеные болезни:   ${hadDeseases}`;
-        bodyWeightIndexEl.innerText     = `Индекс массы тела:     ${bodyWeightIndex}`;
-        visitorAgeEl.innerText          = `Возраст:               ${visitorAge}`;
-        lastVisitDateEl.innerText       = `День последнего визита:${lastVisitDate}`;
+        if (visitPurpose)       visitPurposeEl.innerText        = `Цель:                   ${visitPurpose}`;
+        if (visitDescription)   visitDescriptionEl.innerText    = `Описание:               ${visitDescription}`;
+        if (visitUrgency)       visitUrgencyEl.innerText        = `Срочность:              ${visitUrgency}`;
+        if (visitorPressure)    visitorPressureEl.innerText     = `Нормальное давление:    ${visitorPressure}`;
+        if (hadDeseases)        hadDeseasesEl.innerText         = `Перенесеные болезни:    ${hadDeseases}`;
+        if (bodyWeightIndex)    bodyWeightIndexEl.innerText     = `Индекс массы тела:      ${bodyWeightIndex}`;
+        if (visitorAge)         visitorAgeEl.innerText          = `Возраст:                ${visitorAge}`;
+        if (lastVisitDate)      lastVisitDateEl.innerText       = `День последнего визита: ${lastVisitDate}`;
 
         doctorEl.className              = "card-item";
         lastNameEl.className            = "card-item";
@@ -72,8 +72,24 @@ export default class WrapCardHTML { // сюда получили объект и
         lastVisitDateEl.className       = "card-item --hidden";
         cardEl.className = "desk-card";
 
-        cardEl.append(doctorEl, lastNameEl, mainNameEl, partNameEl, visitPurposeEl, visitDescriptionEl,
-            visitUrgencyEl, hadDeseasesEl, visitorPressureEl, bodyWeightIndexEl, visitorAgeEl);
+        // очень крутая фича:  в строках  75 - 84 я готовлю массив под parent.append(массив) только элементы,
+        // у которых существует поле .innerText:
+        const wantedElements = [];
+        for (let key in this.DOMelements) {
+            if(this.DOMelements.hasOwnProperty(key) && this.DOMelements[key] !== parent)
+            {
+                if (this.DOMelements[key].innerText) {
+                    wantedElements.push(this.DOMelements[key])
+                }
+            }
+        }
+// и, спредом, вывожу этот подготовленный массив в рендер:
+        cardEl.append(...wantedElements);
+        //Это заменило мне последующий тупой вывод прямо ВСЕХ (даже несуществующих) значений элементов:
+        // cardEl.append(doctorEl, lastNameEl, mainNameEl, partNameEl, visitPurposeEl, visitDescriptionEl,
+        //     visitUrgencyEl, hadDeseasesEl, visitorPressureEl, bodyWeightIndexEl, visitorAgeEl);
+
+
         parent.append(cardEl);
         // сюда перенести блок кнопок (см.выше), если хочу их видеть под карточкой.
         const showMoreBtn = new CreateBtn(cardEl, showMoreCardBtnCfg).render();

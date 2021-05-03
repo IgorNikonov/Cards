@@ -18,8 +18,12 @@ export class CardHandler {
         if (document.getElementsByName("hadDeseases")[0])
             this.hadDeseases = document.getElementsByName("hadDeseases")[0].value || "";
 
- if (document.getElementsByName("bodyWeightIndex")[0])
+        if (document.getElementsByName("bodyWeightIndex")[0])
             this.bodyWeightIndex = document.getElementsByName("bodyWeightIndex")[0].value || "";
+
+        if (document.getElementsByName("visitorPressure")[0])
+            this.visitorPressure = document.getElementsByName("visitorPressure")[0].value || "";
+
 
         if (document.getElementsByName("age")[0])
             this.visitorAge = document.getElementsByName("age")[0].value || "";
@@ -36,10 +40,8 @@ export class CardHandler {
         this.visitStatus =  ( Math.random() > 0.5 ) ? "актуален" : "закрыт";
     }
 
-    correctUndefinds(){ // этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
-        //лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";
-        for (let key in this) if (this.key === undefined) this.key = "";
-    }
-
-
+    // correctUndefinds(){ // этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
+    //     //лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";
+    //     for (let key in this) if (this.key === undefined) this.key = "";
+    // }
 }

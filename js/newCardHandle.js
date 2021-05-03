@@ -6,7 +6,6 @@ export function newCardHandle(card) { //card еще не содержит id - �
     Server.createCard(card,  localStorage.getItem('token') ).then(res => {
         Desk.addCard(res);   // и отправил объект res сервера- в новую карточку на рендер на экран
     // на этом этапе, res уже содержит полученный от сервера id
-        console.log(res);
     });
 }
 

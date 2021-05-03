@@ -58,7 +58,6 @@ export default class Server {
         return await response.json();
     }
 
-
     static async getOneCard(cardId, token) {
         const response = await fetch(`${Server.url}/${cardId}`, {
             method: 'GET',
@@ -69,8 +68,4 @@ export default class Server {
         return await response.json();
     }
 
-    static async handleData(token) {
-        const cardsFromServer = await Server.getAllCards(token);
-        cardsFromServer.forEach(card => Desk.addCard(card));
-    }
 }

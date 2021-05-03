@@ -6,7 +6,8 @@ import * as cfig from "../componentsDeclaration/configForms.js";
 import {CardHandler} from "./card.js";
 import {newCardHandle} from "./newCardHandle.js";
 import WrapCardHTML from "./WrapCardHTML.js";
-import {globIdFlag} from "./changeDoctor.js";
+// import globIdFlag from "./changeDoctor.js";
+
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
 
@@ -45,9 +46,9 @@ export default class VisitForm extends Form {
             (console.log(err.name, err.message))
         }
 //а теперь удалим старую карточку, если мы сюда попали из режима редактирования имеющейся карточки
-         if (globIdFlag !== undefined ) {
-             await WrapCardHTML.deleteCard(null, globIdFlag);  //удаление предыдущей (старой) карточки сделать только после подтверждения кнопкой "сохранить"
-             globIdFlag = undefined; //и снова очистили флаг id-шки редактируемой карточки
+         if (window.globIdFlag !== 0 ) {
+             await WrapCardHTML.deleteCard(null, window.globIdFlag);  //удаление предыдущей (старой) карточки сделать только после подтверждения кнопкой "сохранить"
+             window.globIdFlag = 0; //и снова очистили флаг id-шки редактируемой карточки
          }
     }
 

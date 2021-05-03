@@ -3,15 +3,16 @@ import * as visits from "./classesExtend.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 import VisitForm from "./visitForm.js";
 import Server from "./server.js";
-export let globIdFlag = undefined;//если !==undefined, тогда используется для удаления редактируемой карточки
+// let globIdFlag = undefined;//если !==undefined, тогда используется для удаления редактируемой карточки
+// export default globIdFlag;
+window.globIdFlag= undefined;
 
 async function fillFormFromCard(cardId) {
     //здесь берём из БД объект с номером id и заполняем его в форму для редактирования.
     // по сабмиту - исходную форму с номером id удалить из БД, а новую-оправить на сервер
- console.log(cardId);
-    globIdFlag = cardId; //выставили глобальный флаг карточки- для удаления текущей карты потом в ф-ции formSubmitHandler() модуля visitForm.js
+
+    window.globIdFlag = cardId; //выставили глобальный флаг карточки- для удаления текущей карты потом в ф-ции formSubmitHandler() модуля visitForm.js
  const editedCard = await Server.getOneCard(cardId, Server.token);
- console.log(editedCard);
     const purpose  = document.getElementById("purpose");
     const description = document.getElementById("description");
     const urgency  = document.getElementById("urgency");
