@@ -1,5 +1,3 @@
-import Desk from "../LizaModal/desk.js"
-
 export default class Server {
     static url = 'https://ajax.test-danit.com/api/v2/cards';
     static token = localStorage.getItem('token');
@@ -25,19 +23,6 @@ export default class Server {
         return await response.json();
     }
 
-    static async editCard(userData, cardId, token) {
-        const response = await fetch(`${Server.url}/${cardId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(userData)
-        });
-        return await response.json();
-    }
-
-
 
     static async deleteCard(cardId, token) {
         return await fetch(`${Server.url}/${cardId}`, {
@@ -58,6 +43,7 @@ export default class Server {
         return await response.json();
     }
 
+
     static async getOneCard(cardId, token) {
         const response = await fetch(`${Server.url}/${cardId}`, {
             method: 'GET',
@@ -67,5 +53,6 @@ export default class Server {
         });
         return await response.json();
     }
+
 
 }
