@@ -7,6 +7,12 @@ export default class Modal {
     }
     render() {
         const content = this.createForm(this.createFormElements());
+
+        const title = this.createElement({
+            elem: 'h5',
+            content: 'Welcome!',
+            classes: ['titel-modal']
+        })
         const x = this.createElement({
             elem: 'span',
             content: 'x',
@@ -14,10 +20,20 @@ export default class Modal {
         });
 
         x.addEventListener('click', () => this.closeModal());
+        window.addEventListener('click', (e) => {
+            if (e.target === this.modal) {
+                this.modal.classList.remove('active')
+            }
+        })
+        const headerModal = this.createElement({
+            elem: 'div',
+            content: [title, x],
+            classes: ['header-modal']
+        })
         const divModalContent = this.createElement({
             elem: 'div',
             classes: ['modal-content'],
-            content: [x, content]
+            content: [headerModal, content]
         });
         const divModal = this.createElement({
             elem: "div",
