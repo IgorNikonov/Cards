@@ -33,7 +33,6 @@ export default class VisitForm extends Form {
 
     static async formSubmitHandler() { //обработчик кнопки "создать" (карточку)
         try {
-
             const card = new CardHandler(); //здесь получаю просто сырой ОБЪЕКТ значений из инпут-полей формы
             /* card.correctUndefinds();  - этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
                                     лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/

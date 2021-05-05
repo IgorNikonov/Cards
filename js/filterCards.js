@@ -1,5 +1,6 @@
 import Server from "./server.js";
 import Desk from "../LizaModal/desk.js";
+import {handleData} from "../LizaModal/main.js";
 
 export default class FilterCards{
 
@@ -25,7 +26,7 @@ export default class FilterCards{
             const cardsToShow = cards.filter(card => card.visitUrgency === e.target.value);
             cardsToShow.forEach(card => Desk.addCard(card));
         } else {
-            Server.handleData(localStorage.getItem('token'));
+            await handleData(localStorage.getItem('token'));
         }
     }
 
@@ -38,7 +39,7 @@ export default class FilterCards{
             const cardsToShow = cards.filter(card => card.visitStatus === e.target.value);
             cardsToShow.forEach(card => Desk.addCard(card));
         } else {
-            Server.handleData(localStorage.getItem('token'));
+            await handleData(localStorage.getItem('token'));
         }
     }
 }

@@ -55,7 +55,7 @@ export default function changeDoctor({target}, id, doctorFromCard){ //если i
                 VisitForm.renderAdditionalFields(visitCardiologist._DOMelements.component);
                 visitCardiologist.render();
                 VisitForm.showButtons(visitCardiologist._DOMelements.component);
-                if (id) fillFormFromCard(id).then(()=>console.log('изменяем карточку с id: ', id)); //заполнить форму данными из карточки
+                if (id) fillFormFromCard(id).then(); //заполнить форму данными из карточки
                 break;
 
             case "Стоматолог":
@@ -64,7 +64,7 @@ export default function changeDoctor({target}, id, doctorFromCard){ //если i
                 VisitForm.renderAdditionalFields(visitDentist._DOMelements.component);
                 visitDentist.render();
                 VisitForm.showButtons(visitDentist._DOMelements.component);
-                if (id) fillFormFromCard(id); //заполнить форму данными из карточки
+                if (id) fillFormFromCard(id).then(); //заполнить форму данными из карточки
                 break;
 
             case "Терапевт":

@@ -20,6 +20,5 @@ urgencySelect.addEventListener('change', FilterCards.searchUrgency);
 
 export async function handleData(token) {
     const cardsFromServer = await Server.getAllCards(token);
-    // localStorage.setItem('cards', JSON.stringify(cardsFromServer));
     await cardsFromServer.forEach(card => Desk.addCard(card));
 }
