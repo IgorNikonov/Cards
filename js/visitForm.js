@@ -6,7 +6,6 @@ import * as cfig from "../componentsDeclaration/configForms.js";
 import {CardHandler} from "./card.js";
 import {newCardHandle} from "./newCardHandle.js";
 import WrapCardHTML from "./WrapCardHTML.js";
-// import globIdFlag from "./changeDoctor.js";
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
@@ -32,10 +31,7 @@ export default class VisitForm extends Form {
     }
 
 
-
      static async formSubmitHandler() { //обработчик кнопки "создать" (карточку)
-
-
         try {
             const card = new CardHandler(); //здесь получаю просто сырой ОБЪЕКТ значений из инпут-полей формы
 /* card.correctUndefinds();  - этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
@@ -45,12 +41,15 @@ export default class VisitForm extends Form {
         catch (err) {
             (console.log(err.name, err.message))
         }
-//а теперь удалим старую карточку, если мы сюда попали из режима редактирования имеющейся карточки
-         if (window.globIdFlag !== 0 ) {
-             await WrapCardHTML.deleteCard(null, window.globIdFlag);  //удаление предыдущей (старой) карточки сделать только после подтверждения кнопкой "сохранить"
-             window.globIdFlag = 0; //и снова очистили флаг id-шки редактируемой карточки
-         }
     }
+
+    static async saveModifiedCard(cardIdToDelete){
+        debugger
+       await VisitForm.formSubmitHandler();
+        //а теперь удалим старую карточку, если мы сюда попали из режима редактирования имеющейся карточки
+        await WrapCardHTML.deleteCard(null, cardIdToDelete);
+    }    //удаление предыдущей (старой) карточки сделать только после подтверждения кнопкой "сохранить"
+
 
 
     static initForm(myForm) {

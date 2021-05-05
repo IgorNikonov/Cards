@@ -3,15 +3,10 @@ import * as visits from "./classesExtend.js";
 import * as cfig from "../componentsDeclaration/configForms.js";
 import VisitForm from "./visitForm.js";
 import Server from "./server.js";
-// let globIdFlag = undefined;//если !==undefined, тогда используется для удаления редактируемой карточки
-// export default globIdFlag;
-window.globIdFlag= undefined;
 
 async function fillFormFromCard(cardId) {
-    //здесь берём из БД объект с номером id и заполняем его в форму для редактирования.
+    //здесь берём из БД объект с текущим номером cardId и заполняем его в форму для редактирования.
     // по сабмиту - исходную форму с номером id удалить из БД, а новую-оправить на сервер
-
-    window.globIdFlag = cardId; //выставили глобальный флаг карточки- для удаления текущей карты потом в ф-ции formSubmitHandler() модуля visitForm.js
  const editedCard = await Server.getOneCard(cardId, Server.token);
     const purpose  = document.getElementById("purpose");
     const description = document.getElementById("description");
@@ -35,7 +30,12 @@ async function fillFormFromCard(cardId) {
     if (editedCard.hadDeseases) deseases.value      = editedCard.hadDeseases;
     if (editedCard.visitorAge) age.value           = editedCard.visitorAge;
     if (editedCard.lastVisitDate) lastVisitDate.value = editedCard.lastVisitDate;
+    const createBtn = document.getElementById('create-btn');
 
+    createBtn.removeEventListener('click', VisitForm.formSubmitHandler);
+
+    createBtn.addEventListener("click", (e)=>VisitForm.saveModifiedCard(cardId) );
+    createBtn.innerText = "Изменить карточку";
 }
 
 
@@ -49,7 +49,6 @@ export default function changeDoctor({target}, id, doctorFromCard){ //если i
         let visitFormParent = document.getElementById("select-form"); //форму визита создаем внутри формы выбора доктора (если она существует)
         if(!visitFormParent) visitFormParent = document.getElementById("modal"); //для режима редактирования карточки нужно брать контейнер в модалке
         if (doctorFromCard) selectValue = doctorFromCard; else selectValue = target.value; //в завис-ти от режима, выбор либо по врачу из формы, либо по врачу из карточки
-        // switch (target.value) {
         switch (selectValue) {
 
             case "Кардиолог":
@@ -58,7 +57,7 @@ export default function changeDoctor({target}, id, doctorFromCard){ //если i
                 VisitForm.renderAdditionalFields(visitCardiologist._DOMelements.component);
                 visitCardiologist.render();
                 VisitForm.showButtons(visitCardiologist._DOMelements.component);
-                if (id) fillFormFromCard(id); //заполнить форму данными из карточки
+                if (id) fillFormFromCard(id).then(()=>console.log('изменяем карточку с id: ', id)); //заполнить форму данными из карточки
                 break;
 
             case "Стоматолог":
