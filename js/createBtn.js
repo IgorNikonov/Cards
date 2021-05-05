@@ -16,7 +16,6 @@ export class CreateBtn {
         btnEl.type = type;
         btnEl.innerText = innerText;
         btnEl.addEventListener('click', this.handler);
-        // btnEl.addEventListener('click', (e)=> this.handler(e) );
         parent.append(btnEl);
     }
 }

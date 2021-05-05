@@ -33,11 +33,9 @@ async function fillFormFromCard(cardId) {
     const createBtn = document.getElementById('create-btn');
 
     createBtn.removeEventListener('click', VisitForm.formSubmitHandler);
-
     createBtn.addEventListener("click", (e)=>VisitForm.saveModifiedCard(cardId) );
     createBtn.innerText = "Изменить карточку";
 }
-
 
 export default function changeDoctor({target}, id, doctorFromCard){ //если id не придет- то мы в
     //режиме нового визита. Если пришел id - мы редактируем существующий по id карточки

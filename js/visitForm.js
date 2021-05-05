@@ -31,21 +31,20 @@ export default class VisitForm extends Form {
     }
 
 
-     static async formSubmitHandler() { //обработчик кнопки "создать" (карточку)
+    static async formSubmitHandler() { //обработчик кнопки "создать" (карточку)
         try {
-            debugger
+
             const card = new CardHandler(); //здесь получаю просто сырой ОБЪЕКТ значений из инпут-полей формы
-/* card.correctUndefinds();  - этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
-                        лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
-        newCardHandle(card); //отправил новую карточку на сервер, в рендер и в locakStorage
-        }
-        catch (err) {
+            /* card.correctUndefinds();  - этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
+                                    лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
+            newCardHandle(card); //отправил новую карточку на сервер, в рендер и в locakStorage
+        } catch (err) {
             (console.log(err.name, err.message))
         }
     }
 
     static async saveModifiedCard(cardIdToDelete){
-        debugger
+
        await VisitForm.formSubmitHandler();
         //а теперь удалим старую карточку, если мы сюда попали из режима редактирования имеющейся карточки
         await WrapCardHTML.deleteCard(null, cardIdToDelete);
@@ -91,7 +90,6 @@ export default class VisitForm extends Form {
         const btnContainer = document.createElement("div");
         btnContainer.className = "visit-form__button-container";
         const closeBtn = new CreateBtn(btnContainer, cfg.closeBtnCfg);
-        debugger
         const createBtn = new CreateBtn(btnContainer, cfg.createCardBtnCfg);
         const resetBtn = new CreateBtn(btnContainer, cfg.resetBtnCfg);
         innerComponent.append(btnContainer);
