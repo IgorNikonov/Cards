@@ -1,5 +1,5 @@
 import Server from "./server.js";
-import Desk from "../LizaModal/desk.js";
+import Desk from "./desk.js";
 
 export function newCardHandle(card) { //card еще не содержит id - он потом прилелит с сервера
     // отправил карточку из формы на сервер, получил её же с полем "id" в response и направил на рендер на экран

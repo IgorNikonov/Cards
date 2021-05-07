@@ -1,5 +1,5 @@
-import WrapCardHTML from "../js/WrapCardHTML.js";
-import Server from "../js/server.js";
+import WrapCardHTML from "./WrapCardHTML.js";
+import Server from "./server.js";
 export default class Desk {
     static cardDesk =
         `<div class="search_nav">

@@ -1,7 +1,7 @@
-import FilterCards from "../js/filterCards.js"
+import FilterCards from "./filterCards.js"
 import Login from "./Login.js";
 import Desk from "./desk.js";
-import Server from "../js/server.js"
+import Server from "./server.js"
 export const deskComp = document.getElementById('desk'); // сюда будем выкладывать все формы
 
 Desk.render(deskComp); //выводим в DOM рабочий стол карточек

@@ -1,7 +1,7 @@
 import {CreateBtn} from "./createBtn.js";
 import {deleteCardBtnCfg, editCardBtnCfg, showMoreCardBtnCfg} from "../componentsDeclaration/configElements.js";
 import Server from "./server.js";
-import Desk from "../LizaModal/desk.js";
+import Desk from "./desk.js";
 import changeDoctor from "./changeDoctor.js";
 
 export default class WrapCardHTML { // сюда получили объект из res сервера, содержащий id
