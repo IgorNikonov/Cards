@@ -225,7 +225,7 @@ export const bodyWeightIndex = {
     labelText:"Введите индекс массы тела:",
 };
 export const hadDeseases = {
-    id: "visitor-hadDeseases",
+    id: "visitor-deseases",
     tag: "input",
     containerClass: "visit__container",
     elementClass: "visit__hadDeseases",

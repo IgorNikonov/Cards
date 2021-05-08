@@ -3,5 +3,5 @@ export const visitorProps = ["lastName", "mainName",
     "bodyWeightIndex", "pressure", "age", "lastVisitDate"];
 
 export const visitorPropClasses = ["visitor-last-name", "visitor-name",
-    "visitor-patr-name", "purpose", "description", "urgency", "visitor-hadDeseases",
+    "visitor-patr-name", "purpose", "description", "urgency", "visitor-deseases",
     "weight-index", "visitor-pressure", "visitor-age", "last-visit-date"];
