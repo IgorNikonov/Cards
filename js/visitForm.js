@@ -65,19 +65,19 @@ export default class VisitForm extends Form {
     static renderAdditionalFields(innerComponent) {  //innerComponent это и есть наша form к выводу в сервер
         VisitForm.initForm(innerComponent); //в инициализации прописываем все необходимые артибуты формы для работы с сервером
 
-        const visitorLastName = new InFieldsComponent(innerComponent, cfg.visitorLastName);
-        visitorLastName.render();
+        const lastName = new InFieldsComponent(innerComponent, cfg.lastName);
+        lastName.render();
 
-        const visitorName = new InFieldsComponent(innerComponent, cfg.visitorName);
-        visitorName.render();
+        const mainName = new InFieldsComponent(innerComponent, cfg.mainName);
+        mainName.render();
 
-        const visitorPartName = new InFieldsComponent(innerComponent, cfg.visitorPatrName);
-        visitorPartName.render();
+        const patrName = new InFieldsComponent(innerComponent, cfg.patrName);
+        patrName.render();
 
-        const purpose = new InFieldsComponent(innerComponent, cfg.visitPurpose);
+        const purpose = new InFieldsComponent(innerComponent, cfg.purpose);
         purpose.render();
 
-        const description = new InFieldsComponent(innerComponent, cfg.visitDescription);
+        const description = new InFieldsComponent(innerComponent, cfg.description);
         description.render();
 
         const urgency = new InFieldsComponent(innerComponent, cfg.urgency);

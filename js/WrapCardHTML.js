@@ -5,20 +5,20 @@ import Desk from "./desk.js";
 import changeDoctor from "./changeDoctor.js";
 
 export default class WrapCardHTML { // сюда получили объект из res сервера, содержащий id
-    constructor(parent, {id, doctor, lastName, mainName, partName, visitPurpose, visitDescription,
-                    visitUrgency, visitorPressure, hadDeseases, bodyWeightIndex, visitorAge, lastVisitDate }){
+    constructor(parent, {id, doctor, lastName, mainName, patrName, purpose, description,
+                    urgency, pressure, hadDeseases, bodyWeightIndex, age, lastVisitDate }){
         this.id = id;
         this.doctor = doctor;
         this.lastName = lastName;
         this.mainName = mainName;
-        this.partName = partName;
-        this.visitPurpose = visitPurpose;
-        this.visitDescription = visitDescription;
-        this.visitUrgency = visitUrgency;
-        this.visitorPressure = visitorPressure;
+        this.patrName = patrName;
+        this.purpose = purpose;
+        this.description = description;
+        this.urgency = urgency;
+        this.pressure = pressure;
         this.hadDeseases = hadDeseases;
         this.bodyWeightIndex = bodyWeightIndex;
-        this.visitorAge = visitorAge;
+        this.age = age;
         this.lastVisitDate = lastVisitDate;
 
         this.DOMelements = {
@@ -26,49 +26,49 @@ export default class WrapCardHTML { // сюда получили объект и
         doctorEl          : document.createElement('p'),
         lastNameEl        : document.createElement('p'),
         mainNameEl        : document.createElement('p'),
-        partNameEl        : document.createElement('p'),
-        visitPurposeEl    : document.createElement('p'),
-        visitDescriptionEl: document.createElement('p'),
-        visitUrgencyEl    : document.createElement('p'),
-        visitorPressureEl   : document.createElement('p'),
+        patrNameEl        : document.createElement('p'),
+        purposeEl    : document.createElement('p'),
+        descriptionEl: document.createElement('p'),
+        urgencyEl    : document.createElement('p'),
+        pressureEl   : document.createElement('p'),
         hadDeseasesEl     : document.createElement('p'),
         bodyWeightIndexEl : document.createElement('p'),
-        visitorAgeEl      : document.createElement('p'),
+        ageEl      : document.createElement('p'),
         lastVisitDateEl   : document.createElement('p'),
         cardEl    : document.createElement("div")
     }
     }
     render(){
-        const {id, doctor, lastName, mainName, visitorPressure, partName, visitPurpose, visitDescription,
-            visitUrgency, hadDeseases, bodyWeightIndex, visitorAge, lastVisitDate } =this;
-        const {parent, cardEl, doctorEl, lastNameEl, mainNameEl, partNameEl, visitPurposeEl, visitDescriptionEl,
-            visitUrgencyEl, hadDeseasesEl, visitorPressureEl, bodyWeightIndexEl, visitorAgeEl, lastVisitDateEl } = this.DOMelements;
+        const {id, doctor, lastName, mainName, pressure, patrName, purpose, description,
+            urgency, hadDeseases, bodyWeightIndex, age, lastVisitDate } =this;
+        const {parent, cardEl, doctorEl, lastNameEl, mainNameEl, patrNameEl, purposeEl, descriptionEl,
+            urgencyEl, hadDeseasesEl, pressureEl, bodyWeightIndexEl, ageEl, lastVisitDateEl } = this.DOMelements;
 
         cardEl.dataset.name = id;
         doctorEl.innerText              = `Врач:            ${doctor}`;
         lastNameEl.innerText            = `Фамилия:         ${lastName}`;
         mainNameEl.innerText            = `Имя:             ${mainName}`;
-        partNameEl.innerText            = `Отчество:        ${partName}`;
-        if (visitPurpose)       visitPurposeEl.innerText        = `Цель:                   ${visitPurpose}`;
-        if (visitDescription)   visitDescriptionEl.innerText    = `Описание:               ${visitDescription}`;
-        if (visitUrgency)       visitUrgencyEl.innerText        = `Срочность:              ${visitUrgency}`;
-        if (visitorPressure)    visitorPressureEl.innerText     = `Нормальное давление:    ${visitorPressure}`;
+        patrNameEl.innerText            = `Отчество:        ${patrName}`;
+        if (purpose)       purposeEl.innerText        = `Цель:                   ${purpose}`;
+        if (description)   descriptionEl.innerText    = `Описание:               ${description}`;
+        if (urgency)       urgencyEl.innerText        = `Срочность:              ${urgency}`;
+        if (pressure)    pressureEl.innerText     = `Нормальное давление:    ${pressure}`;
         if (hadDeseases)        hadDeseasesEl.innerText         = `Перенесеные болезни:    ${hadDeseases}`;
         if (bodyWeightIndex)    bodyWeightIndexEl.innerText     = `Индекс массы тела:      ${bodyWeightIndex}`;
-        if (visitorAge)         visitorAgeEl.innerText          = `Возраст:                ${visitorAge}`;
+        if (age)         ageEl.innerText          = `Возраст:                ${age}`;
         if (lastVisitDate)      lastVisitDateEl.innerText       = `День последнего визита: ${lastVisitDate}`;
 
         doctorEl.className              = "card-item";
         lastNameEl.className            = "card-item";
         mainNameEl.className            = "card-item";
-        partNameEl.className            = "card-item";
-        visitPurposeEl.className        = "card-item --hidden";
-        visitDescriptionEl.className    = "card-item --hidden";
-        visitUrgencyEl.className        = "card-item --hidden";
-        visitorPressureEl.className     = "card-item --hidden";
+        patrNameEl.className            = "card-item";
+        purposeEl.className        = "card-item --hidden";
+        descriptionEl.className    = "card-item --hidden";
+        urgencyEl.className        = "card-item --hidden";
+        pressureEl.className     = "card-item --hidden";
         hadDeseasesEl.className         = "card-item --hidden";
         bodyWeightIndexEl.className     = "card-item --hidden";
-        visitorAgeEl.className          = "card-item --hidden";
+        ageEl.className          = "card-item --hidden";
         lastVisitDateEl.className       = "card-item --hidden";
         cardEl.className = "desk-card";
 
@@ -86,8 +86,8 @@ export default class WrapCardHTML { // сюда получили объект и
 // и, спредом, вывожу этот подготовленный массив в рендер:
         cardEl.append(...wantedElements);
         //Это заменило мне последующий тупой вывод прямо ВСЕХ (даже несуществующих) значений элементов:
-        // cardEl.append(doctorEl, lastNameEl, mainNameEl, partNameEl, visitPurposeEl, visitDescriptionEl,
-        //     visitUrgencyEl, hadDeseasesEl, visitorPressureEl, bodyWeightIndexEl, visitorAgeEl);
+        // cardEl.append(doctorEl, lastNameEl, mainNameEl, patrNameEl, purposeEl, descriptionEl,
+        //     urgencyEl, hadDeseasesEl, pressureEl, bodyWeightIndexEl, ageEl);
 
 
         parent.append(cardEl);

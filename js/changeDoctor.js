@@ -19,16 +19,16 @@ async function fillFormFromCard(cardId) {
     const deseases = document.getElementById("visitor-deseases");
     const age      = document.getElementById("visitor-age");
     const lastVisitDate = document.getElementById("last-visit-date");
-    if (editedCard.visitPurpose) purpose.value       = editedCard.visitPurpose;
-    if (editedCard.visitDescription) description.value   = editedCard.visitDescription;
-    if (editedCard.visitUrgency) urgency.value       = editedCard.visitUrgency;
+    if (editedCard.purpose) purpose.value       = editedCard.purpose;
+    if (editedCard.description) description.value   = editedCard.description;
+    if (editedCard.urgency) urgency.value       = editedCard.urgency;
     if (editedCard.lastName) lastName.value      = editedCard.lastName;
     if (editedCard.mainName) name.value          = editedCard.mainName;
-    if (editedCard.partName) patrName.value      = editedCard.partName;
-    if (editedCard.visitorPressure) pressure.value      = editedCard.visitorPressure;
+    if (editedCard.patrName) patrName.value      = editedCard.patrName;
+    if (editedCard.pressure) pressure.value      = editedCard.pressure;
     if (editedCard.bodyWeightIndex) weightIndx.value    = editedCard.bodyWeightIndex;
     if (editedCard.hadDeseases) deseases.value      = editedCard.hadDeseases;
-    if (editedCard.visitorAge) age.value           = editedCard.visitorAge;
+    if (editedCard.age) age.value           = editedCard.age;
     if (editedCard.lastVisitDate) lastVisitDate.value = editedCard.lastVisitDate;
     const createBtn = document.getElementById('create-btn');
 

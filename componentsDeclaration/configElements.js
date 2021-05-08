@@ -117,7 +117,7 @@ export const doctorSelect = {
 };
 
 // цель визита:
-export const visitPurpose = {
+export const purpose = {
     id: "purpose",
     tag: "input",
     containerClass: "visit__container",
@@ -129,7 +129,7 @@ export const visitPurpose = {
 };
 
 // краткое описание визита:
-export const visitDescription = {
+export const description = {
     id: "description",
     tag: "textarea",
     containerClass: "visit__container",
@@ -169,48 +169,48 @@ export const urgency = {
 };
 
 // конфигурируем Фамилию
-export const visitorLastName = {
+export const lastName = {
     id: "visitor-last-name",
     tag: "input",
     containerClass: "visit__container",
     elementClass: "visit__last-name",
-    elementName: "visitorLastName",
+    elementName: "lastName",
     placeholder: "фамилия",
     elementType: "text",
     labelText:"введите Фамилию:",
 };
 
 // конфигурируем Имя
-export const visitorName = {
+export const mainName = {
     id: "visitor-name",
     tag: "input",
     containerClass: "visit__container",
     elementClass: "visit__name",
-    elementName: "visitorName",
+    elementName: "mainName",
     placeholder: "имя",
     elementType: "text",
     labelText:"введите Имя:",
 };
 
 // конфигурируем Отчество
-export const visitorPatrName = {
+export const patrName = {
     id: "visitor-patr-name",
     tag: "input",
     containerClass: "visit__container",
     elementClass: "visit__patr-name",
-    elementName: "visitorPatrName",
+    elementName: "patrName",
     placeholder: "отчество",
     elementType: "text",
     labelText:"введите Отчество:",
 };
 
 // конфигурация уникальных полей для заполнения к каждому из докторов
-export const visitorPressure = {
+export const pressure = {
     id: "visitor-pressure",
     tag: "input",
     containerClass: "visit__container",
     elementClass: "visit__pressure",
-    elementName: "visitorPressure",
+    elementName: "pressure",
     placeholder: "пример: 120х80",
     elementType: "text",
     labelText:"Обычное давление посетителя:",
@@ -234,7 +234,7 @@ export const hadDeseases = {
     elementType: "text",
     labelText:"Перечислить перенесенные болезни:",
 };
-export const visitorAge = {
+export const age = {
     id: "visitor-age",
     tag: "input",
     containerClass: "visit__container",

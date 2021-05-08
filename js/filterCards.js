@@ -9,8 +9,8 @@ export default class FilterCards{
 
         const cards = await Server.getAllCards(localStorage.getItem('token'));
         const cardsToShow = cards.filter(card => {
-            return card.visitPurpose.includes(e.target.value.toLowerCase())
-                || card.visitDescription.includes(e.target.value.toLowerCase());
+            return card.purpose.includes(e.target.value.toLowerCase())
+                || card.description.includes(e.target.value.toLowerCase());
         });
 
         cardsToShow.forEach(card => Desk.addCard(card));
@@ -23,7 +23,7 @@ export default class FilterCards{
         const cards = await Server.getAllCards(localStorage.getItem('token'));
 
         if (e.target.value !== 'all') {
-            const cardsToShow = cards.filter(card => card.visitUrgency === e.target.value);
+            const cardsToShow = cards.filter(card => card.urgency === e.target.value);
             cardsToShow.forEach(card => Desk.addCard(card));
         } else {
             await handleData(localStorage.getItem('token'));

@@ -14,7 +14,7 @@ export class VisitCardiologist extends Form {
     }
     render(){
         const {component} = this._DOMelements;
-        const visitorRegularPressure = new InFieldsComponent(component, cfg.visitorPressure);
+        const visitorRegularPressure = new InFieldsComponent(component, cfg.pressure);
         visitorRegularPressure.render();
 
         const visitorBodyWeightIndex = new InFieldsComponent(component, cfg.bodyWeightIndex);
@@ -23,8 +23,8 @@ export class VisitCardiologist extends Form {
         const DeseasesVisitorHasHad = new InFieldsComponent(component, cfg.hadDeseases);
         DeseasesVisitorHasHad.render();
 
-        const visitorAge = new InFieldsComponent(component, cfg.visitorAge);
-        visitorAge.render();
+        const age = new InFieldsComponent(component, cfg.age);
+        age.render();
 
 
     }
@@ -57,8 +57,8 @@ export class VisitTherapist extends Form {
     render(){
         const {component} = this._DOMelements;
 
-        const visitorAge = new InFieldsComponent(component, cfg.visitorAge);
-        visitorAge.render();
+        const age = new InFieldsComponent(component, cfg.age);
+        age.render();
 
     }
 }
