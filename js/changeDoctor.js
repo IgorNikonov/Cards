@@ -1,37 +1,20 @@
-import {doctorSelect} from "../componentsDeclaration/configElements.js";
-import * as visits from "./classesExtend.js";
-import * as cfig from "../componentsDeclaration/configForms.js";
-import VisitForm from "./visitForm.js";
-import Server from "./server.js";
+import {doctorSelect} from "../componentsDeclaration/configElements.js"
+import * as visits from "./classesExtend.js"
+import * as cfig from "../componentsDeclaration/configForms.js"
+import VisitForm from "./visitForm.js"
+import Server from "./server.js"
+import {visitorProps, visitorPropClasses} from "../componentsDeclaration/configVisProp.js"
 
 async function fillFormFromCard(cardId) {
     //здесь берём из БД объект с текущим номером cardId и заполняем его в форму для редактирования.
     // по сабмиту - исходную форму с номером id удалить из БД, а новую-оправить на сервер
- const editedCard = await Server.getOneCard(cardId, Server.token);
-    const purpose  = document.getElementById("purpose");
-    const description = document.getElementById("description");
-    const urgency  = document.getElementById("urgency");
-    const lastName = document.getElementById("visitor-last-name");
-    const name     = document.getElementById("visitor-name");
-    const patrName = document.getElementById("visitor-patr-name");
-    const pressure = document.getElementById("visitor-pressure");
-    const weightIndx = document.getElementById("weight-index");
-    const deseases = document.getElementById("visitor-deseases");
-    const age      = document.getElementById("visitor-age");
-    const lastVisitDate = document.getElementById("last-visit-date");
-    if (editedCard.purpose) purpose.value       = editedCard.purpose;
-    if (editedCard.description) description.value   = editedCard.description;
-    if (editedCard.urgency) urgency.value       = editedCard.urgency;
-    if (editedCard.lastName) lastName.value      = editedCard.lastName;
-    if (editedCard.mainName) name.value          = editedCard.mainName;
-    if (editedCard.patrName) patrName.value      = editedCard.patrName;
-    if (editedCard.pressure) pressure.value      = editedCard.pressure;
-    if (editedCard.bodyWeightIndex) weightIndx.value    = editedCard.bodyWeightIndex;
-    if (editedCard.hadDeseases) deseases.value      = editedCard.hadDeseases;
-    if (editedCard.age) age.value           = editedCard.age;
-    if (editedCard.lastVisitDate) lastVisitDate.value = editedCard.lastVisitDate;
+ const editedCard = await Server.getOneCard(cardId, Server.token);// получил объект редактируемой карточки
+ const vp=[]; //в этот массив захвачу поля формы, в value которых потом вставлю значения из объекта editedCard
+ for (let i=0; i< visitorProps.length; i++) {
+     vp[i] = document.getElementById( `${visitorPropClasses[i]}` );//захватываю поля с нужными классами
+     if (editedCard[visitorProps[i]]) vp[i].value = editedCard[visitorProps[i]]; //присваиваю нужным полям соотв.значения из editedCard
+ }
     const createBtn = document.getElementById('create-btn');
-
     createBtn.removeEventListener('click', VisitForm.formSubmitHandler);
     createBtn.addEventListener("click", (e)=>VisitForm.saveModifiedCard(cardId) );
     createBtn.innerText = "Изменить карточку";
@@ -41,12 +24,12 @@ export default function changeDoctor({target}, id, doctorFromCard){ //если i
     //режиме нового визита. Если пришел id - мы редактируем существующий по id карточки
     let selectValue; //это будет либо "врач" из target если пришли сюда из новой формы, либо будет "врач" из редактируемой карточки
     if (!id && !doctorSelect.options.some(el=> el.value === target.value)  ) return; //второй if проверяет ТОЛЬКО, если не прилетел доктор из редактируемойкарточки (т.е. если мы в режиме получения карточки только из формы)
-    else
-    {
+    else {
         if ( document.getElementById("visit-form")) document.getElementById("visit-form").remove();
         let visitFormParent = document.getElementById("select-form"); //форму визита создаем внутри формы выбора доктора (если она существует)
         if(!visitFormParent) visitFormParent = document.getElementById("modal"); //для режима редактирования карточки нужно брать контейнер в модалке
         if (doctorFromCard) selectValue = doctorFromCard; else selectValue = target.value; //в завис-ти от режима, выбор либо по врачу из формы, либо по врачу из карточки
+
         switch (selectValue) {
 
             case "Кардиолог":

@@ -1,12 +1,13 @@
 import {doctorSelect} from "../componentsDeclaration/configElements.js";
+import {visitorProps} from "../componentsDeclaration/configVisProp.js"
+
 
 export class CardHandler {   // внимание: это полученный объект из visitForm, в нем НЕТ еще id карточки!
 // id карточки будет позднее возвращён с сервера в response
 
     constructor() {
         let doctorEl = document.getElementById("visit-form");
-        const visitorProps = ["lastName", "mainName", "patrName", "purpose", "description", "urgency", "hadDeseases",
-            "bodyWeightIndex", "pressure", "age", "lastVisitDate"];
+
 
         for (let i = 0; i < visitorProps.length; i++) {
             if (document.getElementsByName(`${visitorProps[i]}`)[0])

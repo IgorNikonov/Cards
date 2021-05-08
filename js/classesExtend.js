@@ -20,8 +20,8 @@ export class VisitCardiologist extends Form {
         const visitorBodyWeightIndex = new InFieldsComponent(component, cfg.bodyWeightIndex);
         visitorBodyWeightIndex.render();
 
-        const DeseasesVisitorHasHad = new InFieldsComponent(component, cfg.hadDeseases);
-        DeseasesVisitorHasHad.render();
+        const hadDeseasesVisitorHasHad = new InFieldsComponent(component, cfg.hadDeseases);
+        hadDeseasesVisitorHasHad.render();
 
         const age = new InFieldsComponent(component, cfg.age);
         age.render();
