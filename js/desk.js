@@ -13,12 +13,12 @@ export default class Desk {
                 <div class="input">
                     <input id="search-by-description" type="text" placeholder="Search name">
                     <select id="visit-status" class="form_sm form-select " aria-label=".form-select-sm example">
-                        <option value="all">Показать все</option>
+                        <option value="">Показать все</option>
                         <option value="актуален">Визит актуален</option>
                         <option value="закрыт">Визит прошёл</option>
                     </select>
                     <select id="urgency-status" class="form-select form_sm " aria-label=".form-select-sm example">
-                        <option value="all">Показать все</option>
+                        <option value="">Показать все</option>
                         <option value="Обычная">Обычная</option>
                         <option value="Приоритетная">Приоритетная</option>
                         <option value="Неотложная">Неотложная</option>
@@ -34,14 +34,14 @@ export default class Desk {
             </div>
         </div>`;
 
-    constructor(){
+    constructor() {
     }
-    static render(){
+    static render() {
         document.getElementById('desk').insertAdjacentHTML("afterbegin", Desk.cardDesk);
     }
 
     static addCard(newCardObj) { //здесь, в newCardObj уже есть id
-        if (document.getElementById("visit-form"))  document.getElementById("visit-form").remove();
+        if (document.getElementById("visit-form")) document.getElementById("visit-form").remove();
 
         if (document.getElementById("no-cards-note")) document.getElementById("no-cards-note").remove();
         // Здесь создаём HTML карточку и переходим к выкладыванию ее на стол desk !
