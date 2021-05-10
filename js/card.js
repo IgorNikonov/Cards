@@ -1,5 +1,6 @@
 import {doctorSelect} from "../componentsDeclaration/configElements.js";
 import {visitorProps} from "../componentsDeclaration/configVisProp.js"
+import {visitorProp} from "../componentsDeclaration/configVisProp.js";
 
 
 export class CardHandler {   // внимание: это полученный объект из visitForm, в нем НЕТ еще id карточки!
@@ -8,7 +9,7 @@ export class CardHandler {   // внимание: это полученный о
     constructor() {
         let doctorEl = document.getElementById("visit-form");
 
-
+// можно было бы и более правильно по: Object.entries(visitorProp).forEach( ([key, value]) => , но в ЭТОТ раз, я хочу имеенно через цикл!!:
         for (let i = 0; i < visitorProps.length; i++) {
             if (document.getElementsByName(`${visitorProps[i]}`)[0])
                 this[visitorProps[i]] = document.getElementsByName(`${visitorProps[i]}`)[0].value || "";

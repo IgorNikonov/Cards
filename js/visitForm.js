@@ -6,6 +6,7 @@ import * as cfig from "../componentsDeclaration/configForms.js";
 import {CardHandler} from "./card.js";
 import {newCardHandle} from "./newCardHandle.js";
 import WrapCardHTML from "./WrapCardHTML.js";
+import {visitorProp} from "../componentsDeclaration/configVisProp.js"
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
@@ -64,6 +65,13 @@ export default class VisitForm extends Form {
     //выполняем эту ф-цию сразу после выбора доктора
     static renderAdditionalFields(innerComponent) {  //innerComponent это и есть наша form к выводу в сервер
         VisitForm.initForm(innerComponent); //в инициализации прописываем все необходимые артибуты формы для работы с сервером
+
+            // Object.entries(visitorProp).forEach( ([key, value])=> {
+        //     // if (key === 'hadDeseases') return;
+        //     new InFieldsComponent(innerComponent,
+        //         `cfg.${key}`).render();
+        // });
+
 
         const lastName = new InFieldsComponent(innerComponent, cfg.lastName);
         lastName.render();

@@ -3,17 +3,32 @@ import * as visits from "./classesExtend.js"
 import * as cfig from "../componentsDeclaration/configForms.js"
 import VisitForm from "./visitForm.js"
 import Server from "./server.js"
-import {visitorProps, visitorPropClasses} from "../componentsDeclaration/configVisProp.js"
+import {visitorProp, visitorProps, /* <=  не удалять!! => */ visitorPropClasses} from "../componentsDeclaration/configVisProp.js"
+// строка 6:  visitorProps, visitorPropClasses оставить для примера в строке 23 (ниже)
 
+//блок получения из БД значений формы. Рендер бланка формы. Заполнения в неё полученных из БД значений с целью последующего редактирования.
 async function fillFormFromCard(cardId) {
     //здесь берём из БД объект с текущим номером cardId и заполняем его в форму для редактирования.
     // по сабмиту - исходную форму с номером id удалить из БД, а новую-оправить на сервер
  const editedCard = await Server.getOneCard(cardId, Server.token);// получил объект редактируемой карточки
- const vp=[]; //в этот массив захвачу поля формы, в value которых потом вставлю значения из объекта editedCard
- for (let i=0; i< visitorProps.length; i++) {
-     vp[i] = document.getElementById( `${visitorPropClasses[i]}` );//захватываю поля с нужными классами
-     if (editedCard[visitorProps[i]]) vp[i].value = editedCard[visitorProps[i]]; //присваиваю нужным полям соотв.значения из editedCard
- }
+
+    //   https://frontend-stuff.com/blog/how-to-loop-through-object-in-javascript/#object-getownpropertynames
+    Object.entries(visitorProp).forEach( ([key, value]) => {
+        if (editedCard[key]) document.getElementById(`${value}`).value = editedCard[key];
+    });
+    // а можно было бы и так:  // iterate through key-value gracefully
+    // for (const [key, value] of Object.entries(visitorProp)) {
+    //     console.log(`${key} ${value}`); }
+
+
+
+//  а так бы выглядело, если бы я сделал тоже самое заполнение input-полей через цикл:
+//    const vp=[]; //в этот массив захвачу поля формы, в value которых потом вставлю значения из объекта editedCard
+//    for (let i=0; i< visitorProps.length; i++) {
+//     vp[i] = document.getElementById( `${visitorPropClasses[i]}` );//захватываю поля с нужными классами
+//     if (editedCard[visitorProps[i]]) vp[i].value = editedCard[visitorProps[i]]; //присваиваю нужным полям соотв.значения из editedCard
+// }
+
     const createBtn = document.getElementById('create-btn');
     createBtn.removeEventListener('click', VisitForm.formSubmitHandler);
     createBtn.addEventListener("click", (e)=>VisitForm.saveModifiedCard(cardId) );
