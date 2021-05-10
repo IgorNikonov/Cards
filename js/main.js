@@ -5,9 +5,10 @@ import Server from "./server.js"
 export const deskComp = document.getElementById('desk'); // сюда будем выкладывать все формы
 
 Desk.render(deskComp); //выводим в DOM рабочий стол карточек
-Login();  //запустили процедуру логина
+ //запустили процедуру логина
 
 
+const log = new Login().renderModal()
 // Filter functionality
 const searchCardInput = document.getElementById('search-by-description');
 const statusSelect = document.getElementById('visit-status');
