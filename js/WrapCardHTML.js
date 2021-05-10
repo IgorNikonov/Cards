@@ -5,21 +5,26 @@ import Desk from "./desk.js";
 import changeDoctor from "./changeDoctor.js";
 
 export default class WrapCardHTML { // сюда получили объект из res сервера, содержащий id
-    constructor(parent, {id, doctor, lastName, mainName, patrName, purpose, description,
-                    urgency, pressure, hadDeseases, bodyWeightIndex, age, lastVisitDate }){
-        this.id = id;
-        this.doctor = doctor;
-        this.lastName = lastName;
-        this.mainName = mainName;
-        this.patrName = patrName;
-        this.purpose = purpose;
-        this.description = description;
-        this.urgency = urgency;
-        this.pressure = pressure;
-        this.hadDeseases = hadDeseases;
-        this.bodyWeightIndex = bodyWeightIndex;
-        this.age = age;
-        this.lastVisitDate = lastVisitDate;
+    // в constructor прилетают: (parent, {id, doctor, lastName, mainName, patrName, purpose, description,
+    //                 urgency, pressure, hadDeseases, bodyWeightIndex, age, lastVisitDate
+         constructor(parent, ...args)//соберем все (кроме parent) по ...rest в массив из одного эл-та массива args[0]
+    {
+        Object.keys(args[0]).forEach( key=> {  this[`${key}`] = args[0][key] });
+        /*строкой 12 мы заменили весь хардкорд из строк  14-27 ниже:  */
+        //
+        // this.id = id;
+        // this.doctor = doctor;
+        // this.lastName = lastName;
+        // this.mainName = mainName;
+        // this.patrName = patrName;
+        // this.purpose = purpose;
+        // this.description = description;
+        // this.urgency = urgency;
+        // this.pressure = pressure;
+        // this.hadDeseases = hadDeseases;
+        // this.bodyWeightIndex = bodyWeightIndex;
+        // this.age = age;
+        // this.lastVisitDate = lastVisitDate;
 
         this.DOMelements = {
             parent        : parent,
@@ -35,6 +40,7 @@ export default class WrapCardHTML { // сюда получили объект и
         bodyWeightIndexEl : document.createElement('p'),
         ageEl      : document.createElement('p'),
         lastVisitDateEl   : document.createElement('p'),
+
         cardEl    : document.createElement("div")
     }
     }
