@@ -1,12 +1,13 @@
-import Form from "./form.js";
-import {CreateBtn} from "./createBtn.js";
-import InFieldsComponent from "./InFieldsComponent.js";
-import * as cfg from "../componentsDeclaration/configElements.js";
-import * as cfig from "../componentsDeclaration/configForms.js";
-import {CardHandler} from "./card.js";
-import {newCardHandle} from "./newCardHandle.js";
-import WrapCardHTML from "./WrapCardHTML.js";
-import {visitorProp} from "../componentsDeclaration/configVisProp.js"
+import Form from "./form.js"
+import {CreateBtn} from "./createBtn.js"
+import InFieldsComponent from "./InFieldsComponent.js"
+import * as cfg from "../componentsDeclaration/configElements.js"
+import {elemConfObj} from "../componentsDeclaration/configElements.js"
+import * as cfig from "../componentsDeclaration/configForms.js"
+import {CardHandler} from "./card.js"
+import {newCardHandle} from "./newCardHandle.js"
+import WrapCardHTML from "./WrapCardHTML.js"
+import {visitorPropInVisitForm} from "../componentsDeclaration/configVisProp.js"
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
@@ -66,30 +67,24 @@ export default class VisitForm extends Form {
     static renderAdditionalFields(innerComponent) {  //innerComponent это и есть наша form к выводу в сервер
         VisitForm.initForm(innerComponent); //в инициализации прописываем все необходимые артибуты формы для работы с сервером
 
-            // Object.entries(visitorProp).forEach( ([key, value])=> {
-        //     // if (key === 'hadDeseases') return;
-        //     new InFieldsComponent(innerComponent,
-        //         `cfg.${key}`).render();
-        // });
-
-
-        const lastName = new InFieldsComponent(innerComponent, cfg.lastName);
-        lastName.render();
-
-        const mainName = new InFieldsComponent(innerComponent, cfg.mainName);
-        mainName.render();
-
-        const patrName = new InFieldsComponent(innerComponent, cfg.patrName);
-        patrName.render();
-
-        const purpose = new InFieldsComponent(innerComponent, cfg.purpose);
-        purpose.render();
-
-        const description = new InFieldsComponent(innerComponent, cfg.description);
-        description.render();
-
-        const urgency = new InFieldsComponent(innerComponent, cfg.urgency);
-        urgency.render();
+        const instances = [];
+            Object.entries(visitorPropInVisitForm).forEach( ([key, value])=> {
+            instances[key] = new InFieldsComponent(innerComponent, elemConfObj[key] );
+            instances[key].render();
+        });
+/* Код выше (стр.70-73) заменяет хардкод в строках ниже (стр.76-87) */
+        // const lastName = new InFieldsComponent(innerComponent, cfg.lastName);
+        // lastName.render();
+        // const mainName = new InFieldsComponent(innerComponent, cfg.mainName);
+        // mainName.render();
+        // const patrName = new InFieldsComponent(innerComponent, cfg.patrName);
+        // patrName.render();
+        // const purpose = new InFieldsComponent(innerComponent, cfg.purpose);
+        // purpose.render();
+        // const description = new InFieldsComponent(innerComponent, cfg.description);
+        // description.render();
+        // const urgency = new InFieldsComponent(innerComponent, cfg.urgency);
+        // urgency.render();
     }
 
     // создаём кнопки closeBtn, createBtn для формы ввода пациентов

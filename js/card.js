@@ -1,6 +1,6 @@
 import {doctorSelect} from "../componentsDeclaration/configElements.js";
 import {visitorProps} from "../componentsDeclaration/configVisProp.js"
-import {visitorProp} from "../componentsDeclaration/configVisProp.js";
+import {visitorPropInVisitForm} from "../componentsDeclaration/configVisProp.js";
 
 
 export class CardHandler {   // внимание: это полученный объект из visitForm, в нем НЕТ еще id карточки!

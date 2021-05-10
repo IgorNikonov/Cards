@@ -168,6 +168,7 @@ export const urgency = {
 
 };
 
+
 // конфигурируем Фамилию
 export const lastName = {
     id: "visitor-last-name",
@@ -255,3 +256,5 @@ export const lastVisitDate = {
     elementType: "date",
     labelText:"введите дату последнего посещения:",
 };
+
+export const elemConfObj = {lastName: lastName, mainName: mainName, patrName: patrName, purpose: purpose, description: description, urgency: urgency,  pressure: pressure, bodyWeightIndex: bodyWeightIndex, hadDeseases: hadDeseases, age: age, lastVisitDate: lastVisitDate};
