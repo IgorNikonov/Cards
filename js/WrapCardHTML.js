@@ -2,7 +2,8 @@ import {CreateBtn} from "./createBtn.js";
 import {deleteCardBtnCfg, editCardBtnCfg, showMoreCardBtnCfg} from "../componentsDeclaration/configElements.js";
 import Server from "./server.js";
 import Desk from "./desk.js";
-import changeDoctor from "./changeDoctor.js";
+import changeDoctor from "./changeDoctor.js"
+import {DOMelements} from "../componentsDeclaration/configVisProp.js"
 
 export default class WrapCardHTML { // сюда получили объект из res сервера, содержащий id
     // в constructor прилетают: (parent, {id, doctor, lastName, mainName, patrName, purpose, description,
@@ -25,28 +26,32 @@ export default class WrapCardHTML { // сюда получили объект и
         // this.bodyWeightIndex = bodyWeightIndex;
         // this.age = age;
         // this.lastVisitDate = lastVisitDate;
-
         this.DOMelements = {
             parent        : parent,
-        doctorEl          : document.createElement('p'),
-        lastNameEl        : document.createElement('p'),
-        mainNameEl        : document.createElement('p'),
-        patrNameEl        : document.createElement('p'),
-        purposeEl    : document.createElement('p'),
-        descriptionEl: document.createElement('p'),
-        urgencyEl    : document.createElement('p'),
-        pressureEl   : document.createElement('p'),
-        hadDeseasesEl     : document.createElement('p'),
-        bodyWeightIndexEl : document.createElement('p'),
-        ageEl      : document.createElement('p'),
-        lastVisitDateEl   : document.createElement('p'),
+            cardEl    : document.createElement("div") };
 
-        cardEl    : document.createElement("div")
+        for (let elem of DOMelements){
+            this.DOMelements[`${elem}`] = document.createElement('p');
+        }
+        /*циклом стр.33-35 заменил весь кардкод в строках 37-48 ниже: */
+        // doctorEl          : document.createElement('p'),
+        // lastNameEl        : document.createElement('p'),
+        // mainNameEl        : document.createElement('p'),
+        // patrNameEl        : document.createElement('p'),
+        // purposeEl    : document.createElement('p'),
+        // descriptionEl: document.createElement('p'),
+        // urgencyEl    : document.createElement('p'),
+        // pressureEl   : document.createElement('p'),
+        // hadDeseasesEl     : document.createElement('p'),
+        // bodyWeightIndexEl : document.createElement('p'),
+        // ageEl      : document.createElement('p'),
+        // lastVisitDateEl   : document.createElement('p'),
     }
-    }
+
     render(){
         const {id, doctor, lastName, mainName, pressure, patrName, purpose, description,
             urgency, hadDeseases, bodyWeightIndex, age, lastVisitDate } =this;
+
         const {parent, cardEl, doctorEl, lastNameEl, mainNameEl, patrNameEl, purposeEl, descriptionEl,
             urgencyEl, hadDeseasesEl, pressureEl, bodyWeightIndexEl, ageEl, lastVisitDateEl } = this.DOMelements;
 

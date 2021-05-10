@@ -3,6 +3,20 @@ export const visitorPropInVisitForm = {lastName: "visitor-last-name", mainName: 
 export const visitorAdditionalProps = { hadDeseases: "visitor-deseases", bodyWeightIndex: "weight-index", pressure: "visitor-pressure", age: "visitor-age", lastVisitDate: "last-visit-date"};
 export const visitorProp = {...visitorPropInVisitForm, ...visitorAdditionalProps};
 
+// ДОМ-элементы создаваемые в WrapCardHTML.js:
+export const DOMelements = [
+'doctorEl',
+'lastNameEl',
+'mainNameEl',
+'patrNameEl',
+'purposeEl',
+'descriptionEl',
+'urgencyEl',
+'pressureEl',
+'hadDeseasesEl',
+'bodyWeightIndexEl',
+'ageEl',
+'lastVisitDateEl'];
 
 /*** весь БЛОК КОДА НИЖЕ - это те же данные, что в объекте строки 1, но разбитые в виде двух отдельных массивов. - Блок нужен в проекте только для демонстрации альтернативных вариантов исполнения-
  * -  см. стр.23 в файле changeDoctor.js
