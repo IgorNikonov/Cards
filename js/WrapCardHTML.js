@@ -149,6 +149,10 @@ export default class WrapCardHTML { // сюда получили объект и
         // const currentCard = document.querySelector(`div[data-name = "${currentID}" ]`); //получили карточку с данным id
         let card = await Server.getOneCard(currentID, Server.token); //получили с сервера редактируемую карточку
         changeDoctor(target, currentID, card.doctor); //отослали редактируемуюу карточку на изменение в вызове формы
+         window.scrollTo({
+             top: 200,
+             behavior: "smooth"
+         });
     };
 
 
