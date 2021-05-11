@@ -1,8 +1,3 @@
-import Server from "./server.js";
+// почему-то, если убрать этот ненужный файл и/или его инпут в файле main.js, программа крашится.
 import Desk from "./desk.js";
-import { handleData } from "./main.js";
-
-export default class FilterCards {
-
-
-}
+export default class FilterCards { }
