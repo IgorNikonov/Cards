@@ -3,7 +3,7 @@ import {deleteCardBtnCfg, editCardBtnCfg, showMoreCardBtnCfg} from "../component
 import Server from "./server.js";
 import Desk from "./desk.js";
 import changeDoctor from "./changeDoctor.js"
-import {DOMelements} from "../componentsDeclaration/configVisProp.js"
+import {DOM_elements} from "../componentsDeclaration/configVisProp.js"
 
 export default class WrapCardHTML { // сюда получили объект из res сервера, содержащий id
     // в constructor прилетают: (parent, {id, doctor, lastName, mainName, patrName, purpose, description,
@@ -30,10 +30,11 @@ export default class WrapCardHTML { // сюда получили объект и
             parent        : parent,
             cardEl    : document.createElement("div") };
 
-        for (let elem of DOMelements){
-            this.DOMelements[`${elem}`] = document.createElement('p');
-        }
-        /*циклом стр.33-35 заменил весь кардкод в строках 37-48 ниже: */
+            Object.keys(DOM_elements).forEach(key=> {
+                this.DOMelements[key] = document.createElement(DOM_elements[key][2]);
+            });
+
+        /*перебором стр.33-35 заменил весь кардкод в строках 37-48 ниже: */
         // doctorEl          : document.createElement('p'),
         // lastNameEl        : document.createElement('p'),
         // mainNameEl        : document.createElement('p'),
@@ -49,38 +50,47 @@ export default class WrapCardHTML { // сюда получили объект и
     }
 
     render(){
-        const {id, doctor, lastName, mainName, pressure, patrName, purpose, description,
-            urgency, hadDeseases, bodyWeightIndex, age, lastVisitDate } =this;
+        const {id/*, doctor, lastName, mainName, pressure, patrName, purpose, description,
+            urgency, hadDeseases, bodyWeightIndex, age, lastVisitDate*/ } =this;
 
-        const {parent, cardEl, doctorEl, lastNameEl, mainNameEl, patrNameEl, purposeEl, descriptionEl,
-            urgencyEl, hadDeseasesEl, pressureEl, bodyWeightIndexEl, ageEl, lastVisitDateEl } = this.DOMelements;
+        const {parent, cardEl/*, doctorEl, lastNameEl, mainNameEl, patrNameEl, purposeEl, descriptionEl,
+            urgencyEl, hadDeseasesEl, pressureEl, bodyWeightIndexEl, ageEl, lastVisitDateEl */} = this.DOMelements;
 
         cardEl.dataset.name = id;
-        doctorEl.innerText              = `Врач:            ${doctor}`;
-        lastNameEl.innerText            = `Фамилия:         ${lastName}`;
-        mainNameEl.innerText            = `Имя:             ${mainName}`;
-        patrNameEl.innerText            = `Отчество:        ${patrName}`;
-        if (purpose)       purposeEl.innerText        = `Цель:                   ${purpose}`;
-        if (description)   descriptionEl.innerText    = `Описание:               ${description}`;
-        if (urgency)       urgencyEl.innerText        = `Срочность:              ${urgency}`;
-        if (pressure)    pressureEl.innerText     = `Нормальное давление:    ${pressure}`;
-        if (hadDeseases)        hadDeseasesEl.innerText         = `Перенесеные болезни:    ${hadDeseases}`;
-        if (bodyWeightIndex)    bodyWeightIndexEl.innerText     = `Индекс массы тела:      ${bodyWeightIndex}`;
-        if (age)         ageEl.innerText          = `Возраст:                ${age}`;
-        if (lastVisitDate)      lastVisitDateEl.innerText       = `День последнего визита: ${lastVisitDate}`;
+        let counter = 0;
+        Object.keys(DOM_elements).forEach(key=> {
+            if (this[`${key}`.slice(0, -2)]) {
+                this.DOMelements[key].innerText = DOM_elements[key][0] +"   " + this[`${key}`.slice(0, -2)];
+                this.DOMelements[key].className =  ( counter < 4 )?  "card-item" : "card-item --hidden";
+                counter++;
+            }
+        });
+/*строками 59-65  заметил хардкор в строках:  69 -92 ниже:  */
+        // doctorEl.innerText              = `Врач:            ${doctor}`;
+        // lastNameEl.innerText            = `Фамилия:         ${lastName}`;
+        // mainNameEl.innerText            = `Имя:             ${mainName}`;
+        // patrNameEl.innerText            = `Отчество:        ${patrName}`;
+        // if (purpose)       purposeEl.innerText        = `Цель:                   ${purpose}`;
+        // if (description)   descriptionEl.innerText    = `Описание:               ${description}`;
+        // if (urgency)       urgencyEl.innerText        = `Срочность:              ${urgency}`;
+        // if (pressure)    pressureEl.innerText     = `Нормальное давление:    ${pressure}`;
+        // if (hadDeseases)        hadDeseasesEl.innerText         = `Перенесеные болезни:    ${hadDeseases}`;
+        // if (bodyWeightIndex)    bodyWeightIndexEl.innerText     = `Индекс массы тела:      ${bodyWeightIndex}`;
+        // if (age)         ageEl.innerText          = `Возраст:                ${age}`;
+        // if (lastVisitDate)      lastVisitDateEl.innerText       = `День последнего визита: ${lastVisitDate}`;
+        // doctorEl.className              = "card-item";
+        // lastNameEl.className            = "card-item";
+        // mainNameEl.className            = "card-item";
+        // patrNameEl.className            = "card-item";
+        // purposeEl.className        = "card-item --hidden";
+        // descriptionEl.className    = "card-item --hidden";
+        // urgencyEl.className        = "card-item --hidden";
+        // pressureEl.className     = "card-item --hidden";
+        // hadDeseasesEl.className         = "card-item --hidden";
+        // bodyWeightIndexEl.className     = "card-item --hidden";
+        // ageEl.className          = "card-item --hidden";
+        // lastVisitDateEl.className       = "card-item --hidden";
 
-        doctorEl.className              = "card-item";
-        lastNameEl.className            = "card-item";
-        mainNameEl.className            = "card-item";
-        patrNameEl.className            = "card-item";
-        purposeEl.className        = "card-item --hidden";
-        descriptionEl.className    = "card-item --hidden";
-        urgencyEl.className        = "card-item --hidden";
-        pressureEl.className     = "card-item --hidden";
-        hadDeseasesEl.className         = "card-item --hidden";
-        bodyWeightIndexEl.className     = "card-item --hidden";
-        ageEl.className          = "card-item --hidden";
-        lastVisitDateEl.className       = "card-item --hidden";
         cardEl.className = "desk-card";
 
         // очень крутая фича:  в строках  75 - 84 я готовлю массив под parent.append(массив) только элементы,

@@ -257,4 +257,5 @@ export const lastVisitDate = {
     labelText:"введите дату последнего посещения:",
 };
 
+/*и теперь возьмём все константы выше и завернем их в один конфигурационный объект: */
 export const elemConfObj = {lastName: lastName, mainName: mainName, patrName: patrName, purpose: purpose, description: description, urgency: urgency,  pressure: pressure, bodyWeightIndex: bodyWeightIndex, hadDeseases: hadDeseases, age: age, lastVisitDate: lastVisitDate};

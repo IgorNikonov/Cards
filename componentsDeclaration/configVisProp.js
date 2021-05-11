@@ -1,22 +1,40 @@
+// ДОМ-элементы создаваемые в WrapCardHTML.js:
+// export const DOMelements = [
+//     'doctorEl',
+//     'lastNameEl',
+//     'mainNameEl',
+//     'patrNameEl',
+//     'purposeEl',
+//     'descriptionEl',
+//     'urgencyEl',
+//     'pressureEl',
+//     'hadDeseasesEl',
+//     'bodyWeightIndexEl',
+//     'ageEl',
+//     'lastVisitDateEl'];
+
+// ДОМ-элементы создаваемые в WrapCardHTML.js:
+export const DOM_elements = {
+    'doctorEl':             ['Врач: ',                 "card-item",           'p'],
+    'lastNameEl':           ['Фамилия: ',              "card-item",           'p'],
+    'mainNameEl':           ['Имя: ',                  "card-item",           'p'],
+    'patrNameEl':           ['Отчество: ',             "card-item",           'p'],
+    'purposeEl':            ['Цель: ',                 "card-item --hidden",  'p'],
+    'descriptionEl':        ['Описание: ',             "card-item --hidden",  'p'],
+    'urgencyEl':            ['Срочность: ',            "card-item --hidden",  'p'],
+    'pressureEl':           ['Норм.Давление: ',        "card-item --hidden",  'p'],
+    'hadDeseasesEl':        ['Перенесённые болезни: ', "card-item --hidden",  'p'],
+    'bodyWeightIndexEl':    ['инд.массы тела: ',       "card-item --hidden",  'p'],
+    'ageEl':                ['Возраст: ',              "card-item --hidden",  'p'],
+    'lastVisitDateEl':      ['Последнее посещение: ',  "card-item --hidden",  'p'],
+};
+
+
 
 export const visitorPropInVisitForm = {lastName: "visitor-last-name", mainName: "visitor-name", patrName: "visitor-patr-name", purpose: "purpose", description: "description", urgency: "urgency"};
 export const visitorAdditionalProps = { hadDeseases: "visitor-deseases", bodyWeightIndex: "weight-index", pressure: "visitor-pressure", age: "visitor-age", lastVisitDate: "last-visit-date"};
 export const visitorProp = {...visitorPropInVisitForm, ...visitorAdditionalProps};
 
-// ДОМ-элементы создаваемые в WrapCardHTML.js:
-export const DOMelements = [
-'doctorEl',
-'lastNameEl',
-'mainNameEl',
-'patrNameEl',
-'purposeEl',
-'descriptionEl',
-'urgencyEl',
-'pressureEl',
-'hadDeseasesEl',
-'bodyWeightIndexEl',
-'ageEl',
-'lastVisitDateEl'];
 
 /*** весь БЛОК КОДА НИЖЕ - это те же данные, что в объекте строки 1, но разбитые в виде двух отдельных массивов. - Блок нужен в проекте только для демонстрации альтернативных вариантов исполнения-
  * -  см. стр.23 в файле changeDoctor.js
