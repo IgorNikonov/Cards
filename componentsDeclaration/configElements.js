@@ -255,3 +255,26 @@ export const lastVisitDate = {
     elementType: "date",
     labelText:"введите дату последнего посещения:",
 };
+
+// Elements for Login Modal Window 
+export const login ={
+    type: 'text',
+    placeholder:'Email',
+    className:'modal_input',
+    atr: 'text',
+    isRequierd : true
+}
+
+export const password = {
+    type: 'password',
+    placeholder: 'Password',
+    className:'modal_input',
+    atr: 'password',
+    isRequierd : true
+}
+export const btn = {
+    type: 'submit',
+    className:'modal_login_button',
+    atr: 'submit'
+}
+

@@ -1,14 +1,13 @@
 import FilterCards from "./filterCards.js"
-import Login from "./Login.js";
+import {logIn} from './Login.js'
 import Desk from "./desk.js";
 import Server from "./server.js"
 export const deskComp = document.getElementById('desk'); // сюда будем выкладывать все формы
 
 Desk.render(deskComp); //выводим в DOM рабочий стол карточек
  //запустили процедуру логина
+ logIn()
 
-
-const log = new Login().renderModal()
 // Filter functionality
 const searchCardInput = document.getElementById('search-by-description');
 const statusSelect = document.getElementById('visit-status');

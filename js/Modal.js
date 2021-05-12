@@ -1,4 +1,4 @@
-import LoginForm from './loginForm.js'
+
 
 export default class Modal {
     constructor(modal){
@@ -26,6 +26,7 @@ export default class Modal {
 
         const autorization = document.querySelector('.btn_log');
         autorization.addEventListener('click', () =>{
+          
             this.self.classList.add('active');
         });
 

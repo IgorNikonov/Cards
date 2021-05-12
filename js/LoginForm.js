@@ -1,5 +1,5 @@
 import Input from './Input.js'
-import {login , password, btn} from './loginComp.js'
+import {login , password, btn} from '../componentsDeclaration/configElements.js'
 
 export default class LoginForm {
     constructor(){
