@@ -1,14 +1,13 @@
 export default class Server {
     static url = 'https://ajax.test-danit.com/api/v2/cards';
-    static token = localStorage.getItem('token');
 
     static async getTokenFromServer(userData) {
         const response = await fetch(`${Server.url}/login`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
         });
-         return await response.text();
+        return await response.text();
     }
 
     static async createCard(userData, token) {

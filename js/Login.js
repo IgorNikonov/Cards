@@ -1,7 +1,7 @@
 import Server from "./server.js"
 import Modal from "./Modal.js";
 import VisitForm from "./visitForm.js";
-import {handleData} from "./main.js";
+import { handleData } from "./main.js";
 
 export default function Login() {
     class LoginModal extends Modal {
@@ -31,32 +31,32 @@ export default function Login() {
             submitBtn.type = "button";
             submitBtn.textContent = "Login";
             submitBtn.classList.add("modal_login_button");
-            submitBtn.addEventListener("click", ()=>this.checkUserLogin());
+            submitBtn.addEventListener("click", () => this.checkUserLogin());
 
             return [login, password, submitBtn];
         }
 
 
 
-        async getToken(loginInput, passInput){
-            return await Server.getTokenFromServer({email: loginInput, password: passInput});
+        async getToken(loginInput, passInput) {
+            return await Server.getTokenFromServer({ email: loginInput, password: passInput });
         }
 
-        async checkUserLogin(){
+        async checkUserLogin() {
 
             let token;
             const loginInput = document.getElementsByName("login")[0].value;
             const passInput = document.getElementsByName("password")[0].value;
-            try{
-            token = await this.getToken(loginInput, passInput);
-            } catch(err) {console.log(err.name, err.message)}
+            try {
+                token = await this.getToken(loginInput, passInput);
+            } catch (err) { console.log(err.name, err.message) }
 
             if (token === "Incorrect username or password" || token === undefined) {
                 throw new Error("Такой пользователь не зарегистрирован, либо token undefined !");
             }
             else
-            localStorage.setItem('token', `${token}`);
-            handleData(Server.token).then(); // получили все карточки с сервера и выложили на рабочий стол
+                localStorage.setItem('token', `${token}`);
+            handleData(localStorage.getItem('token')).then(); // получили все карточки с сервера и выложили на рабочий стол
             reassignLogBtn(); //переназзначили кнопку логина на кнопку "создать форму"
             // console.log("Вы залогинились!");
             document.getElementById("modalLogin").classList.remove("active");
@@ -74,7 +74,7 @@ export default function Login() {
     const loginBtn = document.getElementById("btn_log");
 
 
-    function loginBtnHandler(e){
+    function loginBtnHandler(e) {
         e.preventDefault();
         loginForm.openModal();
     }
@@ -84,7 +84,7 @@ export default function Login() {
 
 
 
-    function renderSelectFormBtn(){
+    function renderSelectFormBtn() {
         // const renewedCards = Server.getAllCards(localStorage.getItem('token'));
         // renewedCards.forEach(card => Desk.addCard(card));
 
@@ -99,3 +99,8 @@ export default function Login() {
     }
 
 }
+
+// export function reassignBtn() {
+//     const loginBtn = document.getElementById("btn_log");
+//     loginBtn.addEventListener("click", VisitForm.renderIdleForm);
+// }
