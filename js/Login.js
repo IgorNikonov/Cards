@@ -56,7 +56,7 @@ export default function Login() {
             }
             else
             localStorage.setItem('token', `${token}`);
-            handleData(Server.token).then(); // получили все карточки с сервера и выложили на рабочий стол
+            handleData(localStorage.getItem('token')).then(); // получили все карточки с сервера и выложили на рабочий стол
             reassignLogBtn(); //переназзначили кнопку логина на кнопку "создать форму"
             // console.log("Вы залогинились!");
             document.getElementById("modalLogin").classList.remove("active");

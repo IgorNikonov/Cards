@@ -10,7 +10,7 @@ import {visitorProp, visitorProps, /* <=  не удалять!! => */ visitorPro
 async function fillFormFromCard(cardId) {
     //здесь берём из БД объект с текущим номером cardId и заполняем его в форму для редактирования.
     // по сабмиту - исходную форму с номером id удалить из БД, а новую-оправить на сервер
- const editedCard = await Server.getOneCard(cardId, Server.token);// получил объект редактируемой карточки
+ const editedCard = await Server.getOneCard(cardId, localStorage.getItem('token'));// получил объект редактируемой карточки
 
     //   https://frontend-stuff.com/blog/how-to-loop-through-object-in-javascript/#object-getownpropertynames
     Object.entries(visitorProp).forEach( ([key, value]) => {

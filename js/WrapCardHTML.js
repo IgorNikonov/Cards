@@ -138,7 +138,7 @@ export default class WrapCardHTML { // сюда получили объект и
         // const currentCard = document.querySelector(`div[data-name = "${currentID}" ]`); //получили карточку с данным id
         else
             currentID = id;
-        await Server.deleteCard(currentID, Server.token);
+        await Server.deleteCard(currentID, localStorage.getItem('token'));
         document.getElementById('card-container').innerHTML = ''; //удаляет все карточки из desk
         await Desk.refreshDesk();  //обновляет всекарточки на столе  из БД
     };
@@ -147,7 +147,7 @@ export default class WrapCardHTML { // сюда получили объект и
      static async editCard({target}){ //получили id карточки
         const currentID = target.dataset.name; //получили id из сработавшей кнопки
         // const currentCard = document.querySelector(`div[data-name = "${currentID}" ]`); //получили карточку с данным id
-        let card = await Server.getOneCard(currentID, Server.token); //получили с сервера редактируемую карточку
+        let card = await Server.getOneCard(currentID, localStorage.getItem('token')); //получили с сервера редактируемую карточку
         changeDoctor(target, currentID, card.doctor); //отослали редактируемуюу карточку на изменение в вызове формы
          window.scrollTo({
              top: 200,

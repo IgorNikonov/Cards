@@ -9,6 +9,7 @@ export class CardHandler {   // внимание: это полученный о
         let doctorEl = document.getElementById("visit-form");
 
 // можно было бы и более правильно по: Object.entries(visitorProp).forEach( ([key, value]) => , но в ЭТОТ раз, я хочу имеенно через цикл!!:
+        debugger
         for (let i = 0; i < visitorProps.length; i++) {
             if (document.getElementsByName(`${visitorProps[i]}`)[0])
                 this[visitorProps[i]] = document.getElementsByName(`${visitorProps[i]}`)[0].value || "";
