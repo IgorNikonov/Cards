@@ -1,77 +1,43 @@
+
+
 export default class Modal {
-    constructor({ id, classes }) {
-        this.id = id;
-        this.classes = classes;
-        this.modal = this.render()
-
+    constructor(modal){
+        this.modal = modal;
+        this.self = document.createElement('div');
+        this.modalWindow = document.createElement('div');
+        this.modalHeader = document.createElement('div');
+        this.modalTitle = document.createElement('h5');
+        this.closeBtn = document.createElement('span');
+        this.form = document.createElement('div');
     }
-    render() {
-        const content = this.createForm(this.createFormElements());
+    renderModal(){
+        this.self.classList.add('modal');
+        this.self.setAttribute('id', 'modal')
+        this.modalWindow.classList.add('modal-content');
+        this.modalHeader.classList.add('modal-header');
+        this.modalTitle.classList.add('modal-title');
+        this.closeBtn.classList.add('close-modal')
+        this.closeBtn.innerHTML = '&times;';
+        this.form.classList.add('modal-form');
+        this.modalHeader.append(this.modalTitle , this.closeBtn);
+        this.modalWindow.append(this.modalHeader , this.form)
+        this.self.append(this.modalWindow)
+        modal.append(this.self)
 
-        const title = this.createElement({
-            elem: 'h5',
-            content: 'Welcome!',
-            classes: ['titel-modal']
-        })
-        const x = this.createElement({
-            elem: 'span',
-            content: 'x',
-            classes: ['close-modal']
+        const autorization = document.querySelector('.btn_log');
+        autorization.addEventListener('click', () =>{
+          
+            this.self.classList.add('active');
         });
 
-        x.addEventListener('click', () => this.closeModal());
-        window.addEventListener('click', (e) => {
-            if (e.target === this.modal) {
-                this.modal.classList.remove('active')
+        this.closeBtn.addEventListener('click', ()=> {
+            this.self.classList.remove('active');
+        });
+        window.addEventListener('click', (e) =>{
+            if (e.target === this.self){
+                this.self.classList.remove('active');
             }
-        })
-        const headerModal = this.createElement({
-            elem: 'div',
-            content: [title, x],
-            classes: ['header-modal']
-        })
-        const divModalContent = this.createElement({
-            elem: 'div',
-            classes: ['modal-content'],
-            content: [headerModal, content]
         });
-        const divModal = this.createElement({
-            elem: "div",
-            classes: this.classes,
-            content: [divModalContent],
-            id: this.id,
-        });
-        return divModal;
     }
-    createElement({ elem, id, classes, content }) {
-        const element = document.createElement(elem);
-
-        if (id) {
-            element.id = id;
-        }
-        if (classes) {
-            element.classList.add(...classes);
-        }
-        if (content) {
-            element.append(...content)
-        }
-        return element
-    }
-    createForm(formElements = []) {
-        const form = document.createElement('form');
-        form.id = 'log-form';
-        form.action = "";
-        form.append(...formElements);
-        return form;
-    }
-
-    createFormElements() { }
-
-    openModal() {
-        this.modal.classList.add('active')
-    }
-    closeModal() {
-        this.modal.classList.remove('active');
-        console.log("closeModal!!!!")
-    }
+    
 }
