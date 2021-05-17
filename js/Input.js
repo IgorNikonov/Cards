@@ -11,7 +11,7 @@ export default class Input{
         this.self.type = this.type;
         this.self.placeholder = this.placeholder;
         this.self.classList.add(this.className);
-        this.self.setAttribute('name', this.atr)
+        this.self.setAttribute('name', this.atr);
         this.self.isRequierd = this.isRequierd;
         return this.self;
 

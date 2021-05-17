@@ -14,17 +14,17 @@ export default class Modal {
         this.modalWindow.classList.add('modal-content');
         this.modalHeader.classList.add('modal-header');
         this.modalTitle.classList.add('modal-title');
-        this.closeBtn.classList.add('close-modal')
+        this.closeBtn.classList.add('close-modal');
         this.closeBtn.innerHTML = '&times;';
         this.form.classList.add('modal-form');
         this.modalHeader.append(this.modalTitle , this.closeBtn);
-        this.modalWindow.append(this.modalHeader , this.form)
-        this.self.append(this.modalWindow)
-        modal.append(this.self)
+        this.modalWindow.append(this.modalHeader , this.form);
+        this.self.append(this.modalWindow);
+        modal.append(this.self);
 
         const autorization = document.querySelector('.btn_log');
         autorization.addEventListener('click', (event) =>{
-          event.preventDefault()
+          event.preventDefault();
             this.self.classList.add('active');
         });
 

@@ -58,9 +58,9 @@ export default function Login() {
     }
 
     function reassignLogBtn() {
-    const createCard = document.querySelector('.create_btn') 
-      loginBtn.style.display = 'none'
-      modal.classList.remove('active')
+    const createCard = document.querySelector('.create_btn');
+      loginBtn.style.display = 'none';
+      modal.classList.remove('active');
       createCard.addEventListener("click", renderSelectFormBtn);
       createCard.classList.remove('none')
     }
