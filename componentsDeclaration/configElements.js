@@ -259,3 +259,24 @@ export const lastVisitDate = {
 
 /*и теперь возьмём все константы выше и завернем их в один конфигурационный объект: */
 export const elemConfObj = {lastName: lastName, mainName: mainName, patrName: patrName, purpose: purpose, description: description, urgency: urgency,  pressure: pressure, bodyWeightIndex: bodyWeightIndex, hadDeseases: hadDeseases, age: age, lastVisitDate: lastVisitDate};
+
+export const login ={
+    type: 'text',
+    placeholder:'Email',
+    className:'modal_input',
+    atr: 'text',
+    isRequierd : true
+}
+
+export const password = {
+    type: 'password',
+    placeholder: 'Password',
+    className:'modal_input',
+    atr: 'password',
+    isRequierd : true
+}
+export const btn = {
+    type: 'submit',
+    className:'modal_login_button',
+    atr: 'submit'
+}
