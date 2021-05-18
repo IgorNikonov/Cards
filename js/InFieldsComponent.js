@@ -4,7 +4,7 @@ export default class InFieldsComponent {
 
     constructor(parent, {...args}) { //получаем: id, tag, containerClass, elementClass, elementType, elementName, labelText, placeholder, options
         this.ES6classTitle = InFieldsComponent;
-        for (const [key, value] of Object.entries(args)) {
+        for (let [key, value] of Object.entries(args)) {
             value && (this[key] = value)
         }
 
