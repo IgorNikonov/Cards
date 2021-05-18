@@ -1,23 +1,23 @@
-import Server from "./server.js"
+import Server from "./server.js";
 import Modal from "./Modal.js";
 import VisitForm from "./visitForm.js";
 import {handleData} from "./main.js";
-import LoginForm from './LoginForm.js'
+import LoginForm from './LoginForm.js';
 
 export default function Login() {
     class LoginModal extends Modal {
         constructor(modal){
-            super(modal)
+            super(modal);
             this.modalTitle.textContent = 'Welcome';
            
         }
         renderModal(modal){ 
-            super.renderModal(modal)
+            super.renderModal(modal);
             const content = new LoginForm();
-            content.render(this.form)
-            const submitBtn = document.querySelector('.modal_login_button')
+            content.render(this.form);
+            const submitBtn = document.querySelector('.modal_login_button');
             submitBtn.addEventListener("click", (event) => {  
-                event.preventDefault(), 
+                event.preventDefault();
                 this.checkUserLogin();})   
         }
 
@@ -48,7 +48,7 @@ export default function Login() {
 
     }
 
-    const loginForm = new LoginModal().renderModal();
+     new LoginModal().renderModal();
 
      const modal = document.getElementById("modal");
      const loginBtn = document.getElementById("btn_log");
