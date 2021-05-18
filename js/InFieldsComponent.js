@@ -2,25 +2,22 @@ import changeDoctor from "./changeDoctor.js";
 
 export default class InFieldsComponent {
 
-    constructor(parent, {id, tag, ...args}) {
-        // id, tag, containerClass, elementClass, elementType, elementName, labelText, placeholder, options
+    constructor(parent, {...args}) { //получаем: id, tag, containerClass, elementClass, elementType, elementName, labelText, placeholder, options
         this.ES6classTitle = InFieldsComponent;
         for (const [key, value] of Object.entries(args)) {
             value && (this[key] = value)
         }
 
-        this.id = id;
-        this.tag = tag;
-
         this._DOMelements = {
             parent: parent,
             component: document.createElement('p'),
-            selfEl: document.createElement(`${tag}`),
+            selfEl: document.createElement(`${this.tag}`),
             labelEl: document.createElement("label"),
         }
     }
 
     render() {
+
         const {parent, selfEl, labelEl, component} = this._DOMelements;
         const {tag, containerClass, elementClass, labelText, options} = this;
         if (tag === 'select') {
@@ -38,9 +35,7 @@ export default class InFieldsComponent {
         selfEl.id = id;
         if (id === "select-doctor") {
             selfEl.addEventListener("click", (e) => {
-                //вызываем функцию вывода пустых формы для заполнения
-                changeDoctor(e, null, null); //если бы передали сюда второй и третий параметр-
-                // система перешла бы в режим редактирования карточки с номером в id
+                changeDoctor(e, null, null);
             });
         }
 
