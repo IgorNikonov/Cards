@@ -1,3 +1,15 @@
+export function showLoginBtn(){
+    const loginBtn = document.querySelector(".create_btn");
+    loginBtn.classList.remove("--hidden");
+
+}
+
+export function hideLoginBtn(){
+    const btnLog = document.querySelector(".create_btn");
+    btnLog.classList.toggle("--hidden", true);
+}
+
+
 export class CreateBtn {
     constructor(parent, {id, tag, type, className, innerText, handler}){
         this.id = id;

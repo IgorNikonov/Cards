@@ -8,6 +8,7 @@ import {CardHandler} from "./card.js"
 import {newCardHandle} from "./newCardHandle.js"
 import WrapCardHTML from "./WrapCardHTML.js"
 import {visitorPropInVisitForm} from "../componentsDeclaration/configVisProp.js"
+import {hideLoginBtn, showLoginBtn} from "./createBtn.js"
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
@@ -19,7 +20,9 @@ export default class VisitForm extends Form {
 
     static renderIdleForm() { // общий метод рендеринга исходной формы  selectForm
         if ( document.getElementById("btn_log") ) document.getElementById("btn_log").remove();
-        // if ( document.getElementById("visit-form") ) document.getElementById("visit-form").remove();
+        if ( document.querySelector(".create_btn") ) {
+            hideLoginBtn();
+        }
         const selectForm = new VisitForm(document.getElementById("modal"), cfig.visitFormCfg);
         selectForm.render();
     }
@@ -29,6 +32,7 @@ export default class VisitForm extends Form {
         else
         {
             if (document.getElementById("visit-form")) document.getElementById("visit-form").remove();
+            // showLoginBtn();
         }
     }
 
@@ -39,6 +43,7 @@ export default class VisitForm extends Form {
             /* card.correctUndefinds();  - этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
                                     лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
             newCardHandle(card); //отправил новую карточку на сервер, в рендер и в locakStorage
+            showLoginBtn();
         } catch (err) {
             (console.log(err.name, err.message))
         }

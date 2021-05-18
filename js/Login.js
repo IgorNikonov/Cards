@@ -4,6 +4,21 @@ import VisitForm from "./visitForm.js";
 import {handleData} from "./main.js";
 import LoginForm from './LoginForm.js';
 
+function renderSelectFormBtn(){
+    VisitForm.renderIdleForm();
+}
+
+export function reassignLogBtn() {
+    const modal = document.getElementById("modal");
+    const loginBtn = document.getElementById("btn_log");
+    const createCard = document.querySelector('.create_btn');
+    loginBtn.style.display = 'none';
+    modal.classList.remove('active');
+    createCard.addEventListener("click", renderSelectFormBtn);
+    createCard.classList.remove('none')
+}
+
+
 export default function Login() {
     class LoginModal extends Modal {
         constructor(modal){
@@ -18,7 +33,7 @@ export default function Login() {
             const submitBtn = document.querySelector('.modal_login_button');
             submitBtn.addEventListener("click", (event) => {  
                 event.preventDefault();
-                this.checkUserLogin();})   
+                this.checkUserLogin().then();})
         }
 
         async getToken(loginInput, passInput){
@@ -45,23 +60,9 @@ export default function Login() {
             document.querySelector(".modal").classList.remove("active");
         }
 
-
     }
 
      new LoginModal().renderModal();
 
-     const modal = document.getElementById("modal");
-     const loginBtn = document.getElementById("btn_log");
-
-    function renderSelectFormBtn(){
-        VisitForm.renderIdleForm();
-    }
-
-    function reassignLogBtn() {
-    const createCard = document.querySelector('.create_btn');
-      loginBtn.style.display = 'none';
-      modal.classList.remove('active');
-      createCard.addEventListener("click", renderSelectFormBtn);
-      createCard.classList.remove('none')
-    }
 }
+
