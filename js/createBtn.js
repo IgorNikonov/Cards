@@ -1,13 +1,27 @@
 export function showLoginBtn(){
     const loginBtn = document.querySelector(".create_btn");
     loginBtn.classList.remove("--hidden");
-
 }
-
 export function hideLoginBtn(){
     const btnLog = document.querySelector(".create_btn");
     btnLog.classList.toggle("--hidden", true);
 }
+export function hideSelectForm(){
+    const selectForm = document.getElementById("select-form");
+    selectForm.classList.toggle("--hidden", true);
+    selectForm.remove();
+}
+export function showSelectForm(){
+    document.getElementById('select-form').classList.remove("--hidden");
+
+}
+export function deleteVisitForm(){
+    const visitForm = document.getElementById("visit-form");
+    visitForm.classList.toggle("--hidden", true);
+    visitForm.remove();
+}
+
+
 
 
 export class CreateBtn {

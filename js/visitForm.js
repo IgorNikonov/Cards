@@ -8,7 +8,7 @@ import {CardHandler} from "./card.js"
 import {newCardHandle} from "./newCardHandle.js"
 import WrapCardHTML from "./WrapCardHTML.js"
 import {visitorPropInVisitForm} from "../componentsDeclaration/configVisProp.js"
-import {hideLoginBtn, showLoginBtn} from "./createBtn.js"
+import {hideLoginBtn, showLoginBtn, hideSelectForm, showSelectForm, deleteVisitForm} from "./createBtn.js"
 
 /***  Класс для формирования Формы Визитов  ***/
 export default class VisitForm extends Form {
@@ -31,8 +31,12 @@ export default class VisitForm extends Form {
         if (target.closest('#visit-form') || target.closest('#select-form') || target.tagName === "OPTION" ) return;
         else
         {
-            if (document.getElementById("visit-form")) document.getElementById("visit-form").remove();
-            // showLoginBtn();
+            if (document.getElementById("visit-form")) { //по закрытию формы визита, скрываем обе формы:
+                deleteVisitForm();
+                hideSelectForm(); //выключили форму выбора врача
+                showLoginBtn();
+            }
+
         }
     }
 
