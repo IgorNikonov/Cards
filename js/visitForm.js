@@ -48,6 +48,8 @@ export default class VisitForm extends Form {
                                     лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";*/
             newCardHandle(card); //отправил новую карточку на сервер, в рендер и в locakStorage
             showLoginBtn();
+            deleteVisitForm();
+            hideSelectForm(); //выключили форму выбора врача
         } catch (err) {
             (console.log(err.name, err.message))
         }

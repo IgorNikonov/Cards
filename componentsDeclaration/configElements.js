@@ -1,6 +1,6 @@
 import VisitForm from "../js/visitForm.js";
 import WrapCardHTML from "../js/WrapCardHTML.js";
-
+import {showLoginBtn, hideSelectForm, deleteVisitForm} from "../js/createBtn.js"
 
 /*** КНОПКИ КАРТОЧКИ***/
 
@@ -75,7 +75,9 @@ export const closeBtnCfg = {
     className: "visit__close-btn btn-outline-success return_btn",
     innerText:"Закрыть",
     handler:  function cardCloseHandler(){
-        document.getElementById("visit-form").remove();
+        deleteVisitForm();
+        hideSelectForm(); //выключили форму выбора врача
+        showLoginBtn();
     }
 };
 //----------------------------------------------------------------
@@ -263,6 +265,7 @@ export const elemConfObj = {lastName: lastName, mainName: mainName, patrName: pa
 export const login ={
     type: 'text',
     placeholder:'Email',
+    value: "uts_@ukr.net",
     className:'modal_input',
     atr: 'text',
     isRequierd : true
@@ -271,6 +274,7 @@ export const login ={
 export const password = {
     type: 'password',
     placeholder: 'Password',
+    value: "slyslysly",
     className:'modal_input',
     atr: 'password',
     isRequierd : true
