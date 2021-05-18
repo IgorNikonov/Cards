@@ -52,7 +52,7 @@ export const createCardBtnCfg = {
     type: "button",
     className: "visit__create-btn  btn btn-outline-success return_btn",
     innerText:"Создать карточку посетителя",
-    handler: VisitForm.formSubmitHandler/*().then(()=>console.log("карточка создана"))*/
+    handler: VisitForm.formSubmitHandler
 };
 
 

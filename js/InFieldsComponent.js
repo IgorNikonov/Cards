@@ -7,11 +7,16 @@ export default class InFieldsComponent {
         this.tag = tag;
         this.containerClass = containerClass;
         this.elementClass = elementClass;
-        if (elementType) this.elementType = elementType;
-        if (elementName) this.elementName = elementName;
-        if (placeholder) this.placeholder = placeholder;
-        if (labelText) this.labelText = labelText;
-        if (options) this.options = options;
+        elementType && (this.elementType = elementType);
+        elementName && (this.elementName = elementName);
+        placeholder && (this.placeholder = placeholder);
+        labelText   && (this.labelText     = labelText);
+        options     && (this.options = options);
+        // if (elementType) this.elementType = elementType;
+        // if (elementName) this.elementName = elementName;
+        // if (placeholder) this.placeholder = placeholder;
+        // if (labelText) this.labelText = labelText;
+        // if (options) this.options = options;
         this._DOMelements = {
             parent: parent,
             component: document.createElement('p'),
@@ -21,12 +26,10 @@ export default class InFieldsComponent {
     }
     render() {
         const {parent, selfEl, labelEl, component} = this._DOMelements;
-        const { id, tag, containerClass, elementClass, labelText, elementType, elementName, options } = this;
+        const { id, tag, containerClass, elementClass, labelText, options } = this;
         if (tag === 'select') {
             for (let i=0; i < options.length; i++) {
                 selfEl.add( new Option(options[i].text, options[i].value, options[i].defaultSelected, options[i].defaultSelected) );
-                /* в предыдущ строке мы указали выбрать Терапевта по умолчанию (true, true).  Альтернативные способы:
-                selectDoctorEl.innerText = "запись к Кардиологу";    selectDoctorEl.value = "Терапевт";   selectDoctorEl.selectedIndex = 2;  */
                 selfEl.size = options.length; // TODO  пока что раскрыли select полностью
         }   }
 
@@ -47,10 +50,9 @@ export default class InFieldsComponent {
         labelEl.innerText = labelText;
 
         component.className = containerClass;
-        component.classList.add("test"); //TODO для теста. Потом эту строку удалить
-        component.style.display = "block"; //TODO для теста. Потом эту строку удалить
+        component.style.display = "block";
 
-        labelEl.style.display = "block";   //TODO для теста. Потом эту строку удалить
+        labelEl.style.display = "block";
 
         component.append(labelEl, selfEl );
         parent.append(component);

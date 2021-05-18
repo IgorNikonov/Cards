@@ -1,6 +1,5 @@
 import {doctorSelect} from "../componentsDeclaration/configElements.js";
 import {visitorProps} from "../componentsDeclaration/configVisProp.js"
-import {visitorPropInVisitForm} from "../componentsDeclaration/configVisProp.js";
 
 export class CardHandler {   // внимание: это полученный объект из visitForm, в нем НЕТ еще id карточки!
 // id карточки будет позднее возвращён с сервера в response
@@ -30,9 +29,4 @@ export class CardHandler {   // внимание: это полученный о
 
         this.visitStatus = (Math.random() > 0.5) ? "актуален" : "закрыт";
     }
-
-    // correctUndefinds(){ // этот метод раньше использовался для заполнение всех "undefined" полей ввода, но более
-    //     //лаконичное решение оказалось:  this.lastName = document.getElementsByName(").value || "";
-    //     for (let key in this) if (this.key === undefined) this.key = "";
-    // }
 }

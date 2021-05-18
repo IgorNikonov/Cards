@@ -3,7 +3,6 @@ import Login from "./Login.js";
 import Desk from "./desk.js";
 import Server from "./server.js";
 import {reassignLogBtn} from "./Login.js";
-import VisitForm from "./visitForm.js";
 export const deskComp = document.getElementById('desk'); // сюда будем выкладывать все формы
 
 Desk.render(deskComp); //выводим в DOM рабочий стол карточек
@@ -15,13 +14,8 @@ if (localStorage.getItem('token')) {
         cardsFromServer.forEach(card => Desk.addCard(card));
     }
     showCards().then();
-    // Назначаем нашей кнопке функционал создания новой карточки.
-    // const loginBtn = document.getElementById("btn_log");
-    // loginBtn.addEventListener("click", VisitForm.renderIdleForm);
-    // loginBtn.innerText = "Добавить визит";
     reassignLogBtn();
 } else {
-    // Если токена в localStorage нет, назначаем нашей кнопке функцию логина, и никаких карточек изначально на стол не выводим.
     Login();
 }
 
@@ -37,8 +31,6 @@ async function filterAll() {
     document.getElementById('card-container').innerHTML = '';
 
     const serverData = await Server.getAllCards(localStorage.getItem('token'));
-console.log(serverData);
-debugger
     const filterByInput = serverData.filter(card => card["purpose"].includes(searchCardInput.value.toLowerCase())
         || card["description"].includes(searchCardInput.value.toLowerCase()));
     if (statusSelect.value !== "" && urgencySelect.value === "") {
